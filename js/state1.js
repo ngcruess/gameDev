@@ -3,13 +3,13 @@ var sky, mittens, mouse, counters, hitzones, spaceKey, attackTime = 0, attacking
 demo.state1 = function(){};
 demo.state1.prototype = { 
     preload: function(){
-        game.load.spritesheet('mittens','assets/spritesheets/BatCat.png', 400, 300);
-        game.load.spritesheet('mouse','assets/spritesheets/toyMouse.png', 98, 49);
-        game.load.image('sky', 'assets/sprites/sky.png');
-        game.load.image('counter', 'assets/sprites/kitchenCounterCropped.png');
-        game.load.image('hitzone', 'assets/sprites/hitbox.png');
-        game.load.image('sink', 'assets/sprites/kitchenSink.png');
-        game.load.image('toaster', 'assets/sprites/toaster.png');
+        game.load.spritesheet('mittens','../assets/spritesheets/BatCat.png', 400, 300);
+        game.load.spritesheet('mouse','../assets/spritesheets/toyMouse.png', 98, 49);
+        game.load.image('sky', '../assets/sprites/sky.png');
+        game.load.image('counter', '../assets/sprites/kitchenCounterCropped.png');
+        game.load.image('hitzone', '../assets/sprites/hitbox.png');
+        game.load.image('sink', '../assets/sprites/kitchenSink.png');
+        game.load.image('toaster', '../assets/sprites/toaster.png');
     },
     create: function(){
         game.physics.startSystem(Phaser.Physics.ARCADE);

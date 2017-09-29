@@ -3,15 +3,15 @@ var centerX = 300, centerY = 200, vel = 100, jumpvel = -300, sock, mittens, sock
 demo.state3 = function() {};
 demo.state3.prototype = {
     preload: function() {
-        game.load.spritesheet("evilSock", "assets/spritesheets/EvilSock.png", 3200, 3200);
-        game.load.spritesheet("mittens", "assets/spritesheets/BatCat.png", 400, 320);
-        game.load.image("sidetable", "assets/sprites/SideTable.png");
-        game.load.image("table", "assets/sprites/Table.png");
-        game.load.image("shelf", "assets/sprites/Shelf.png");
-        game.load.image('hitzone', "assets/sprites/hitbox.png");
+        game.load.spritesheet('evilSock', '../assets/spritesheets/EvilSock.png', 3200, 3200);
+        game.load.spritesheet('mittens', '../assets/spritesheets/BatCat.png', 400, 320);
+        game.load.image('sidetable', '../assets/sprites/SideTable.png');
+        game.load.image('table', '../assets/sprites/Table.png');
+        game.load.image('shelf', '../assets/sprites/Shelf.png');
+        game.load.image('hitzone', '../assets/sprites/hitbox.png');
     },
     create: function() {
-        game.stage.backgroundColor = "#3d7c48";
+        game.stage.backgroundColor = '#3d7c48';
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.world.setBounds(0, 0, 2500, 400);
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;   
@@ -22,7 +22,7 @@ demo.state3.prototype = {
         enemies = game.add.group();
         enemies.enableBody = true;
         
-        mittens = game.add.sprite(0,0, "mittens");
+        mittens = game.add.sprite(0,0, 'mittens');
         mittens.scale.setTo(0.2, 0.2);
         mittens.frame = 2;
         game.physics.enable(mittens);
@@ -36,23 +36,23 @@ demo.state3.prototype = {
         sideTable.body.immovable = true;
         sideTable.scale.setTo(0.07, 0.07);
         
-        var shelf = platforms.create(500, 306, "shelf");
+        var shelf = platforms.create(500, 306, 'shelf');
         shelf.anchor.setTo(0.5,1);
         shelf.scale.setTo(0.07, 0.07);
         shelf.body.immovable = true;
         
         
-        var shelf2 = platforms.create(800, 150, "shelf");
+        var shelf2 = platforms.create(800, 150, 'shelf');
         shelf2.anchor.setTo(0.5, 1);
         shelf2.scale.setTo(0.07, 0.07);
         shelf2.body.immovable = true;
         
-        var table = platforms.create(1000, 400, "table");
+        var table = platforms.create(1000, 400, 'table');
         table.anchor.setTo(0, 1);
         table.scale.setTo(.07, .07);
         table.body.immovable = true;
         
-        sock0 = enemies.create(300, 400, "evilSock");
+        sock0 = enemies.create(300, 400, 'evilSock');
         sock0.anchor.setTo(0.5, 1);
         sock0.scale.setTo(0.03, 0.03); 
         game.physics.enable(sock0);
@@ -60,14 +60,14 @@ demo.state3.prototype = {
         sock0.body.collideWorldBounds = true;
         
         
-        sock = enemies.create(800, 0, "evilSock");
+        sock = enemies.create(800, 0, 'evilSock');
         sock.anchor.setTo(0.5, 1);
         sock.scale.setTo(0.03, 0.03); 
         game.physics.enable(sock);
         sock.body.gravity.y = 300;
         sock.body.collideWorldBounds = true;
         
-        sock2 = enemies.create(1100, 0, "evilSock");
+        sock2 = enemies.create(1100, 0, 'evilSock');
         sock2.anchor.setTo(0.5, 1);
         sock2.scale.setTo(0.03, 0.03);
         game.physics.enable(sock2);
