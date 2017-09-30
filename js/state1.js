@@ -130,37 +130,3 @@ demo.state1.prototype = {
         }
     }
 };
-
-function attack() {
-    if (game.time.now > attackTime) {
-        attacking = true;
-        attackTime = game.time.now + 125;
-        if (facing == 'LEFT') {
-            mittens.animations.play('attackLeft');
-        }
-        else {
-            mittens.animations.play('attackRight');
-        }
-    }
-}
-
-function updateAnchor(x, y, item) {
-    item.anchor.x = x;
-    item.anchor.y = y;
-}
-
-function fight(mittens, mouse) {
-    if (attacking) {
-        mouse.kill();
-        miceKilled += 1;
-    }
-    else {
-        miceKilled = 0;
-        game.state.start('state1');
-    }
-}
-
-function killMittens(mittens) {
-    miceKilled = 0;
-    game.state.start('state1');
-}
