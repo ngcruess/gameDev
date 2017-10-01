@@ -2,7 +2,7 @@ demo.state0a = function() {};
 demo.state0a.prototype = {
     preload: function(){
         game.load.spritesheet('mittens', '../assets/spritesheets/BatCat.png',400,300);
-        game.load.image('platform', '../assets/sprites/hitbox.png');
+        game.load.image('platform', '../assets/images/block.png');
     },
     create: function(){
         game.physics.startSystem(Phaser.Physics.P2JS);
@@ -29,6 +29,7 @@ demo.state0a.prototype = {
         
         var platform = game.add.sprite(500, 400, 'platform');
         updateAnchor(.5, .5, platform);
+        platform.scale.setTo(1.25, .2);
         game.physics.p2.enable(platform);
         platform.body.setMaterial(platformMaterial);
         platform.body.static = true;
