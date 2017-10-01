@@ -1,9 +1,8 @@
-var mittens, cursor;
-
 demo.state0a = function() {};
 demo.state0a.prototype = {
     preload: function(){
-        game.load.spritesheet('mittens', '../assets/spritesheets/BatCat.png',400,300)
+        game.load.spritesheet('mittens', '../assets/spritesheets/BatCat.png',400,300);
+        game.load.image('platform', '../assets/sprites/hitbox.png');
     },
     create: function(){
         game.physics.startSystem(Phaser.Physics.P2JS);
@@ -15,7 +14,7 @@ demo.state0a.prototype = {
         game.physics.p2.world.setGlobalStiffness(1e5);
         
         mittens = game.add.sprite(0,0, 'mittens');
-        mittens.scale.setTo(0.2, 0.2);
+        mittens.scale.setTo(0.15, 0.15);
         mittens.frame = 2;
         mittens.animations.add('walkRight', [2]);
         mittens.animations.add('walkLeft', [1]);
@@ -24,6 +23,15 @@ demo.state0a.prototype = {
         mittens.body.setZeroDamping();
         
         //game.camera.follow(mittens);
+        
+        var spriteMaterial = game.physics.p2.createMaterial('spriteMaterial', mittens.body);
+        var platformMaterial = game.physics.p2.createMaterial('platformMaterial');
+        
+        var platform = game.add.sprite(500, 400, 'platform');
+        updateAnchor(.5, .5, platform);
+        game.physics.p2.enable(platform);
+        platform.body.setMaterial(platformMaterial);
+        platform.body.static = true;
         
         cursor = game.input.keyboard.createCursorKeys();
     },
