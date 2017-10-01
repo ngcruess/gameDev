@@ -13,7 +13,7 @@ demo.state3.prototype = {
     create: function() {
         game.stage.backgroundColor = '#3d7c48';
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        game.world.setBounds(0, 0, 2500, 400);
+        game.world.setBounds(0, 0, 2500, 600);
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;   
         
         platforms = game.add.group();
@@ -30,6 +30,8 @@ demo.state3.prototype = {
         mittens.body.collideWorldBounds = true;
         mittens.animations.add('walkRight', [2,3]);
         mittens.animations.add('walkLeft', [0,1]);
+        
+        game.camera.follow(mittens);
         
         var sideTable = platforms.create(550, 400, 'sidetable');
         sideTable.anchor.setTo(0.5, 1);
@@ -74,9 +76,7 @@ demo.state3.prototype = {
         sock2.body.gravity.y = 300;
         sock2.body.collideWorldBounds = true;
         
-        
-        game.camera.follow(mittens);
-        
+                
     },
     update: function() {
         mittens.body.velocity.x = 0;

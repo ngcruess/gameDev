@@ -3,8 +3,8 @@ demo.state0 = function(){};
 demo.state0.prototype= {
     preload: function(){},
     create: function(){
-        game.stage.backgroundColor = "#B25F55";
-        //game.stage.backgroundColor = "#3d7c48";        
+        game.stage.backgroundColor = '#B25F55';
+        //game.stage.backgroundColor = '#3d7c48';        
         var titleText = game.add.text(game.world.width / 2, game.world.height / 2, 'The Kitchen', {fontsize: '128px', fill: '#FFFFFF', align: 'center'});
         updateAnchor(.5, .5, titleText);
         
@@ -17,7 +17,7 @@ demo.state0.prototype= {
     update: function(){
         if (spaceKey.isDown) {
             console.log('SPACE');
-            game.state.start('state1');
+            game.state.start('state0a');
         } 
     }
 };
