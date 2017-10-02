@@ -15,7 +15,8 @@ demo.state0a.prototype = {
         game.physics.p2.defaultRestitution = 0;
         game.physics.p2.world.setGlobalStiffness(1e5);
         
-        mittens = game.add.sprite(164,365, 'mittens');
+        //mittens = game.add.sprite(164,365, 'mittens');
+        mittens = game.add.sprite(0,0,'mittens');
         mittens.scale.setTo(0.15, 0.15);
         //mittens.animations.add('walkRight', [2]);
         //mittens.animations.add('walkLeft', [1]);
@@ -30,7 +31,7 @@ demo.state0a.prototype = {
         var spriteMaterial = game.physics.p2.createMaterial('spriteMaterial', mittens.body);
         var platformMaterial = game.physics.p2.createMaterial('platformMaterial');
         
-        var platform = game.add.sprite(200, 400, 'platform');
+        platform = game.add.sprite(200, 400, 'platform');
         updateAnchor(.5, .5, platform);
         platform.scale.setTo(1.25, .2);
         game.physics.p2.enable(platform);
@@ -59,6 +60,8 @@ demo.state0a.prototype = {
         platform.body.static = true;
         
         cursor = game.input.keyboard.createCursorKeys();
+        
+        mittens.body.onBeginContact.add(mittensHit, this);
     },
     update: function(){
         
@@ -79,3 +82,12 @@ demo.state0a.prototype = {
         }
     }
 };
+
+function mittensHit(body, bodyB, shapeA, shapeB, equation) {
+    if (body == null) {
+        return
+    }
+    if (body.sprite.key == 'platform') {
+        mittens.reset(0,0);
+    }
+}
