@@ -72,6 +72,7 @@ demo.state0a.prototype = {
         shootButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         
         //mittens.body.onBeginContact.add(mittensHit, this);
+        //bullets.body.onBeginContact.add(bulletsHit, this);
     },
     update: function(){
         
@@ -109,6 +110,6 @@ function shoot() {
     var bullet = bullets.getFirstExists(false);
     bullet.scale.setTo(.5,.5)
     bullet.reset(mittens.x, mittens.y);
-    bullet.body.mass = 0;
-    bullet.body.moveRight(10000);
+    bullet.body.mass = 1;
+    bullet.body.moveRight(500);
 }
