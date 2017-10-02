@@ -35,6 +35,9 @@ demo.state0a.prototype = {
         bullets.setAll('anchor.y', 0.5);
         bullets.setAll('outOfBoundsKill', true);
         bullets.setAll('ckeckWorldBounds', true);
+        bullets.forEach(function(bullet) {
+            bullet.body.onBeginContact.add(bulletHit, bullet);
+        })
         
         
         var spriteMaterial = game.physics.p2.createMaterial('spriteMaterial', mittens.body);
@@ -105,11 +108,20 @@ function mittensHit(body, bodyB, shapeA, shapeB, equation) {
         mittens.reset(0,0);
     }
 }
+function bulletHit(target) {
+    bullet = this;
+    if (target != mittens.body) {
+        bullet.kill();
+    }
+}
 function shoot() {
-    console.log('bang');
-    var bullet = bullets.getFirstExists(false);
-    bullet.scale.setTo(.5,.5)
-    bullet.reset(mittens.x, mittens.y);
-    bullet.body.mass = 1;
-    bullet.body.moveRight(500);
+    if (game.time.now > shotTimer) {
+        shotTimer = game.time.now + 100;
+        var bullet = bullets.getFirstExists(false);
+        bullet.body.data.gravityScale = 0;
+        bullet.scale.setTo(0.33, 0.33)
+        bullet.reset(mittens.x + 40, mittens.y);
+        bullet.body.mass = 1;
+        bullet.body.moveRight(700);
+    }    
 }
