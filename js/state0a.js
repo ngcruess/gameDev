@@ -78,11 +78,13 @@ demo.state0a.prototype = {
     },
     update: function(){
         if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
-            mittens.body.moveRight(400);
+            mittensFacingLeft = false;
+            mittens.body.moveRight(mittensRunSpeed);
             mittens.scale.setTo(-0.15, 0.15);
         }
         else if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
-            mittens.body.moveLeft(400);
+            mittensFacingLeft = true;
+            mittens.body.moveLeft(mittensRunSpeed);
             mittens.scale.setTo(0.15, 0.15);
         }
         else{
@@ -90,10 +92,10 @@ demo.state0a.prototype = {
             mittens.animations.stop();
         }
         if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-            mittens.body.moveUp(400);
+            mittens.body.moveUp(mittensJumpVelocity);
         }        
         if (shootButton.isDown) {
-            shoot();
+            mittensShoot();
         }
     }
 };

@@ -1,7 +1,9 @@
 var game = new Phaser.Game(1000, 800, Phaser.AUTO);
 
 //Variables to be used in many states
-var mittens, cursor, jumps, platform, bullets, fireRate = 200, shotTimer = 0, mittensFacingLeft = false;
+var mittens, cursor, jumps, platform, bullets, fireRate = 200, shotTimer = 0, 
+    mittensFacingLeft = true, mittensJumpVelocity = 400, 
+    mittensRunSpeed = 400, bulletSpeed = 700;
 
 game.state.add('state0', demo.state0);
 game.state.add('state0a', demo.state0a);
@@ -45,6 +47,7 @@ function killMittens(mittens) {
     miceKilled = 0;
     game.state.start('state1');
 }
+/*
 function shoot() {
     if (game.time.now > shotTimer) {
         shotTimer = game.time.now + 100;
@@ -53,6 +56,25 @@ function shoot() {
         bullet.scale.setTo(0.33, 0.33)
         bullet.reset(mittens.x + 30, mittens.y);
         bullet.body.mass = 1;
-        bullet.body.moveRight(700);
+        bullet.body.moveRight(bulletSpeed);
     }    
+}
+*/
+function mittensShoot() {
+    if (game.time.now >= shotTimer) {
+        shotTimer = game.time.now + 200;
+        var bullet = bullets.getFirstExists(false);
+        bullet.body.data.gravityScale = 0;
+        bullet.scale.setTo(0.33, 0.33);
+        bullet.body.mass = 1;
+        
+        if (mittensFacingLeft) {
+            bullet.reset(mittens.x - 30, mittens.y);
+            bullet.body.moveLeft(bulletSpeed);
+        }
+        else {
+            bullet.reset(mittens.x + 30, mittens.y);
+            bullet.body.moveRight(bulletSpeed);
+        }
+    }
 }
