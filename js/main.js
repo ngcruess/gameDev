@@ -1,7 +1,7 @@
 var game = new Phaser.Game(1000, 800, Phaser.AUTO);
 
 //Variable to be used in many states
-var mittens, cursor, jumps, platform;
+var mittens, cursor, jumps, platform, bullets, fireRate = 100;
 
 game.state.add('state0', demo.state0);
 game.state.add('state0a', demo.state0a);
