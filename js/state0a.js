@@ -21,7 +21,7 @@ demo.state0a.prototype = {
         //mittens.animations.add('walkRight', [2]);
         //mittens.animations.add('walkLeft', [1]);        
         mittens.scale.setTo(0.15, 0.15);
-        game.physics.p2.enable(mittens, true);
+        game.physics.p2.enable(mittens);
         mittens.body.fixedRotation = true;
         //mittens.body.setZeroDamping();
         //mittens.body.clearShapes();

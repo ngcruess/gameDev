@@ -47,19 +47,6 @@ function killMittens(mittens) {
     miceKilled = 0;
     game.state.start('state1');
 }
-/*
-function shoot() {
-    if (game.time.now > shotTimer) {
-        shotTimer = game.time.now + 100;
-        var bullet = bullets.getFirstExists(false);
-        bullet.body.data.gravityScale = 0;
-        bullet.scale.setTo(0.33, 0.33)
-        bullet.reset(mittens.x + 30, mittens.y);
-        bullet.body.mass = 1;
-        bullet.body.moveRight(bulletSpeed);
-    }    
-}
-*/
 function mittensShoot() {
     if (game.time.now >= shotTimer) {
         shotTimer = game.time.now + 200;
