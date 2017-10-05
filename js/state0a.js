@@ -7,6 +7,7 @@ demo.state0a.prototype = {
         game.load.image('platform', '../assets/images/block.png');
         game.load.image('shot', '../assets/images/projectile.png');
         game.load.image('vacuum', '../assets/sprites/Vacuum.png');
+        game.load.spritesheet('mittensSheet', '../assets/spritesheets/BatCat.png', 100, 80);
         
         game.load.physics('mittensPhysicsData', '../assets/polygons/mittensSingleFrame.json');
     },
@@ -19,30 +20,16 @@ demo.state0a.prototype = {
         game.physics.p2.restitution = 0;
         game.physics.p2.world.setGlobalStiffness(1e5);
         
-<<<<<<< HEAD
-        mittens = game.add.sprite(164,365, 'mittens');
-        //mittens = game.add.sprite(400,400,'mittens');
-        mittens.animations.add('walkRight', [2]);
-        mittens.animations.add('walkLef t', [1]);        
-//        mittens.scale.setTo(0.15, 0.15);
-//        game.physics.p2.enable(mittens);
-//        mittens.body.fixedRotation = true;
-        mittens.body.setZeroDamping();
-        mittens.body.clearShapes();
-        mittens.body.loadPolygon('mittensPhysicsData', 'mittens');
-=======
         //mittens = game.add.sprite(164,365, 'mittens');
-        mittens = game.add.sprite(400,400,'mittens');
+        mittens = game.add.sprite(400,400,'mittensSheet');
         //mittens.animations.add('walkRight', [2]);
         //mittens.animations.add('walkLeft', [1]);   
-        mittens.scale.setTo(0.25, 0.25);
+        //mittens.scale.setTo(0.25, 0.25);
         game.physics.p2.enable(mittens, true);
         mittens.body.fixedRotation = true;
         //mittens.body.setZeroDamping();
         mittens.body.clearShapes();
         mittens.body.loadPolygon('mittensPhysicsData', 'mittens', 1, -Math.PI * 2);         
-        
->>>>>>> 4dfbb84db65adcaa14af0db2cec963e2a6c574c5
         /*
         vacuum = game.add.sprite(700,400,'vacuum');
         vacuum.anchor.x = 0.5;
@@ -106,12 +93,12 @@ demo.state0a.prototype = {
         if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
             mittensFacingLeft = false;
             mittens.body.moveRight(mittensRunSpeed);
-            mittens.scale.setTo(-0.15, 0.15);
+            mittens.scale.setTo(-1, 1);
         }
         else if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
             mittensFacingLeft = true;
             mittens.body.moveLeft(mittensRunSpeed);
-            mittens.scale.setTo(0.15, 0.15);
+            mittens.scale.setTo(1, 1);
         }
         else{
             mittens.body.velocity.x = 0;
