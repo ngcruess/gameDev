@@ -22,13 +22,14 @@ demo.state0a.prototype = {
         //mittens = game.add.sprite(164,365, 'mittens');
         mittens = game.add.sprite(400,400,'mittens');
         //mittens.animations.add('walkRight', [2]);
-        //mittens.animations.add('walkLeft', [1]);        
-        //mittens.scale.setTo(0.15, 0.15);
+        //mittens.animations.add('walkLeft', [1]);   
+        mittens.scale.setTo(0.25, 0.25);
         game.physics.p2.enable(mittens, true);
         mittens.body.fixedRotation = true;
         //mittens.body.setZeroDamping();
         mittens.body.clearShapes();
-        mittens.body.loadPolygon('mittensPhysicsData', 'mittens', 1, -Math.PI * 2);
+        mittens.body.loadPolygon('mittensPhysicsData', 'mittens', 1, -Math.PI * 2);         
+        
         /*
         vacuum = game.add.sprite(700,400,'vacuum');
         vacuum.anchor.x = 0.5;
