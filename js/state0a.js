@@ -1,9 +1,12 @@
+var vacuum;
+
 demo.state0a = function() {};
 demo.state0a.prototype = {
     preload: function(){
         game.load.image('mittens', '../assets/sprites/mittensSingleFrame.png');
         game.load.image('platform', '../assets/images/block.png');
         game.load.image('shot', '../assets/images/projectile.png');
+        game.load.image('vacuum', '../assets/sprites/Vacuum.png');
         
         game.load.physics('mittensPhysicsData', '../assets/polygons/mittensSingleFrame.json');
     },
@@ -26,6 +29,16 @@ demo.state0a.prototype = {
         //mittens.body.setZeroDamping();
         //mittens.body.clearShapes();
         //mittens.body.loadPolygon('mittensPhysicsData', 'mittens');
+        /*
+        vacuum = game.add.sprite(700,400,'vacuum');
+        vacuum.anchor.x = 0.5;
+        vacuum.anchor.y = 0.5;
+        vacuum.scale.setTo(2,2);  
+        game.physics.p2.enable(vacuum);
+        vacuum.body.data.gravityScale = 0;
+        vacuum.body.static = true;
+        */
+        
         
         bullets = game.add.group();
         bullets.enableBody = true;
@@ -38,7 +51,6 @@ demo.state0a.prototype = {
         bullets.forEach(function(bullet) {
             bullet.body.onBeginContact.add(bulletHit, bullet);
         })
-        
         
         var spriteMaterial = game.physics.p2.createMaterial('spriteMaterial', mittens.body);
         var platformMaterial = game.physics.p2.createMaterial('platformMaterial');
@@ -92,7 +104,7 @@ demo.state0a.prototype = {
             mittens.animations.stop();
         }
         if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-            mittens.body.moveUp(mittensJumpVelocity);
+            mittensJump(); 
         }        
         if (shootButton.isDown) {
             mittensShoot();
