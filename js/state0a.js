@@ -16,9 +16,10 @@ demo.state0a.prototype = {
         game.stage.backgroundColor = '#B25F55';
                 
         game.physics.p2.gravity.y = 1000;
-        game.physics.p2.defaultRestitution = 0;
+        game.physics.p2.restitution = 0;
         game.physics.p2.world.setGlobalStiffness(1e5);
         
+<<<<<<< HEAD
         mittens = game.add.sprite(164,365, 'mittens');
         //mittens = game.add.sprite(400,400,'mittens');
         mittens.animations.add('walkRight', [2]);
@@ -29,6 +30,19 @@ demo.state0a.prototype = {
         mittens.body.setZeroDamping();
         mittens.body.clearShapes();
         mittens.body.loadPolygon('mittensPhysicsData', 'mittens');
+=======
+        //mittens = game.add.sprite(164,365, 'mittens');
+        mittens = game.add.sprite(400,400,'mittens');
+        //mittens.animations.add('walkRight', [2]);
+        //mittens.animations.add('walkLeft', [1]);   
+        mittens.scale.setTo(0.25, 0.25);
+        game.physics.p2.enable(mittens, true);
+        mittens.body.fixedRotation = true;
+        //mittens.body.setZeroDamping();
+        mittens.body.clearShapes();
+        mittens.body.loadPolygon('mittensPhysicsData', 'mittens', 1, -Math.PI * 2);         
+        
+>>>>>>> 4dfbb84db65adcaa14af0db2cec963e2a6c574c5
         /*
         vacuum = game.add.sprite(700,400,'vacuum');
         vacuum.anchor.x = 0.5;
