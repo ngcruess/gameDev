@@ -21,7 +21,7 @@ demo.state0a.prototype = {
         game.physics.p2.world.setGlobalStiffness(1e5);
         
         //mittens = game.add.sprite(164,365, 'mittens');
-        mittens = game.add.sprite(400,400,'mittensSheet');
+        mittens = game.add.sprite(400,400,'mittens');
         //mittens.animations.add('walkRight', [2]);
         //mittens.animations.add('walkLeft', [1]);   
         //mittens.scale.setTo(0.25, 0.25);
@@ -29,7 +29,7 @@ demo.state0a.prototype = {
         mittens.body.fixedRotation = true;
         //mittens.body.setZeroDamping();
         mittens.body.clearShapes();
-        mittens.body.loadPolygon('mittensPhysicsData', 'mittens', 1, -Math.PI * 2);         
+        mittens.body.loadPolygon('mittensPhysicsData', 'mittensSingleFrame', 1, -Math.PI * 2);         
         /*
         vacuum = game.add.sprite(700,400,'vacuum');
         vacuum.anchor.x = 0.5;
@@ -93,12 +93,12 @@ demo.state0a.prototype = {
         if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
             mittensFacingLeft = false;
             mittens.body.moveRight(mittensRunSpeed);
-            mittens.scale.setTo(-1, 1);
+            mittens.scale.setTo(1, 1);
         }
         else if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
             mittensFacingLeft = true;
             mittens.body.moveLeft(mittensRunSpeed);
-            mittens.scale.setTo(1, 1);
+            mittens.scale.setTo(-1, 1);
         }
         else{
             mittens.body.velocity.x = 0;

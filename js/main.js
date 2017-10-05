@@ -2,7 +2,7 @@ var game = new Phaser.Game(1000, 800, Phaser.AUTO);
 
 //Variables to be used in many states
 var mittens, cursor, jumps, platform, bullets, fireRate = 200, shotTimer = 0, 
-    mittensFacingLeft = true, mittensJumpVelocity = 400, 
+    mittensFacingLeft = true, mittensJumpVelocity = 800, 
     mittensRunSpeed = 400, bulletSpeed = 700, yAxis = p2.vec2.fromValues(0, 1);
 
 game.state.add('state0', demo.state0);
