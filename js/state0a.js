@@ -16,16 +16,17 @@ demo.state0a.prototype = {
         
         game.stage.backgroundColor = '#B25F55';
                 
-        game.physics.p2.gravity.y = 1000;
+        game.physics.p2.gravity.y = globalGravity;
         game.physics.p2.restitution = 0;
         game.physics.p2.world.setGlobalStiffness(1e5);
         
         //mittens = game.add.sprite(164,365, 'mittens');
-        mittens = game.add.sprite(400,400,'mittens');
+        mittens = game.add.sprite(153,354,'mittens');
+        updateAnchor(0.5, 0.5, mittens);
         //mittens.animations.add('walkRight', [2]);
         //mittens.animations.add('walkLeft', [1]);   
         //mittens.scale.setTo(0.25, 0.25);
-        game.physics.p2.enable(mittens, true);
+        game.physics.p2.enable(mittens, false);
         mittens.body.fixedRotation = true;
         //mittens.body.setZeroDamping();
         mittens.body.clearShapes();
