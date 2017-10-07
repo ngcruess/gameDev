@@ -63,9 +63,11 @@ function mittensShoot() {
         }
     }
 }
+// ADDED DOUBLE JUMP
 function mittensJump() {
-    if (bottomTouching(mittens)) {
+    if (bottomTouching(mittens) || (game.time.now < jumpTime+700)) {
         mittens.body.moveUp(mittensJumpVelocity);
+        jumpTime = game.time.now
     }
 }
 function bottomTouching(character) {
