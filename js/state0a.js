@@ -1,4 +1,4 @@
-var vacuum;
+var vacuum, jumpRel;
 
 demo.state0a = function() {};
 demo.state0a.prototype = {
@@ -19,6 +19,14 @@ demo.state0a.prototype = {
         game.physics.p2.gravity.y = globalGravity;
         game.physics.p2.restitution = 0;
         game.physics.p2.world.setGlobalStiffness(1e5);
+        
+        game.input.keyboard.onUpCallback = function (e) {
+            console.log(e.keyCode)
+            if (e.keyCode == 38){
+                jumpRel = true;
+            }
+            
+        }
         
         //mittens = game.add.sprite(164,365, 'mittens');
         mittens = game.add.sprite(153,354,'mittens');
@@ -105,8 +113,9 @@ demo.state0a.prototype = {
             mittens.body.velocity.x = 0;
             mittens.animations.stop();
         }
-        if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-            mittensJump(); 
+        if (cursor.up.isDown && jumpRel) {
+            mittensJump();
+            jumpRel = false;
         }        
         if (shootButton.isDown) {
             mittensShoot();

@@ -1,4 +1,4 @@
-var game = new Phaser.Game(1000, 800, Phaser.AUTO);
+var game = new Phaser.Game(1000, 800, Phaser.AUTO), jumps;
 
 //Variables to be used in many states
 var mittens, cursor, jumps, platform, bullets, fireRate = 200, shotTimer = 0, 
@@ -65,9 +65,17 @@ function mittensShoot() {
 }
 // ADDED DOUBLE JUMP
 function mittensJump() {
-    if (bottomTouching(mittens) || (game.time.now < jumpTime+700)) {
+    
+    if (bottomTouching(mittens)) {
+        jumps = 2;
         mittens.body.moveUp(mittensJumpVelocity);
         jumpTime = game.time.now
+        jumps = jumps -1; 
+        
+    }
+    else if (jumps > 0 && game.time.now > jumpTime + 200 && game.time.now < jumpTime+700) {
+        mittens.body.moveUp(mittensJumpVelocity);
+        jumps = jumps -1;
     }
 }
 function bottomTouching(character) {
