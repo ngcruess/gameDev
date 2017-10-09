@@ -30,7 +30,8 @@ demo.state0a.prototype = {
         }
         
         //mittens = game.add.sprite(164,365, 'mittens');
-        game.add.sprite(0,0, 'background');
+        var background = game.add.sprite(0,0, 'background');
+        background.scale.setTo(10, 10);
         mittens = game.add.sprite(153,354,'mittens');
         updateAnchor(0.5, 0.5, mittens);
         //mittens.animations.add('walkRight', [2]);
