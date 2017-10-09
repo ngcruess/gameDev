@@ -71,8 +71,7 @@ function mittensJump() {
         jumps = 2;
         mittens.body.moveUp(mittensJumpVelocity);
         jumpTime = game.time.now
-        jumps = jumps -1; 
-        
+        jumps --;        
     }
     else if (jumps > 0 && game.time.now > jumpTime + 200 && game.time.now < jumpTime+700) {
         mittens.body.moveUp(mittensJumpVelocity);
