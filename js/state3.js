@@ -3,12 +3,13 @@ var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0;
 demo.state3 = function() {};
 demo.state3.prototype = {
     preload: function() {
-        game.load.spritesheet('evilSock', '../assets/spritesheets/EvilSock.png', 3200, 3200);
-        game.load.spritesheet('mittens', '../assets/spritesheets/BatCat.png', 100, 80);
+        game.load.spritesheet('evilSock', '../assets/sprites/EvilSock.png', 3200, 3200);
+        game.load.spritesheet('mittens', '../assets/sprites/mittensSingleFrame.png', 100, 80);
         game.load.image('sidetable', '../assets/images/SideTable.png');
         game.load.image('table', '../assets/images/Table.png');
         game.load.image('shelf', '../assets/images/Shelf.png');
-        game.load.image('hitzone', '../assets/sprites/hitbox.png');
+        game.load.image('hitzone', '../assets/images/hitbox.png');
+        game.load.image('shot', '../assets/images/projectile.png');
         
         game.load.image('wall', '../assets/images/livingroomwall.png');
         game.load.image('sky', '../assets/images/sky.png');
@@ -61,6 +62,20 @@ demo.state3.prototype = {
         game.camera.follow(mittens);
         ///////////////////////////////////////////////////
         
+                        //BULLETS//
+        ///////////////////////////////////////////////////
+        bullets = game.add.group();
+        bullets.enableBody = true;
+        bullets.physicsBodyType = Phaser.Physics.P2JS;
+        bullets.createMultiple(100, 'shot', false);
+        bullets.setAll('anchor.x', 0.5);
+        bullets.setAll('anchor.y', 0.5);
+        bullets.setAll('outOfBoundsKill', true);
+        bullets.setAll('ckeckWorldBounds', true);
+        bullets.forEach(function(bullet) {
+            bullet.body.onBeginContact.add(bulletHit, bullet);
+        })
+        ///////////////////////////////////////////////////
         
                        // PLATFORMS //
         ///////////////////////////////////////////////////

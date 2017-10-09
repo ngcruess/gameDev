@@ -54,7 +54,7 @@ function mittensShoot() {
         bullet.body.mass = 1;
         
         if (mittensFacingLeft) {
-            bullet.reset(mittens.x - 30, mittens.y);
+            bullet.reset(mittens.x - 50, mittens.y);
             bullet.body.moveLeft(bulletSpeed);
         }
         else {
@@ -102,4 +102,10 @@ function bottomTouching(character) {
     }
     
     return result;
+}
+function bulletHit(target) {
+    bullet = this;
+    if (target != mittens.body) {
+        bullet.kill();
+    }
 }
