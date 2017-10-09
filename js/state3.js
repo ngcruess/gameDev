@@ -54,7 +54,7 @@ demo.state3.prototype = {
         ///////////////////////////////////////////////////
         mittens = game.add.sprite(0,0, 'mittens');
         updateAnchor(0.5, 0.5, mittens);
-        game.physics.p2.enable(mittens, false);
+        game.physics.p2.enable(mittens, true);
         mittens.body.fixedRotation = true;
         //mittens.body.setZeroDamping();
         mittens.body.clearShapes();
@@ -192,6 +192,7 @@ demo.state3.prototype = {
         if (cursor.up.isDown && jumpRel) {
             mittensJump();
             jumpRel = false;
+            console.log(jumps);
         }        
         if (shootButton.isDown) {
             mittensShoot();
