@@ -7,6 +7,7 @@ demo.state0a.prototype = {
         game.load.image('platform', '../assets/images/block.png');
         game.load.image('shot', '../assets/images/projectile.png');
         game.load.image('vacuum', '../assets/sprites/vacuum.png');
+        game.load.image('background', '../assets/images/brick.png');
         game.load.spritesheet('mittensSheet', '../assets/spritesheets/BatCat.png', 100, 80);
         
         game.load.physics('mittensPhysicsData', '../assets/polygons/mittensSingleFrame.json');
@@ -14,7 +15,7 @@ demo.state0a.prototype = {
     create: function(){
         game.physics.startSystem(Phaser.Physics.P2JS);
         
-        game.stage.backgroundColor = '#B25F55';
+//        game.stage.backgroundColor = '#B25F55';
                 
         game.physics.p2.gravity.y = globalGravity;
         game.physics.p2.restitution = 0;
@@ -29,6 +30,7 @@ demo.state0a.prototype = {
         }
         
         //mittens = game.add.sprite(164,365, 'mittens');
+        game.add.sprite(0,0, 'background');
         mittens = game.add.sprite(153,354,'mittens');
         updateAnchor(0.5, 0.5, mittens);
         //mittens.animations.add('walkRight', [2]);
