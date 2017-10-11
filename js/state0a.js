@@ -6,7 +6,7 @@ demo.state0a.prototype = {
         game.load.image('mittens', '../assets/sprites/mittensSingleFrame.png');
         game.load.image('platform', '../assets/images/block.png');
         game.load.image('shot', '../assets/images/projectile.png');
-        game.load.image('vacuum', '../assets/sprites/vacuum.png');
+        game.load.image('vacuum', '../assets/sprites/Vacuum.png');
         game.load.image('background', '../assets/images/brick.png');
         game.load.spritesheet('mittensSheet', '../assets/spritesheets/BatCat.png', 100, 80);
         
@@ -42,14 +42,15 @@ demo.state0a.prototype = {
         //mittens.body.setZeroDamping();
         mittens.body.clearShapes();
         mittens.body.loadPolygon('mittensPhysicsData', 'mittensSingleFrame', 1, -Math.PI * 2);         
-        /*
-        vacuum = game.add.sprite(500,400,'vacuum');
+        
+        
+        vacuum = game.add.sprite(700,300,'vacuum');
         vacuum.anchor.x = 0.5;
         vacuum.anchor.y = 0.5;  
         game.physics.p2.enable(vacuum);
         vacuum.body.data.gravityScale = 0;
         vacuum.body.static = true;
-        */
+    
         
         
         bullets = game.add.group();
@@ -122,6 +123,13 @@ demo.state0a.prototype = {
         if (shootButton.isDown) {
             mittensShoot();
         }
+        
+//        if (VacuumTimer){
+//            vacuum.xpos = x + Random(range minimum, range maximum)
+//            
+//        }
+//            
+            
     }
 };
 
