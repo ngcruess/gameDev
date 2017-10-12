@@ -30,41 +30,6 @@ demo.state0a.prototype = {
         //World items
         var background = game.add.sprite(0,0, 'background');
         background.scale.setTo(10, 10);
-//<<<<<<< HEAD
-        mittens = game.add.sprite(153,354,'mittens');
-        updateAnchor(0.5, 0.5, mittens);
-        //mittens.animations.add('walkRight', [2]);
-        //mittens.animations.add('walkLeft', [1]);   
-        //mittens.scale.setTo(0.25, 0.25);
-        game.physics.p2.enable(mittens, false);
-        mittens.body.fixedRotation = true;
-        //mittens.body.setZeroDamping();
-        mittens.body.clearShapes();
-        mittens.body.loadPolygon('mittensPhysicsData', 'mittensSingleFrame', 1, -Math.PI * 2);         
-        
-        
-        vacuum = game.add.sprite(700,300,'vacuum');
-        vacuum.anchor.x = 0.5;
-        vacuum.anchor.y = 0.5;  
-        game.physics.p2.enable(vacuum);
-        vacuum.body.data.gravityScale = 0;
-        vacuum.body.static = true;
-    
-        
-        
-        bullets = game.add.group();
-        bullets.enableBody = true;
-        bullets.physicsBodyType = Phaser.Physics.P2JS;
-        bullets.createMultiple(100, 'shot', false);
-        bullets.setAll('anchor.x', 0.5);
-        bullets.setAll('anchor.y', 0.5);
-        bullets.setAll('outOfBoundsKill', true);
-        bullets.setAll('ckeckWorldBounds', true);
-        bullets.forEach(function(bullet) {
-            bullet.body.onBeginContact.add(bulletHit, bullet);
-        })
-//=======
-//>>>>>>> feb24c92f22af39508badcca2c5d5411a1defb2a
         
         platform = game.add.sprite(200, 400, 'platform');
         updateAnchor(.5, .5, platform);
@@ -97,36 +62,35 @@ demo.state0a.prototype = {
         SPRITES
         */
         //Mittens
-//        mittens = game.add.sprite(153,354,'mittens');
-//        updateAnchor(0.5, 0.5, mittens);
-//        game.physics.p2.enable(mittens, false);
-//        mittens.body.fixedRotation = true;
-//        mittens.body.clearShapes();
-//        mittens.body.loadPolygon('mittensPhysicsData', 'mittensSingleFrame', 1, -Math.PI * 2);         
-//        
-//        //Vacuum
-//        vacuum = game.add.sprite(700,400,'vacuum');
-//        vacuum.anchor.x = 0.5;
-//        vacuum.anchor.y = 0.5;  
-//        game.physics.p2.enable(vacuum);
-//        vacuum.body.data.gravityScale = 0;
-//        vacuum.body.static = true;
-//        
-//        //Bullets        
-//        bullets = game.add.group();
-//        bullets.enableBody = true;
-//        bullets.physicsBodyType = Phaser.Physics.P2JS;
-//        bullets.createMultiple(100, 'shot', false);
-//        bullets.setAll('anchor.x', 0.5);
-//        bullets.setAll('anchor.y', 0.5);
-//        bullets.setAll('outOfBoundsKill', true);
-//        bullets.setAll('ckeckWorldBounds', true);
-//        bullets.forEach(function(bullet) {
-//            bullet.body.onBeginContact.add(bulletHit, bullet);
-//        })
+        mittens = game.add.sprite(153,354,'mittens');
+        updateAnchor(0.5, 0.5, mittens);
+        game.physics.p2.enable(mittens, false);
+        mittens.body.fixedRotation = true;
+        mittens.body.clearShapes();
+        mittens.body.loadPolygon('mittensPhysicsData', 'mittensSingleFrame', 1, -Math.PI * 2);         
+        
+        //Vacuum
+        vacuum = game.add.sprite(700,400,'vacuum');
+        vacuum.anchor.x = 0.5;
+        vacuum.anchor.y = 0.5;  
+        game.physics.p2.enable(vacuum);
+        vacuum.body.data.gravityScale = 0;
+        vacuum.body.static = true;
+        
+        //Bullets        
+        bullets = game.add.group();
+        bullets.enableBody = true;
+        bullets.physicsBodyType = Phaser.Physics.P2JS;
+        bullets.createMultiple(100, 'shot', false);
+        bullets.setAll('anchor.x', 0.5);
+        bullets.setAll('anchor.y', 0.5);
+        bullets.setAll('outOfBoundsKill', true);
+        bullets.setAll('ckeckWorldBounds', true);
+        bullets.forEach(function(bullet) {
+            bullet.body.onBeginContact.add(bulletHit, bullet);
+        })
         //Input tools        
         cursor = game.input.keyboard.createCursorKeys();
-//<<<<<<< HEAD
         shootButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);  
        
         //come back to this...
@@ -140,7 +104,6 @@ demo.state0a.prototype = {
         //Materials
         var spriteMaterial = game.physics.p2.createMaterial('spriteMaterial', mittens.body);
         var platformMaterial = game.physics.p2.createMaterial('platformMaterial');
-//>>>>>>> 4912b92f568cb3814cf6d187161413affcdeb572
     },
     update: function(){
         if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
