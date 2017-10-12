@@ -126,19 +126,21 @@ demo.state0a.prototype = {
 //        })
         //Input tools        
         cursor = game.input.keyboard.createCursorKeys();
-<<<<<<< HEAD
+//<<<<<<< HEAD
         shootButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);  
+       
+        //come back to this...
         //create timer to initiate movement every 4 secs
-        timer = game.time.create(false);
-        timer.loop(4000, vacuumMovement, this);
-        timer.start();
-=======
+//        timer = game.time.create(false);
+//        timer.loop(4000, vacuumMovement, this);
+//        timer.start();
+//=======
         shootButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);   
         
         //Materials
         var spriteMaterial = game.physics.p2.createMaterial('spriteMaterial', mittens.body);
         var platformMaterial = game.physics.p2.createMaterial('platformMaterial');
->>>>>>> 4912b92f568cb3814cf6d187161413affcdeb572
+//>>>>>>> 4912b92f568cb3814cf6d187161413affcdeb572
     },
     update: function(){
         if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
@@ -181,7 +183,8 @@ function bulletHit(target) {
     }
 }
 
-function vacuumMovement(){
-    vacuum.world.x = game.rnd.integerInRange(600, 800);
-    vacuum.world.y = game.rnd.integerInRange(200, 400);
-}
+//will come back to this...
+//function vacuumMovement(){
+//    vacuum.x = game.rnd.integerInRange(600, 800);
+//    vacuum.y = game.rnd.integerInRange(200, 400);
+//}
