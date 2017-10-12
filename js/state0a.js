@@ -68,6 +68,7 @@ demo.state0a.prototype = {
         mittens.body.fixedRotation = true;
         mittens.body.clearShapes();
         mittens.body.loadPolygon('mittensPhysicsData', 'mittensSingleFrame', 1, -Math.PI * 2); 
+        mittens.health = 100;
        
         //Vacuum
         vacuum = game.add.sprite(700,400,'vacuum');
