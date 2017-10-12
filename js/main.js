@@ -104,9 +104,13 @@ function bottomTouching(character) {
 }
 function bulletHit(target) {
     bullet = this;
-    if (target === vacuum.body) {
+    if (target == vacuum.body) {
         bullet.kill();
-        vacuum.kill()
+        vacuum.health -= 5;
+        //healthText = vacuum.health; 
+        if (vacuum.health == 0){
+            vacuum.kill()
+        }
     }
     else if (target != mittens.body) {
         bullet.kill();
