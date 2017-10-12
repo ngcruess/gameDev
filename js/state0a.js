@@ -8,8 +8,7 @@ demo.state0a.prototype = {
         game.load.image('shot', '../assets/images/projectile.png');
         game.load.image('vacuum', '../assets/sprites/Vacuum.png');
         game.load.image('background', '../assets/images/brick.png');
-        game.load.spritesheet('mittensSheet', '../assets/spritesheets/BatCat.png', 100, 80);
-        
+        game.load.spritesheet('mittensSheet', '../assets/spritesheets/BatCat.png', 100, 80);        
         game.load.physics('mittensPhysicsData', '../assets/polygons/mittensSingleFrame.json');
     },
     create: function(){

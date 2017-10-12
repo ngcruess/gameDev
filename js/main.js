@@ -19,7 +19,7 @@ function attack() {
     if (game.time.now > attackTime) {
         attacking = true;
         attackTime = game.time.now + 125;
-        if (facing == 'LEFT') {
+        if (mittensFacingLeft) {
             mittens.animations.play('attackLeft');
         }
         else {
