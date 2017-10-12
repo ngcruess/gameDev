@@ -73,9 +73,10 @@ demo.state0a.prototype = {
         vacuum = game.add.sprite(700,400,'vacuum');
         vacuum.anchor.x = 0.5;
         vacuum.anchor.y = 0.5;  
-        game.physics.p2.enable(vacuum);
+        game.physics.p2.enable(vacuum); 
         vacuum.body.data.gravityScale = 0;
         vacuum.body.static = true;
+        vacuum.health = 100; 
         
         //Bullets        
         bullets = game.add.group();
@@ -108,7 +109,7 @@ demo.state0a.prototype = {
         healthText = game.add.text(16, 16, 'health: 100', { fontSize: '32px', fill: '#000' });
     },
     update: function(){
-        healthText.text = 'Health: ' + mittens.health;
+        healthText.text = 'Health: ' + vacuum.health;
         
         if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
             mittensFacingLeft = false;
@@ -130,7 +131,7 @@ demo.state0a.prototype = {
         }        
         if (shootButton.isDown) {
             mittensShoot();
-            mittens.health -= 10; 
+            
         }
         
     }
@@ -143,6 +144,7 @@ function mittensHit(body, bodyB, shapeA, shapeB, equation) {
     if (body.sprite.key == 'platform') {
         mittens.reset(0,0);
     }
+    mittens.health -= 10; 
 }
 function bulletHit(target) {
     bullet = this;
