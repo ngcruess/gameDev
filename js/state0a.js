@@ -1,4 +1,4 @@
-var vacuum, jumpRel, timer;
+var vacuum, jumpRel, timer, healthText;
 
 demo.state0a = function() {};
 demo.state0a.prototype = {
@@ -66,8 +66,9 @@ demo.state0a.prototype = {
         game.physics.p2.enable(mittens, false);
         mittens.body.fixedRotation = true;
         mittens.body.clearShapes();
-        mittens.body.loadPolygon('mittensPhysicsData', 'mittensSingleFrame', 1, -Math.PI * 2);         
-        
+        mittens.body.loadPolygon('mittensPhysicsData', 'mittensSingleFrame', 1, -Math.PI * 2); 
+        mittens.health = 100;
+       
         //Vacuum
         vacuum = game.add.sprite(700,400,'vacuum');
         vacuum.anchor.x = 0.5;
@@ -103,8 +104,12 @@ demo.state0a.prototype = {
         //Materials
         var spriteMaterial = game.physics.p2.createMaterial('spriteMaterial', mittens.body);
         var platformMaterial = game.physics.p2.createMaterial('platformMaterial');
+        
+        healthText = game.add.text(16, 16, 'health: 100', { fontSize: '32px', fill: '#000' });
     },
     update: function(){
+        healthText.text = 'Health: ' + mittens.health;
+        
         if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
             mittensFacingLeft = false;
             mittens.body.moveRight(mittensRunSpeed);
@@ -125,6 +130,7 @@ demo.state0a.prototype = {
         }        
         if (shootButton.isDown) {
             mittensShoot();
+            mittens.health -= 10; 
         }
         
     }
