@@ -76,6 +76,10 @@ function mittensJump() {
         mittens.body.moveUp(mittensJumpVelocity);
         jumps = jumps -1;
     }
+    else {
+        mittens.body.moveUp(mittensJumpVelocity);
+        jumps = 0;
+    }
 }
 function bottomTouching(character) {
     var result = false;
