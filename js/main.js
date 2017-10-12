@@ -2,7 +2,7 @@ var game = new Phaser.Game(1000, 800, Phaser.AUTO);
 
 //Variables to be used in many states
 var mittens, cursor, jumps, platform, bullets, fireRate = 200, shotTimer = 0, 
-    mittensFacingLeft = true, mittensJumpVelocity = 600, 
+    mittensFacingLeft = false, mittensJumpVelocity = 600, 
     mittensRunSpeed = 400, bulletSpeed = 700, yAxis = p2.vec2.fromValues(0, 1), globalGravity = 1200, jumps;
 
 game.state.add('state0', demo.state0);
@@ -105,7 +105,11 @@ function bottomTouching(character) {
 }
 function bulletHit(target) {
     bullet = this;
-    if (target != mittens.body) {
+    if (target === vacuum.body) {
+        bullet.kill();
+        vacuum.kill()
+    }
+    else if (target != mittens.body) {
         bullet.kill();
     }
 }

@@ -66,9 +66,6 @@ demo.state0a.prototype = {
 //=======
 //>>>>>>> feb24c92f22af39508badcca2c5d5411a1defb2a
         
-        var spriteMaterial = game.physics.p2.createMaterial('spriteMaterial', mittens.body);
-        var platformMaterial = game.physics.p2.createMaterial('platformMaterial');
-        
         platform = game.add.sprite(200, 400, 'platform');
         updateAnchor(.5, .5, platform);
         platform.scale.setTo(1.25, .2);
@@ -129,11 +126,19 @@ demo.state0a.prototype = {
 //        })
         //Input tools        
         cursor = game.input.keyboard.createCursorKeys();
+<<<<<<< HEAD
         shootButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);  
         //create timer to initiate movement every 4 secs
         timer = game.time.create(false);
         timer.loop(4000, vacuumMovement, this);
         timer.start();
+=======
+        shootButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);   
+        
+        //Materials
+        var spriteMaterial = game.physics.p2.createMaterial('spriteMaterial', mittens.body);
+        var platformMaterial = game.physics.p2.createMaterial('platformMaterial');
+>>>>>>> 4912b92f568cb3814cf6d187161413affcdeb572
     },
     update: function(){
         if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
