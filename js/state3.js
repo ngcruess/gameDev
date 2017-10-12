@@ -1,4 +1,4 @@
-var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0;
+var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0;
 
 demo.state3 = function() {};
 demo.state3.prototype = {
@@ -14,10 +14,11 @@ demo.state3.prototype = {
         game.load.image('wall', '../assets/images/livingroomwall.png');
         game.load.image('sky', '../assets/images/sky.png');
         game.load.physics('mittensPhysicsData', '../assets/polygons/mittensSingleFrame.json');
+        
     },
     create: function() {
         
-                             // P2 PHYSICS AND WORLD //
+                             // P2 PHYSICS AND ENVIRONMENT //
         ////////////////////////////////////////////////////
         game.world.setBounds(0, 0, 3000, 800);
         game.stage.backgroundColor = '#B25F55';
@@ -32,6 +33,12 @@ demo.state3.prototype = {
         
         var wall = game.add.sprite(0,0, 'wall');
         wall.scale.setTo(10, 10);
+        
+        healthText = game.add.text(0, 0, "Health: 100%");
+        healthText.anchor.set(0.5);
+        
+        timer = game.add.text(875,0, "00:00:00");
+        timer.fixedToCamera = true;
         ////////////////////////////////////////////////////
         
         
@@ -95,7 +102,7 @@ demo.state3.prototype = {
         platform.body.setMaterial(platformMaterial);
         platform.body.static = true;
         
-        platform = game.add.sprite(1400, 700, 'sidetable');
+        platform = game.add.sprite(1400, 600, 'sidetable');
         updateAnchor(.5, 1, platform);
         platform.scale.setTo(0.15, 0.15);
         game.physics.p2.enable(platform);
@@ -112,6 +119,8 @@ demo.state3.prototype = {
   
         
         ///////////////////////////////////////////////////
+        
+        
         
         
         /* ARCADE STUFF
@@ -198,6 +207,12 @@ demo.state3.prototype = {
             mittensShoot();
         }
         
+        healthText.x = mittens.x;
+        healthText.y = Math.floor(mittens.y - mittens.height);
+        
+        updateTimer();
+        
+        
         
         
         /*
@@ -238,3 +253,26 @@ function mittensHit(body, bodyB, shapeA, shapeB, equation) {
         mittens.reset(0,0);
     }
 }
+
+
+function updateTimer() {
+    minutes = Math.floor(game.time.now/60000)% 60;
+    seconds = Math.floor(game.time.now/1000) % 60;
+    milliseconds = Math.floor(game.time.now) % 100;
+    
+    if (milliseconds < 10) { milliseconds = "0" + milliseconds};
+    if (seconds < 10) { seconds = '0' + seconds};
+    if (minutes <10) { minutes = '0' + minutes};
+    timer.setText(minutes + ":" + seconds + ":" + milliseconds);
+    
+}
+
+
+
+
+
+
+
+
+
+
