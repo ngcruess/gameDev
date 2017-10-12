@@ -31,9 +31,6 @@ demo.state0a.prototype = {
         var background = game.add.sprite(0,0, 'background');
         background.scale.setTo(10, 10);
         
-        var spriteMaterial = game.physics.p2.createMaterial('spriteMaterial', mittens.body);
-        var platformMaterial = game.physics.p2.createMaterial('platformMaterial');
-        
         platform = game.add.sprite(200, 400, 'platform');
         updateAnchor(.5, .5, platform);
         platform.scale.setTo(1.25, .2);
@@ -95,6 +92,10 @@ demo.state0a.prototype = {
         //Input tools        
         cursor = game.input.keyboard.createCursorKeys();
         shootButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);   
+        
+        //Materials
+        var spriteMaterial = game.physics.p2.createMaterial('spriteMaterial', mittens.body);
+        var platformMaterial = game.physics.p2.createMaterial('platformMaterial');
     },
     update: function(){
         if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
