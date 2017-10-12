@@ -1,4 +1,4 @@
-var vacuum, jumpRel;
+var vacuum, jumpRel, timer;
 
 demo.state0a = function() {};
 demo.state0a.prototype = {
@@ -30,7 +30,7 @@ demo.state0a.prototype = {
         //World items
         var background = game.add.sprite(0,0, 'background');
         background.scale.setTo(10, 10);
-<<<<<<< HEAD
+//<<<<<<< HEAD
         mittens = game.add.sprite(153,354,'mittens');
         updateAnchor(0.5, 0.5, mittens);
         //mittens.animations.add('walkRight', [2]);
@@ -63,8 +63,8 @@ demo.state0a.prototype = {
         bullets.forEach(function(bullet) {
             bullet.body.onBeginContact.add(bulletHit, bullet);
         })
-=======
->>>>>>> feb24c92f22af39508badcca2c5d5411a1defb2a
+//=======
+//>>>>>>> feb24c92f22af39508badcca2c5d5411a1defb2a
         
         var spriteMaterial = game.physics.p2.createMaterial('spriteMaterial', mittens.body);
         var platformMaterial = game.physics.p2.createMaterial('platformMaterial');
@@ -100,36 +100,40 @@ demo.state0a.prototype = {
         SPRITES
         */
         //Mittens
-        mittens = game.add.sprite(153,354,'mittens');
-        updateAnchor(0.5, 0.5, mittens);
-        game.physics.p2.enable(mittens, false);
-        mittens.body.fixedRotation = true;
-        mittens.body.clearShapes();
-        mittens.body.loadPolygon('mittensPhysicsData', 'mittensSingleFrame', 1, -Math.PI * 2);         
-        
-        //Vacuum
-        vacuum = game.add.sprite(700,400,'vacuum');
-        vacuum.anchor.x = 0.5;
-        vacuum.anchor.y = 0.5;  
-        game.physics.p2.enable(vacuum);
-        vacuum.body.data.gravityScale = 0;
-        vacuum.body.static = true;
-        
-        //Bullets        
-        bullets = game.add.group();
-        bullets.enableBody = true;
-        bullets.physicsBodyType = Phaser.Physics.P2JS;
-        bullets.createMultiple(100, 'shot', false);
-        bullets.setAll('anchor.x', 0.5);
-        bullets.setAll('anchor.y', 0.5);
-        bullets.setAll('outOfBoundsKill', true);
-        bullets.setAll('ckeckWorldBounds', true);
-        bullets.forEach(function(bullet) {
-            bullet.body.onBeginContact.add(bulletHit, bullet);
-        })
+//        mittens = game.add.sprite(153,354,'mittens');
+//        updateAnchor(0.5, 0.5, mittens);
+//        game.physics.p2.enable(mittens, false);
+//        mittens.body.fixedRotation = true;
+//        mittens.body.clearShapes();
+//        mittens.body.loadPolygon('mittensPhysicsData', 'mittensSingleFrame', 1, -Math.PI * 2);         
+//        
+//        //Vacuum
+//        vacuum = game.add.sprite(700,400,'vacuum');
+//        vacuum.anchor.x = 0.5;
+//        vacuum.anchor.y = 0.5;  
+//        game.physics.p2.enable(vacuum);
+//        vacuum.body.data.gravityScale = 0;
+//        vacuum.body.static = true;
+//        
+//        //Bullets        
+//        bullets = game.add.group();
+//        bullets.enableBody = true;
+//        bullets.physicsBodyType = Phaser.Physics.P2JS;
+//        bullets.createMultiple(100, 'shot', false);
+//        bullets.setAll('anchor.x', 0.5);
+//        bullets.setAll('anchor.y', 0.5);
+//        bullets.setAll('outOfBoundsKill', true);
+//        bullets.setAll('ckeckWorldBounds', true);
+//        bullets.forEach(function(bullet) {
+//            bullet.body.onBeginContact.add(bulletHit, bullet);
+//        })
         //Input tools        
         cursor = game.input.keyboard.createCursorKeys();
-        shootButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);   
+        shootButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);  
+        //create timer to initiate movement every 4 secs
+        timer = game.time.create(false);
+        timer.loop(4000, vacuumMovement, this);
+        timer.start();
     },
     update: function(){
         if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
@@ -154,12 +158,6 @@ demo.state0a.prototype = {
             mittensShoot();
         }
         
-//        if (VacuumTimer){
-//            vacuum.xpos = x + Random(range minimum, range maximum)
-//            
-//        }
-//            
-            
     }
 };
 
@@ -176,4 +174,9 @@ function bulletHit(target) {
     if (target != mittens.body) {
         bullet.kill();
     }
+}
+
+function vacuumMovement(){
+    vacuum.world.x = game.rnd.integerInRange(600, 800);
+    vacuum.world.y = game.rnd.integerInRange(200, 400);
 }
