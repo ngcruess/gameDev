@@ -109,26 +109,8 @@ demo.state0a.prototype = {
         healthText = game.add.text(16, 16, 'health: 100', { fontSize: '32px', fill: '#000' });
     },
     update: function(){
-        healthText.text = 'Health: ' + vacuum.health;
-        
-        if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
-            mittensFacingLeft = false;
-            mittens.body.moveRight(mittensRunSpeed);
-            mittens.scale.setTo(1, 1);
-        }
-        else if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
-            mittensFacingLeft = true;
-            mittens.body.moveLeft(mittensRunSpeed);
-            mittens.scale.setTo(-1, 1);
-        }
-        else{
-            mittens.body.velocity.x = 0;
-            mittens.animations.stop();
-        }
-        if (cursor.up.isDown && jumpRel) {
-            mittensJump();
-            jumpRel = false;
-        }        
+        moveMittens();
+        healthText.text = 'Health: ' + vacuum.health;       
         if (shootButton.isDown) {
             mittensShoot();
             

@@ -183,26 +183,9 @@ demo.state3.prototype = {
         
                 
     },
-    update: function() {
-        if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
-            mittensFacingLeft = false;
-            mittens.body.moveRight(mittensRunSpeed);
-            mittens.scale.setTo(1, 1);
-        }
-        else if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
-            mittensFacingLeft = true;
-            mittens.body.moveLeft(mittensRunSpeed);
-            mittens.scale.setTo(-1, 1);
-        }
-        else{
-            mittens.body.velocity.x = 0;
-            mittens.animations.stop();
-        }
-        if (cursor.up.isDown && jumpRel) {
-            mittensJump();
-            jumpRel = false;
-            console.log(jumps);
-        }        
+    update: function() { 
+        moveMittens();
+        
         if (shootButton.isDown) {
             mittensShoot();
         }
