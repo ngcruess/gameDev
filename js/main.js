@@ -100,7 +100,7 @@ function mittensJump() {
         mittens.body.moveUp(mittensJumpVelocity);
         jumps = jumps -1;
     }
-    else {
+    else if (jumps >0){
         mittens.body.moveUp(mittensJumpVelocity);
         jumps = 0;
     }
