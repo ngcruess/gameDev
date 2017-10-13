@@ -76,10 +76,6 @@ function mittensJump() {
         mittens.body.moveUp(mittensJumpVelocity);
         jumps = jumps -1;
     }
-    else {
-        mittens.body.moveUp(mittensJumpVelocity);
-        jumps = 0;
-    }
 }
 function bottomTouching(character) {
     var result = false;
@@ -111,7 +107,6 @@ function bulletHit(target) {
     if (target == vacuum.body) {
         bullet.kill();
         vacuum.health -= 5;
-        //healthText = vacuum.health; 
         if (vacuum.health == 0){
             vacuum.kill()
         }
