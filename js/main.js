@@ -15,11 +15,35 @@ game.state.start('state0a');
 CORE FUNCTIONS
 These are functions which will be reused in many states
 */
+
+function moveMittens() {
+    if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
+            mittensFacingLeft = false;
+            mittens.body.moveRight(mittensRunSpeed);
+            mittens.scale.setTo(1, 1);
+        }
+        else if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
+            mittensFacingLeft = true;
+            mittens.body.moveLeft(mittensRunSpeed);
+            mittens.scale.setTo(-1, 1);
+        }
+        else{
+            mittens.body.velocity.x = 0;
+            mittens.animations.stop();
+        }
+        if (cursor.up.isDown && jumpRel) {
+            mittensJump();
+            jumpRel = false;
+            console.log(jumps);
+        }
+}
+
+
 function attack() {
     if (game.time.now > attackTime) {
         attacking = true;
         attackTime = game.time.now + 125;
-        if (facing == 'LEFT') {
+        if (mittensFacingLeft) {
             mittens.animations.play('attackLeft');
         }
         else {
@@ -76,6 +100,12 @@ function mittensJump() {
         mittens.body.moveUp(mittensJumpVelocity);
         jumps = jumps -1;
     }
+
+    else if (jumps >0){
+        mittens.body.moveUp(mittensJumpVelocity);
+        jumps = 0;
+    }
+
 }
 function bottomTouching(character) {
     var result = false;
