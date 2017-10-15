@@ -134,9 +134,9 @@ function bulletHit(target) {
     bullet = this;
     if (target == vacuum.body) {
         bullet.kill();
-        vacuum.health -= 5;
+        vacuum.health -= .05;
         //healthText = vacuum.health; 
-        if (vacuum.health == 0){
+        if (vacuum.health <= 0){
             vacuum.kill()
         }
     }

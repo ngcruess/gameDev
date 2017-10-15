@@ -1,4 +1,4 @@
-var vacuum, jumpRel, timer, healthText;
+var vacuum, jumpRel, timer, healthText, healthBarWidth = 1;
 
 demo.state0a = function() {};
 demo.state0a.prototype = {
@@ -8,7 +8,11 @@ demo.state0a.prototype = {
         game.load.image('shot', '../assets/images/projectile.png');
         game.load.image('vacuum', '../assets/sprites/Vacuum.png');
         game.load.image('background', '../assets/images/brick.png');
-        game.load.spritesheet('mittensSheet', '../assets/spritesheets/BatCat.png', 100, 80);        
+        game.load.image('healthBarFill', '../assets/images/whiteBlock.png');
+        game.load.image('healthBarBorder', '../assets/images/blackBlock.png');
+        
+        game.load.spritesheet('mittensSheet', '../assets/spritesheets/BatCat.png', 100, 80);
+        
         game.load.physics('mittensPhysicsData', '../assets/polygons/mittensSingleFrame.json');
     },
     create: function(){
@@ -57,6 +61,11 @@ demo.state0a.prototype = {
         game.physics.p2.enable(platform);
         platform.body.setMaterial(platformMaterial);
         platform.body.static = true;
+        
+        healthBarBorder = game.add.sprite(20, 20, 'healthBarBorder');
+        healthBarBorder.scale.setTo(30, 3);
+        healthBarFill = game.add.sprite(25, 24, 'healthBarFill');
+        healthBarFill.scale.setTo(29.6, 2);
         /*
         SPRITES
         */
@@ -76,7 +85,7 @@ demo.state0a.prototype = {
         game.physics.p2.enable(vacuum); 
         vacuum.body.data.gravityScale = 0;
         vacuum.body.static = true;
-        vacuum.health = 100; 
+        vacuum.health = 1; 
         
         //Bullets        
         bullets = game.add.group();
@@ -106,11 +115,11 @@ demo.state0a.prototype = {
         var spriteMaterial = game.physics.p2.createMaterial('spriteMaterial', mittens.body);
         var platformMaterial = game.physics.p2.createMaterial('platformMaterial');
         
-        healthText = game.add.text(16, 16, 'health: 100', { fontSize: '32px', fill: '#000' });
+        //healthText = game.add.text(16, 16, 'health: 100', { fontSize: '32px', fill: '#000' });
     },
     update: function(){
         moveMittens();
-        healthText.text = 'Health: ' + vacuum.health;       
+        //healthText.text = 'Health: ' + vacuum.health;       
         if (shootButton.isDown) {
             mittensShoot();
             
