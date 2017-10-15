@@ -1,4 +1,4 @@
-var vacuum, jumpRel, timer, healthText, healthBarWidth = 1;
+var vacuum, jumpRel, timer, healthText, healthBarWidth = 29.6, healthBarFill;
 
 demo.state0a = function() {};
 demo.state0a.prototype = {
@@ -65,7 +65,7 @@ demo.state0a.prototype = {
         healthBarBorder = game.add.sprite(20, 20, 'healthBarBorder');
         healthBarBorder.scale.setTo(30, 3);
         healthBarFill = game.add.sprite(25, 24, 'healthBarFill');
-        healthBarFill.scale.setTo(29.6, 2);
+        healthBarFill.scale.setTo(healthBarWidth, 2);
         /*
         SPRITES
         */
@@ -119,7 +119,8 @@ demo.state0a.prototype = {
     },
     update: function(){
         moveMittens();
-        //healthText.text = 'Health: ' + vacuum.health;       
+        //healthText.text = 'Health: ' + vacuum.health;
+        healthBarFill.scale.setTo(healthBarWidth * vacuum.health, 2)
         if (shootButton.isDown) {
             mittensShoot();
             
