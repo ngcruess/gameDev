@@ -146,74 +146,8 @@ demo.state3.prototype = {
         platform.scale.setTo(0.025, 0.15);
         game.physics.p2.enable(platform);
         platform.body.setMaterial(platformMaterial);
-        platform.body.static = true;
-        
-  
-        
-        ///////////////////////////////////////////////////
-        
-        
-        
-        
-        /* ARCADE STUFF
-        mittens.frame = 2;
-        game.physics.enable(mittens);
-        mittens.body.gravity.y = 300;
-        mittens.body.collideWorldBounds = true;
-        mittens.animations.add('walkRight', [2,3]);
-        mittens.animations.add('walkLeft', [0,1]);
-        */
-        
-        //var sideTable = platforms.create(550, 400, 'sidetable');
-        /*
-        var sideTable = platforms.create(550, 400, 'sidetable');
-        sideTable.anchor.setTo(0.5, 1);
-        sideTable.body.immovable = true;
-        sideTable.scale.setTo(0.07, 0.07)7
-        
-        var shelf = platforms.create(500, 306, 'shelf');
-        shelf.anchor.setTo(0.5,1);
-        shelf.scale.setTo(0.07, 0.07);
-        shelf.body.immovable = true;
-        
-        
-        var shelf2 = platforms.create(800, 150, 'shelf');
-        shelf2.anchor.setTo(0.5, 1);
-        shelf2.scale.setTo(0.07, 0.07);
-        shelf2.body.immovable = true;
-        
-        var table = platforms.create(1000, 400, 'table');
-        table.anchor.setTo(0, 1);
-        table.scale.setTo(.07, .07);
-        table.body.immovable = true;
-        
-        sock0 = enemies.create(300, 400, 'evilSock');
-        sock0.anchor.setTo(0.5, 1);
-        sock0.scale.setTo(0.03, 0.03); 
-        game.physics.enable(sock0);
-        sock0.body.gravity.y = 300;
-        sock0.body.collideWorldBounds = true;
-        
-        
-        sock = enemies.create(800, 0, 'evilSock');
-        sock.anchor.setTo(0.5, 1);
-        sock.scale.setTo(0.03, 0.03); 
-        game.physics.enable(sock);
-        sock.body.gravity.y = 300;
-        sock.body.collideWorldBounds = true;
-        
-        sock2 = enemies.create(1100, 0, 'evilSock');
-        sock2.anchor.setTo(0.5, 1);
-        sock2.scale.setTo(0.03, 0.03);
-        game.physics.enable(sock2);
-        sock2.body.gravity.y = 300;
-        sock2.body.collideWorldBounds = true;
-        */
-        
-        
-        
-        
-                
+        platform.body.static = true;       
+        ///////////////////////////////////////////////////            
     },
     update: function() { 
         moveMittens();
