@@ -1,15 +1,15 @@
-var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0;
+var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mouse;
 
 demo.state3 = function() {};
 demo.state3.prototype = {
     preload: function() {
-        game.load.spritesheet('evilSock', '../assets/sprites/EvilSock.png', 3200, 3200);
         game.load.spritesheet('mittens', '../assets/sprites/mittensSingleFrame.png', 100, 80);
         game.load.image('sidetable', '../assets/images/SideTable.png');
         game.load.image('table', '../assets/images/Table.png');
         game.load.image('shelf', '../assets/images/Shelf.png');
         game.load.image('hitzone', '../assets/images/hitbox.png');
         game.load.image('shot', '../assets/images/projectile.png');
+        game.load.spritesheet('mouse','../assets/sprites/ToyMouse2.png', 390, 180);
         
         game.load.image('wall', '../assets/images/livingroomwall.png');
         game.load.image('sky', '../assets/images/sky.png');
@@ -59,14 +59,21 @@ demo.state3.prototype = {
         
                         // MITTENS //
         ///////////////////////////////////////////////////
-        mittens = game.add.sprite(0,0, 'mittens');
+        mittens = game.add.sprite(125,555, 'mittens');
         updateAnchor(0.5, 0.5, mittens);
-        game.physics.p2.enable(mittens, true);
+        game.physics.p2.enable(mittens, false);
         mittens.body.fixedRotation = true;
         //mittens.body.setZeroDamping();
         mittens.body.clearShapes();
         mittens.body.loadPolygon('mittensPhysicsData', 'mittensSingleFrame', 1, -Math.PI * 2);
         game.camera.follow(mittens);
+        ///////////////////////////////////////////////////
+        
+                        //MICE//
+        ///////////////////////////////////////////////////
+        mouse = game.add.sprite(770,265,'mouse');
+        mouse.scale.setTo(.4, .4);
+        game.physics.p2.enable(mouse, false);
         ///////////////////////////////////////////////////
         
                         //BULLETS//
@@ -88,30 +95,55 @@ demo.state3.prototype = {
         ///////////////////////////////////////////////////
         var platformMaterial = game.physics.p2.createMaterial('platformMaterial');
         
-        platform = game.add.sprite(600, 700, 'table');
+        platform = game.add.sprite(300, 700, 'table');
         updateAnchor(.5, 1, platform);
         platform.scale.setTo(0.15, 0.15);
         game.physics.p2.enable(platform);
         platform.body.setMaterial(platformMaterial);
         platform.body.static = true;
         
-        platform = game.add.sprite(1000, 350, 'shelf');
+        platform = game.add.sprite(950, 325, 'shelf');
+        updateAnchor(.5, 1, platform);
+        platform.scale.setTo(0.3, 0.15);
+        game.physics.p2.enable(platform);
+        platform.body.setMaterial(platformMaterial);
+        platform.body.static = true;
+        
+        platform = game.add.sprite(1550, 600, 'shelf');
         updateAnchor(.5, 1, platform);
         platform.scale.setTo(0.15, 0.15);
         game.physics.p2.enable(platform);
         platform.body.setMaterial(platformMaterial);
         platform.body.static = true;
         
-        platform = game.add.sprite(1400, 600, 'sidetable');
+        platform = game.add.sprite(2100, 350, 'shelf');
         updateAnchor(.5, 1, platform);
-        platform.scale.setTo(0.15, 0.15);
+        platform.scale.setTo(0.025, 0.15);
         game.physics.p2.enable(platform);
         platform.body.setMaterial(platformMaterial);
         platform.body.static = true;
         
-        platform = game.add.sprite(1800, 350, 'shelf');
+        platform = game.add.sprite(2650, 150, 'shelf');
         updateAnchor(.5, 1, platform);
-        platform.scale.setTo(0.15, 0.15);
+        platform.scale.setTo(0.025, 0.15);
+        game.physics.p2.enable(platform);
+        platform.body.setMaterial(platformMaterial);
+        platform.body.static = true;        
+        platform = game.add.sprite(2650, 300, 'shelf');
+        updateAnchor(.5, 1, platform);
+        platform.scale.setTo(0.025, 0.15);
+        game.physics.p2.enable(platform);
+        platform.body.setMaterial(platformMaterial);
+        platform.body.static = true;        
+        platform = game.add.sprite(2650, 450, 'shelf');
+        updateAnchor(.5, 1, platform);
+        platform.scale.setTo(0.025, 0.15);
+        game.physics.p2.enable(platform);
+        platform.body.setMaterial(platformMaterial);
+        platform.body.static = true;        
+        platform = game.add.sprite(2650, 600, 'shelf');
+        updateAnchor(.5, 1, platform);
+        platform.scale.setTo(0.025, 0.15);
         game.physics.p2.enable(platform);
         platform.body.setMaterial(platformMaterial);
         platform.body.static = true;
@@ -185,54 +217,26 @@ demo.state3.prototype = {
     },
     update: function() { 
         moveMittens();
-        
+        /*
         if (shootButton.isDown) {
             mittensShoot();
+        }
+        */
+        if (mittens.y > 765) {
+            mittens.reset(125,555)
         }
         
         healthText.x = mittens.x;
         healthText.y = Math.floor(mittens.y - mittens.height);
         
         updateTimer();
-        
-        
-        
-        
-        /*
-        mittens.body.velocity.x = 0;
-        game.physics.arcade.collide(mittens, platforms);
-        game.physics.arcade.collide(enemies, platforms);
-        
-        game.physics.arcade.collide(mittens, enemies, murder, null, this);
-        
-        if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
-            mittens.body.velocity.x = vel;
-            mittens.animations.play('walkRight', 14, true);
-        }
-        else if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
-            mittens.body.velocity.x = -vel;
-            mittens.animations.play('walkLeft', 14, true);
-        }
-        else{
-            mittens.animations.stop();
-        }
-        
-        if (game.input.keyboard.isDown(Phaser.Keyboard.UP)){
-            mittens.body.velocity.y = jumpvel;
-        }
-        
-        function murder(mittens, enemies){
-            socksKilled += 1;
-            enemies.kill();
-        }
-        */
     }
 };
 function mittensHit(body, bodyB, shapeA, shapeB, equation) {
     if (body == null) {
         return
     }
-    if (body.sprite.key == 'platform') {
+    if (body.sprite.key == 'mouse') {
         mittens.reset(0,0);
     }
 }
