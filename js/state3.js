@@ -1,4 +1,4 @@
-var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mouse;
+var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mouse, mouseMovingRight = true;
 
 demo.state3 = function() {};
 demo.state3.prototype = {
@@ -160,7 +160,23 @@ demo.state3.prototype = {
         if (mittens.y > 765) {
             mittens.reset(125,555)
         }
-        
+        if (mouseMovingRight && mouse.x < 995) {
+            mouse.body.moveRight(200);
+        }
+        else if (mouse.x > 790) {
+            mouse.body.moveLeft(200);
+        }
+        if (mouse.x >= 995) {
+            mouseMovingRight = false;
+            mouse.frame = 0;
+        }
+        else if (mouse.x <= 790) {
+            mouseMovingRight = true;
+            mouse.frame = 4;
+        }
+        if (mouse.x > 1015 || mouse.x < 775 || mouse.y < 255 || mouse.y > 275) {
+            mouse.reset(790, 265);
+        }
         healthText.x = mittens.x;
         healthText.y = Math.floor(mittens.y - mittens.height);
         
@@ -175,8 +191,6 @@ function mittensHit(body, bodyB, shapeA, shapeB, equation) {
         mittens.reset(125,555);
     }
 }
-
-
 function updateTimer() {
     minutes = Math.floor(game.time.now/60000)% 60;
     seconds = Math.floor(game.time.now/1000) % 60;
@@ -185,10 +199,8 @@ function updateTimer() {
     if (milliseconds < 10) { milliseconds = "0" + milliseconds};
     if (seconds < 10) { seconds = '0' + seconds};
     if (minutes <10) { minutes = '0' + minutes};
-    timer.setText(minutes + ":" + seconds + ":" + milliseconds);
-    
+    timer.setText(minutes + ":" + seconds + ":" + milliseconds);    
 }
-
 
 
 
