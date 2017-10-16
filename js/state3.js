@@ -1,4 +1,4 @@
-var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mouse, mouseMovingRight = true;
+var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mouse, mouseMovingRight = true, sock, sockJumpTimer = 1000;
 
 demo.state3 = function() {};
 demo.state3.prototype = {
@@ -10,6 +10,7 @@ demo.state3.prototype = {
         game.load.image('hitzone', '../assets/images/hitbox.png');
         game.load.image('shot', '../assets/images/projectile.png');
         game.load.spritesheet('mouse','../assets/sprites/ToyMouse2.png', 390, 180);
+        game.load.spritesheet('sock','../assets/sprites/EvilSock2.png', 280, 450);
         
         game.load.image('wall', '../assets/images/livingroomwall.png');
         game.load.image('sky', '../assets/images/sky.png');
@@ -18,7 +19,7 @@ demo.state3.prototype = {
     },
     create: function() {
         
-                             // P2 PHYSICS AND ENVIRONMENT //
+                    // P2 PHYSICS AND ENVIRONMENT //
         ////////////////////////////////////////////////////
         game.world.setBounds(0, 0, 3000, 800);
         game.stage.backgroundColor = '#B25F55';
@@ -72,9 +73,16 @@ demo.state3.prototype = {
         
                         //MICE//
         ///////////////////////////////////////////////////
-        mouse = game.add.sprite(790,265,'mouse');
+        mouse = game.add.sprite(790, 265, 'mouse');
         mouse.scale.setTo(.4, .4);
         game.physics.p2.enable(mouse, false);
+        ///////////////////////////////////////////////////
+        
+                        //SOCKS//
+        ///////////////////////////////////////////////////
+        //sock = game.add.sprite(1255, 260, 'sock');
+        //sock.scale.setTo(.4, .4);
+        //game.physics.p2.enable(sock, false);
         ///////////////////////////////////////////////////
         
                         //BULLETS//
