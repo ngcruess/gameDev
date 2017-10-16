@@ -131,6 +131,8 @@ demo.state0a.prototype = {
         var platformMaterial = game.physics.p2.createMaterial('platformMaterial');
         
         //healthText = game.add.text(16, 16, 'health: 100', { fontSize: '32px', fill: '#000' });
+        
+        game.time.events.repeat(Phaser.Timer.SECOND *2, 1000, vacShoot, this);
     },
     update: function(){
         moveMittens();
@@ -140,9 +142,7 @@ demo.state0a.prototype = {
             mittensShoot();
             
         }
-        if (game.time.totalElapsedSeconds() % 2000 == 0 ){
-            vacShoot();
-        }
+        bullets.forEachAlive(moveBullets, this);
         
     }
 };
