@@ -189,6 +189,9 @@ demo.state3.prototype = {
         healthText.y = Math.floor(mittens.y - mittens.height);
         
         updateTimer();
+        if (mittens.x > 2750){
+            game.state.start("state0a");
+        }
     }
 };
 function mittensHit(body, bodyB, shapeA, shapeB, equation) {
