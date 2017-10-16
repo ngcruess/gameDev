@@ -59,9 +59,9 @@ demo.state3.prototype = {
         
                         // MITTENS //
         ///////////////////////////////////////////////////
-        mittens = game.add.sprite(0,0, 'mittens');
+        mittens = game.add.sprite(465,555, 'mittens');
         updateAnchor(0.5, 0.5, mittens);
-        game.physics.p2.enable(mittens, true);
+        game.physics.p2.enable(mittens, false);
         mittens.body.fixedRotation = true;
         //mittens.body.setZeroDamping();
         mittens.body.clearShapes();
@@ -102,7 +102,7 @@ demo.state3.prototype = {
         platform.body.setMaterial(platformMaterial);
         platform.body.static = true;
         
-        platform = game.add.sprite(1400, 600, 'sidetable');
+        platform = game.add.sprite(1400, 600, 'shelf');
         updateAnchor(.5, 1, platform);
         platform.scale.setTo(0.15, 0.15);
         game.physics.p2.enable(platform);
@@ -189,12 +189,14 @@ demo.state3.prototype = {
         if (shootButton.isDown) {
             mittensShoot();
         }
+        if (mittens.y > 765) {
+            mittens.reset(465,555)
+        }
         
         healthText.x = mittens.x;
         healthText.y = Math.floor(mittens.y - mittens.height);
         
         updateTimer();
-        
         
         
         
