@@ -91,7 +91,7 @@ function mittensShoot() {
 function vacShoot() {
     if (game.time.now >= vshotTimer) {
         //vshotTimer = game.time.now + 200;
-        var bullet = vbullets.getFirstExists(false);
+        var bullet = bullets.getFirstExists(false);
         bullet.body.data.gravityScale = 0;
         bullet.scale.setTo(0.5, 0.5);
         bullet.body.mass = 1;
