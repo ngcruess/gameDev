@@ -67,11 +67,12 @@ demo.state3.prototype = {
         mittens.body.clearShapes();
         mittens.body.loadPolygon('mittensPhysicsData', 'mittensSingleFrame', 1, -Math.PI * 2);
         game.camera.follow(mittens);
+        mittens.body.onBeginContact.add(mittensHit);
         ///////////////////////////////////////////////////
         
                         //MICE//
         ///////////////////////////////////////////////////
-        mouse = game.add.sprite(770,265,'mouse');
+        mouse = game.add.sprite(790,265,'mouse');
         mouse.scale.setTo(.4, .4);
         game.physics.p2.enable(mouse, false);
         ///////////////////////////////////////////////////
@@ -171,7 +172,7 @@ function mittensHit(body, bodyB, shapeA, shapeB, equation) {
         return
     }
     if (body.sprite.key == 'mouse') {
-        mittens.reset(0,0);
+        mittens.reset(125,555);
     }
 }
 
