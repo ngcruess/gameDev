@@ -185,10 +185,11 @@ demo.state3.prototype = {
     },
     update: function() { 
         moveMittens();
-        
+        /*
         if (shootButton.isDown) {
             mittensShoot();
         }
+        */
         if (mittens.y > 765) {
             mittens.reset(465,555)
         }
