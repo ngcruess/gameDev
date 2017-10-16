@@ -3,7 +3,7 @@ var game = new Phaser.Game(1000, 800, Phaser.AUTO);
 //Variables to be used in many states
 var mittens, cursor, jumps, platform, bullets, vbullets, fireRate = 200, shotTimer = 0, vfireRate = 200, vshotTimer = 0, 
     mittensFacingLeft = false, mittensJumpVelocity = 600, 
-    mittensRunSpeed = 400, bulletSpeed = 700, yAxis = p2.vec2.fromValues(0, 1), globalGravity = 1200, jumps;
+    mittensRunSpeed = 400, bulletSpeed = 700, vbulletSpeed = 700, yAxis = p2.vec2.fromValues(0, 1), globalGravity = 1200, jumps;
 
 game.state.add('state0', demo.state0);
 game.state.add('state0a', demo.state0a);
@@ -91,19 +91,12 @@ function mittensShoot() {
 function vacShoot() {
     if (game.time.now >= vshotTimer) {
         vshotTimer = game.time.now + 200;
-        var bullet = bullets.getFirstExists(false);
+        var bullet = vbullets.getFirstExists(false);
         bullet.body.data.gravityScale = 0;
         bullet.scale.setTo(0.33, 0.33);
         bullet.body.mass = 1;
+        bullet.body.moveLeft(vbulletSpeed);
         
-//        if (mittensFacingLeft) {
-//            bullet.reset(mittens.x - 50, mittens.y);
-//            bullet.body.moveLeft(bulletSpeed);
-//        }
-//        else {
-//            bullet.reset(mittens.x + 30, mittens.y);
-//            bullet.body.moveRight(bulletSpeed);
-//        }
     }
 }
 // ADDED DOUBLE JUMP
