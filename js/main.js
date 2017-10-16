@@ -8,8 +8,8 @@ var mittens, cursor, jumps, platform, bullets, vbullets, fireRate = 200, shotTim
 game.state.add('state0', demo.state0);
 game.state.add('state0a', demo.state0a);
 game.state.add('state3', demo.state3);
-game.state.start('state3');
 //game.state.start('state3');
+game.state.start('state0a');
 
 /*
 CORE FUNCTIONS
@@ -159,6 +159,21 @@ function bulletHit(target) {
         //healthText = vacuum.health;
         if (vacuum.health <= 0){
             vacuum.kill()
+        }
+    }
+    else if (target != mittens.body) {
+        bullet.kill();
+    }
+}
+
+function bulletHitMittens(target) {
+    bullet = this;
+    if (target == mittens.body) {
+        bullet.kill();
+        Mittens.health -= .1;
+        //healthText = vacuum.health;
+        if (mittens.health <= 0){
+            mittens.kill()
         }
     }
     else if (target != mittens.body) {

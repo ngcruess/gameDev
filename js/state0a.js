@@ -5,7 +5,9 @@ demo.state0a.prototype = {
     preload: function(){
         game.load.image('mittens', '../assets/sprites/mittensSingleFrame.png');
         game.load.image('platform', '../assets/images/block.png');
-        game.load.image('shot', '../assets/images/projectile.png');
+        game.load.image('shot', '../assets/images/projectile.png'); game.load.image('mShot','../assets/images/mouseprojectile.png');
+        game.load.image('sShot','../assets/images/sockprojectile.png');
+        game.load.image('lShot','../assets/images/legoprojectile.png');
         game.load.image('vacuum', '../assets/sprites/Vacuum.png');
         game.load.image('background', '../assets/images/brick.png');
         game.load.image('healthBarFill', '../assets/images/whiteBlock.png');
@@ -102,6 +104,19 @@ demo.state0a.prototype = {
         //Input tools        
         cursor = game.input.keyboard.createCursorKeys();
         shootButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);  
+        
+        //Vacuum Bullets        
+        vbullets = game.add.group();
+        vbullets.enableBody = true;
+        vbullets.physicsBodyType = Phaser.Physics.P2JS;
+        vbullets.createMultiple(200, 'shot', false);
+        vbullets.setAll('anchor.x', 0.5);
+        vbullets.setAll('anchor.y', 0.5);
+        vbullets.setAll('outOfBoundsKill', true);
+        vbullets.setAll('ckeckWorldBounds', true);
+        vbullets.forEach(function(bullet) {
+            bullet.body.onBeginContact.add(bulletHit, bullet);
+        })
        
         //come back to this...
         //create timer to initiate movement every 4 secs
@@ -124,6 +139,9 @@ demo.state0a.prototype = {
         if (shootButton.isDown) {
             mittensShoot();
             
+        }
+        if (game.time.totalElapsedSeconds() % 2000 == 0 ){
+            vacShoot();
         }
         
     }
@@ -150,3 +168,4 @@ function bulletHit(target) {
 //    vacuum.x = game.rnd.integerInRange(600, 800);
 //    vacuum.y = game.rnd.integerInRange(200, 400);
 //}
+
