@@ -6,9 +6,9 @@ var mittens, cursor, jumps, platform, bullets, vbullets, fireRate = 200, shotTim
     mittensRunSpeed = 400, bulletSpeed = 700, vbulletSpeed = 700, yAxis = p2.vec2.fromValues(0, 1), globalGravity = 1200, jumps;
 
 game.state.add('state0', demo.state0);
-game.state.add('state0a', demo.state0a);
-game.state.add('state3', demo.state3);
-game.state.start('state3');
+game.state.add('state1', demo.state1);
+game.state.add('state2', demo.state2);
+game.state.start('state0');
 //game.state.start('state0a');
 
 /*

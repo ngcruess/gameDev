@@ -17,7 +17,7 @@ demo.state0.prototype= {
     update: function(){
         if (spaceKey.isDown) {
             console.log('SPACE');
-            game.state.start('state0a');
+            game.state.start('state1');
         } 
     }
 };

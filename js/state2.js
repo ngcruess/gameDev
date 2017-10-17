@@ -1,7 +1,7 @@
 var vacuum, jumpRel, timer, healthText, healthBarWidth = 29.6, healthBarFill;
 
-demo.state0a = function() {};
-demo.state0a.prototype = {
+demo.state2 = function() {};
+demo.state2.prototype = {
     preload: function(){
         game.load.image('mittens', '../assets/sprites/mittensSingleFrame.png');
         game.load.image('platform', '../assets/images/block.png');
@@ -123,7 +123,6 @@ demo.state0a.prototype = {
 //        timer = game.time.create(false);
 //        timer.loop(4000, vacuumMovement, this);
 //        timer.start();
-//=======
         shootButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);   
         
         //Materials
