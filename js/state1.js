@@ -160,11 +160,6 @@ demo.state1.prototype = {
     },
     update: function() { 
         moveMittens();
-        /*
-        if (shootButton.isDown) {
-            mittensShoot();
-        }
-        */
         if (mittens.y > 765) {
             mittens.reset(125,555)
         }
@@ -186,22 +181,13 @@ demo.state1.prototype = {
             mouse.reset(790, 265);
         }
         healthText.x = mittens.x;
-        healthText.y = Math.floor(mittens.y - mittens.height);
-        
+        healthText.y = Math.floor(mittens.y - mittens.height);        
         updateTimer();
         if (mittens.x > 2750){
             game.state.start("state2");
         }
     }
 };
-function mittensHit(body, bodyB, shapeA, shapeB, equation) {
-    if (body == null) {
-        return
-    }
-    if (body.sprite.key == 'mouse') {
-        mittens.reset(125,555);
-    }
-}
 function updateTimer() {
     minutes = Math.floor(game.time.now/60000)% 60;
     seconds = Math.floor(game.time.now/1000) % 60;

@@ -9,7 +9,6 @@ game.state.add('state0', demo.state0);
 game.state.add('state1', demo.state1);
 game.state.add('state2', demo.state2);
 game.state.start('state0');
-//game.state.start('state0a');
 
 /*
 CORE FUNCTIONS
@@ -188,5 +187,13 @@ function bulletHitMittens(target) {
     }
     else if (target != mittens.body) {
         bullet.kill();
+    }
+}
+function mittensHit(body, bodyB, shapeA, shapeB, equation) {
+    if (body == null) {
+        return
+    }
+    if (body.sprite.key == 'mouse') {
+        mittens.reset(125, 555);
     }
 }
