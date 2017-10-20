@@ -23,14 +23,14 @@ demo.state2.prototype = {
         game.physics.p2.gravity.y = globalGravity;
         game.physics.p2.restitution = 0;
         game.physics.p2.world.setGlobalStiffness(1e5);
+        game.world.setBounds(0, 0, 1000, 800);
         
         //Input feedback
         game.input.keyboard.onUpCallback = function (e) {
             console.log(e.keyCode)
             if (e.keyCode == 38){
                 jumpRel = true;
-            }
-            
+            }            
         }
         //World items
         var background = game.add.sprite(0,0, 'background');
@@ -68,6 +68,7 @@ demo.state2.prototype = {
         healthBarBorder.scale.setTo(30, 3);
         healthBarFill = game.add.sprite(25, 24, 'healthBarFill');
         healthBarFill.scale.setTo(healthBarWidth, 2);
+        
         /*
         SPRITES
         */
