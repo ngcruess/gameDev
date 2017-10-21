@@ -139,11 +139,11 @@ demo.state2.prototype = {
         //healthText.text = 'Health: ' + vacuum.health;
         healthBarFill.scale.setTo(healthBarWidth * vacuum.health, 2)
         if (shootButton.isDown) {
-            mittensShoot();
-            
+            mittensShoot();            
         }
-        bullets.forEachAlive(moveBullets, this);
-        
+        if (vacuum.health > 0) {
+            vbullets.forEachAlive(moveBullets, this);            
+        }        
     }
 };
 
@@ -155,12 +155,6 @@ function mittensHit(body, bodyB, shapeA, shapeB, equation) {
         mittens.reset(0,0);
     }
     mittens.health -= 10; 
-}
-function bulletHit(target) {
-    bullet = this;
-    if (target != mittens.body) {
-        bullet.kill();
-    }
 }
 
 //will come back to this...

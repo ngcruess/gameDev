@@ -82,29 +82,26 @@ function mittensShoot() {
         }
         else {
             bullet.reset(mittens.x + 30, mittens.y);
-            bullet.body.moveRight(bulletSpeed);
+            bullet.body.moveRight(bulletSpeed); 
         }
     }
 }
 
 function vacShoot() {
-    if (game.time.now >= vshotTimer) {
+    if (game.time.now >= vshotTimer && vacuum.health > 0) {
         //vshotTimer = game.time.now + 200;
-        var bullet = bullets.getFirstExists(false);
-        bullet.body.data.gravityScale = 0;
-        bullet.scale.setTo(0.5, 0.5);
-        bullet.body.mass = 1;
-        bullet.body.moveLeft(vbulletSpeed);
+        var vbullet = vbullets.getFirstExists(false);
+        vbullet.body.data.gravityScale = 0;
+        vbullet.scale.setTo(0.5, 0.5);
+        vbullet.body.mass = 1;
+        vbullet.body.moveLeft(vbulletSpeed);
         
-        bullet.reset(vacuum.x-200, vacuum.y);
-        
+        vbullet.reset(vacuum.x-200, vacuum.y);        
     }
 }
 
 function moveBullets(bullet) {
-    accelerateToObject(bullet, mittens, 500);
-    
-    
+    accelerateToObject(bullet, mittens, 500);    
 }
 
 function accelerateToObject(obj1, obj2, speed) {
@@ -133,7 +130,6 @@ function mittensJump() {
         mittens.body.moveUp(mittensJumpVelocity);
         jumps = 0;
     }
-
 }
 function bottomTouching(character) {
     var result = false;
@@ -156,25 +152,37 @@ function bottomTouching(character) {
                 result = true;
             }
         }
-    }
-    
+    }    
     return result;
 }
 function bulletHit(target) {
-    bullet = this;
-    if (target == vacuum.body) {
+    if (target === null) {
         bullet.kill();
-        vacuum.health -= .05;
-        //healthText = vacuum.health;
-        if (vacuum.health <= 0){
-            vacuum.kill()
-        }
     }
-    else if (target != mittens.body) {
-        bullet.kill();
+    else{
+        bullet = this;
+        if (vbullets.children.indexOf(bullet) > -1) {
+            if (target == mittens.body) {
+                //This should do something other than killing mittens -- 
+                //probably reset him to another state where the player can then enter 
+                //the boss fight again 
+                mittens.kill()
+            }
+            bullet.kill();
+        }
+        else if (target == vacuum.body) {
+            bullet.kill();
+            vacuum.health -= .05;
+            //healthText = vacuum.health;
+            if (vacuum.health <= 0){
+                vacuum.kill()
+            }
+        }
+        else if (target != mittens.body) {
+            bullet.kill();
+        }        
     }
 }
-
 function bulletHitMittens(target) {
     bullet = this;
     if (target == mittens.body) {
