@@ -86,13 +86,19 @@ demo.state1.prototype = {
         game.physics.p2.enable(mouse, false);
         mouse.body.fixedRotation = true;
         mouse.id = 0;
-        mouse.movingRight = false;
+        mouse.movingRight = true ;
+        mouse.leftXLim = 790;
+        mouse.rightXLim = 995;
+        mouse.yLim = 265;
         
         mouse = mice.create(1405, 545, 'mouse');
         mouse.scale.setTo(.4, .4);
         game.physics.p2.enable(mouse, false);
         mouse.id = 1;
         mouse.movingRight = true;
+        mouse.leftXLim = 1405;
+        mouse.rightXLim = 1705;
+        mouse.yLim = 545;
         ///////////////////////////////////////////////////
         
                         //SOCKS//
@@ -181,25 +187,6 @@ demo.state1.prototype = {
             mittens.reset(125,555)
         }
         moveMice();
-        /*
-        if (mouseMovingRight && mouse.x < 995) {
-            mouse.body.moveRight(200);
-        }
-        else if (mouse.x > 790) {
-            mouse.body.moveLeft(200);
-        }
-        if (mouse.x >= 995) {
-            mouseMovingRight = false;
-            mouse.frame = 0;
-        }
-        else if (mouse.x <= 790) {
-            mouseMovingRight = true;
-            mouse.frame = 4;
-        }
-        if (mouse.x > 1015 || mouse.x < 775 || mouse.y < 255 || mouse.y > 275) {
-            mouse.reset(790, 265);
-        }
-        */
         healthText.x = mittens.x;
         healthText.y = Math.floor(mittens.y - mittens.height);        
         updateTimer();
@@ -221,24 +208,22 @@ function updateTimer() {
 function moveMice() {
     for (var i = 0, len = mice.children.length; i < len; i++) {
         var mouse = mice.children[i];
-        if (mouse.id == 0) {
-            if (mouse.movingRight && mouse.x < 995) {
-                mouse.body.moveRight(200);
-            }
-            else if (mouse.x > 790) {
-                mouse.body.moveLeft(200);
-            }
-            if (mouse.x >= 995) {
-                mouse.movingRight = false;
-                mouse.frame = 0;
-            }
-            else if (mouse.x <= 790) {
-                mouse.movingRight = true;
-                mouse.frame = 4;
-            }
-            if (mouse.x > 1015 || mouse.x < 775 || mouse.y < 255 || mouse.y > 275) {
-                mouse.reset(790, 265);
-            }
+        if (mouse.movingRight && mouse.x < mouse.rightXLim) {
+            mouse.body.moveRight(200);
+        }
+        else if (mouse.x > mouse.leftXLim) {
+            mouse.body.moveLeft(200);
+        }
+        if (mouse.x >= mouse.rightXLim) {
+            mouse.movingRight = false;
+            mouse.frame = 0;
+        }
+        else if (mouse.x <= mouse.leftXLim) {
+            mouse.movingRight = true;
+            mouse.frame = 4;
+        }
+        if (mouse.x > mouse.rightXLim + 10 || mouse.x < mouse.leftXLim - 10 || mouse.y < mouse.yLim - 10 || mouse.y > mouse.yLim + 10) {
+            mouse.reset(mouse.leftXLim, mouse.yLim);
         }
     }
 }
