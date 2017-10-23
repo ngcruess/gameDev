@@ -240,8 +240,12 @@ function moveMice() {
     for (var i = 0, len = mice.children.length; i < len; i++) {
         var mouse = mice.children[i];
         if (mouse.id == 3) {
+            var y = mouse.y;
             if (bottomTouching(mouse)) {
                 mouse.body.moveUp(1000);
+            }
+            if (Math.abs(mouse.x - 1945) > 10) {
+                mouse.reset(1945, mouse.y);
             }
         }
         else {
