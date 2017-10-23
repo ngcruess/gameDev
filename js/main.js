@@ -19,12 +19,12 @@ function moveMittens() {
     if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
             mittensFacingLeft = false;
             mittens.body.moveRight(mittensRunSpeed);
-            mittens.scale.setTo(1, 1);
+            mittens.animations.play('right');
         }
         else if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
             mittensFacingLeft = true;
             mittens.body.moveLeft(mittensRunSpeed);
-            mittens.scale.setTo(-1, 1);
+            mittens.animations.play('left');
         }
         else{
             mittens.body.velocity.x = 0;

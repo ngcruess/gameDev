@@ -11,6 +11,7 @@ demo.state1.prototype = {
         game.load.image('shot', '../assets/images/projectile.png');
         game.load.spritesheet('mouse','../assets/sprites/ToyMouse2.png', 390, 180);
         game.load.spritesheet('sock','../assets/sprites/EvilSock.png', 280, 450);
+        game.load.spritesheet('mittens2', '../assets/sprites/WalkingM.png', 200, 190);
         
         game.load.image('wall', '../assets/images/livingroomwall.png');
         game.load.image('sky', '../assets/images/sky.png');
@@ -36,8 +37,10 @@ demo.state1.prototype = {
         var wall = game.add.sprite(0,0, 'wall');
         wall.scale.setTo(10, 10);
         
-        healthText = game.add.text(0, 0, "Health: 100%");
-        healthText.anchor.set(0.5);
+        //healthText = game.add.text(0, 0, "Health: 100%");
+        //healthText.anchor.set(0.5);
+        
+        var instructionText = game.add.text(100, 100, "KITCHEN -->"); 
         
         timer = game.add.text(875,0, "00:00:00");
         timer.fixedToCamera = true;
@@ -61,6 +64,7 @@ demo.state1.prototype = {
         
                         // MITTENS //
         ///////////////////////////////////////////////////
+        /*
         mittens = game.add.sprite(125,555, 'mittens');
         updateAnchor(0.5, 0.5, mittens);
         game.physics.p2.enable(mittens, false);
@@ -68,6 +72,16 @@ demo.state1.prototype = {
         //mittens.body.setZeroDamping();
         mittens.body.clearShapes();
         mittens.body.loadPolygon('mittensPhysicsData', 'mittensSingleFrame', 1, -Math.PI * 2);
+        */
+        
+        mittens = game.add.sprite(125, 555, 'mittens2');
+        updateAnchor(0.5, 0.5, mittens);
+        game.physics.p2.enable(mittens, false);
+        mittens.frame = 3;
+        mittens.body.fixedRotation = true;
+        mittens.animations.add('left', [0,1,2], 10, true);
+        mittens.animations.add('right', [3,4,5], 10, true);
+        
         game.camera.follow(mittens);
         mittens.body.onBeginContact.add(mittensHit);
         ///////////////////////////////////////////////////
@@ -218,8 +232,8 @@ demo.state1.prototype = {
             mittens.reset(125,555)
         }
         moveMice();
-        healthText.x = mittens.x;
-        healthText.y = Math.floor(mittens.y - mittens.height);        
+        //healthText.x = mittens.x;
+        //healthText.y = Math.floor(mittens.y - mittens.height);        
         updateTimer();
         if (mittens.x > 2750){
             game.state.start("state2");
