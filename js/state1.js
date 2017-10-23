@@ -11,12 +11,13 @@ demo.state1.prototype = {
         game.load.image('shot', '../assets/images/projectile.png');
         game.load.spritesheet('mouse','../assets/sprites/ToyMouse2.png', 390, 180);
         game.load.spritesheet('sock','../assets/sprites/EvilSock.png', 280, 450);
-        game.load.spritesheet('mittens2', '../assets/sprites/WalkingM.png', 200, 190);
+        game.load.spritesheet('mittens2', '../assets/sprites/WalkingM.png', 90, 86);
         
         game.load.image('wall', '../assets/images/livingroomwall.png');
         game.load.image('sky', '../assets/images/sky.png');
         game.load.physics('mittensPhysicsData', '../assets/polygons/mittensSingleFrame.json');
         game.load.physics('enemyPhysicsData', '../assets/polygons/Mouse1.json');
+        game.load.physics('mittensPhysics', '../assets/polygons/Mittens.json');
         
         game.load.audio('music', '../assets/audio/bgmusic02.mp3');
         
@@ -42,7 +43,8 @@ demo.state1.prototype = {
         //healthText = game.add.text(0, 0, "Health: 100%");
         //healthText.anchor.set(0.5);
         
-        var instructionText = game.add.text(100, 100, "KITCHEN -->"); 
+        var instructionText = game.add.text(100, 80, "KITCHEN -->"); 
+        var intoTheAbyss = game.add.text(game.world.width - 700, 80, "ONWARD BROTHER, INTO THE ABYSS -->");
         
         timer = game.add.text(875,0, "00:00:00");
         timer.fixedToCamera = true;
@@ -82,6 +84,8 @@ demo.state1.prototype = {
         mittens = game.add.sprite(125, 555, 'mittens2');
         updateAnchor(0.5, 0.5, mittens);
         game.physics.p2.enable(mittens, false);
+        //mittens.body.clearShapes();
+        //mittens.body.loadPolygon('mittensPhysics', 'WalkingM', 1, -Math.PI * 2);
         mittens.frame = 3;
         mittens.body.fixedRotation = true;
         mittens.animations.add('left', [0,1,2], 10, true);
@@ -107,7 +111,7 @@ demo.state1.prototype = {
         mouse.id = 0;
         mouse.movingRight = false ;
         mouse.leftXLim = 780;
-        mouse.rightXLim = 885;
+        mouse.rightXLim = 865;
         mouse.yLim = 275;
         mouse.speed = 150;
         
@@ -117,7 +121,7 @@ demo.state1.prototype = {
         mouse.frame = 4;
         mouse.id = 1;
         mouse.movingRight = false;
-        mouse.leftXLim = 1045;
+        mouse.leftXLim = 1100;
         mouse.rightXLim = 1240;
         mouse.yLim = 275;
         mouse.speed = 150;
@@ -130,7 +134,7 @@ demo.state1.prototype = {
         mouse.leftXLim = 1405;
         mouse.rightXLim = 1705;
         mouse.yLim = 545;
-        mouse.speed = 300;
+        mouse.speed = 200;
         
         mouse = mice.create(1945, 648, 'mouse');
         mouse.scale.setTo(.4, .4);
@@ -233,7 +237,7 @@ demo.state1.prototype = {
     },
     update: function() { 
         moveMittens();
-        if (mittens.y > 765) {
+        if (mittens.y > 750) {
             mittens.reset(125,555)
         }
         moveMice();
