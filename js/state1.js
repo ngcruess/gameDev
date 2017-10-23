@@ -1,4 +1,4 @@
-var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mice, mouseMovingRight = true, sock, sockJumpTimer = 1000;
+var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mice, mouseMovingRight = true, sock, sockJumpTimer = 1000, music;
 
 demo.state1 = function() {};
 demo.state1.prototype = {
@@ -17,6 +17,8 @@ demo.state1.prototype = {
         game.load.image('sky', '../assets/images/sky.png');
         game.load.physics('mittensPhysicsData', '../assets/polygons/mittensSingleFrame.json');
         game.load.physics('enemyPhysicsData', '../assets/polygons/Mouse1.json');
+        
+        game.load.audio('music', '../assets/audio/bgmusic02.mp3');
         
     },
     create: function() {
@@ -44,6 +46,9 @@ demo.state1.prototype = {
         
         timer = game.add.text(875,0, "00:00:00");
         timer.fixedToCamera = true;
+        
+        music = game.add.audio('music');
+        music.play();
         ////////////////////////////////////////////////////
         
         

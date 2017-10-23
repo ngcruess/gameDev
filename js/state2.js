@@ -1,4 +1,4 @@
-var vacuum, jumpRel, timer, healthText, healthBarWidth = 29.6, healthBarFill;
+var vacuum, jumpRel, timer, healthText, healthBarWidth = 29.6, healthBarFill, bossMusic;
 
 demo.state2 = function() {};
 demo.state2.prototype = {
@@ -16,6 +16,7 @@ demo.state2.prototype = {
         game.load.spritesheet('mittensSheet', '../assets/spritesheets/BatCat.png', 100, 80);
         
         game.load.physics('mittensPhysicsData', '../assets/polygons/mittensSingleFrame.json');
+        game.load.audio('bossMusic', '../assets/audio/bossMusic.mp3');
     },
     create: function(){
         //Physics settings
@@ -24,6 +25,9 @@ demo.state2.prototype = {
         game.physics.p2.restitution = 0;
         game.physics.p2.world.setGlobalStiffness(1e5);
         game.world.setBounds(0, 0, 1000, 800);
+        
+        bossMusic = game.add.audio('bossMusic');
+        bossMusic.play();
         
         //Input feedback
         game.input.keyboard.onUpCallback = function (e) {
