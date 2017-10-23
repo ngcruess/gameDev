@@ -1,4 +1,4 @@
-var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mouse, mouseMovingRight = true, sock, sockJumpTimer = 1000;
+var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mice, mouseMovingRight = true, sock, sockJumpTimer = 1000;
 
 demo.state1 = function() {};
 demo.state1.prototype = {
@@ -10,11 +10,12 @@ demo.state1.prototype = {
         game.load.image('hitzone', '../assets/images/hitbox.png');
         game.load.image('shot', '../assets/images/projectile.png');
         game.load.spritesheet('mouse','../assets/sprites/ToyMouse2.png', 390, 180);
-        game.load.spritesheet('sock','../assets/sprites/EvilSock2.png', 280, 450);
+        game.load.spritesheet('sock','../assets/sprites/EvilSock.png', 280, 450);
         
         game.load.image('wall', '../assets/images/livingroomwall.png');
         game.load.image('sky', '../assets/images/sky.png');
         game.load.physics('mittensPhysicsData', '../assets/polygons/mittensSingleFrame.json');
+        game.load.physics('enemyPhysicsData', '../assets/polygons/Mouse1.json');
         
     },
     create: function() {
@@ -73,9 +74,25 @@ demo.state1.prototype = {
         
                         //MICE//
         ///////////////////////////////////////////////////
-        mouse = game.add.sprite(790, 265, 'mouse');
+        //mouse = game.add.sprite(790, 265, 'mouse');
+        //mouse.scale.setTo(.4, .4);
+        //game.physics.p2.enable(mouse, false);
+        
+        mice = game.add.group();
+        mice.enabledBody = true;
+        mice.physicsBodyType = Phaser.Physics.P2JS;
+        var mouse = mice.create(790, 265, 'mouse');
         mouse.scale.setTo(.4, .4);
         game.physics.p2.enable(mouse, false);
+        mouse.body.fixedRotation = true;
+        mouse.id = 0;
+        mouse.movingRight = false;
+        
+        mouse = mice.create(1405, 545, 'mouse');
+        mouse.scale.setTo(.4, .4);
+        game.physics.p2.enable(mouse, false);
+        mouse.id = 1;
+        mouse.movingRight = true;
         ///////////////////////////////////////////////////
         
                         //SOCKS//
@@ -163,6 +180,8 @@ demo.state1.prototype = {
         if (mittens.y > 765) {
             mittens.reset(125,555)
         }
+        moveMice();
+        /*
         if (mouseMovingRight && mouse.x < 995) {
             mouse.body.moveRight(200);
         }
@@ -180,6 +199,7 @@ demo.state1.prototype = {
         if (mouse.x > 1015 || mouse.x < 775 || mouse.y < 255 || mouse.y > 275) {
             mouse.reset(790, 265);
         }
+        */
         healthText.x = mittens.x;
         healthText.y = Math.floor(mittens.y - mittens.height);        
         updateTimer();
@@ -197,6 +217,30 @@ function updateTimer() {
     if (seconds < 10) { seconds = '0' + seconds};
     if (minutes <10) { minutes = '0' + minutes};
     timer.setText(minutes + ":" + seconds + ":" + milliseconds);    
+}
+function moveMice() {
+    for (var i = 0, len = mice.children.length; i < len; i++) {
+        var mouse = mice.children[i];
+        if (mouse.id == 0) {
+            if (mouse.movingRight && mouse.x < 995) {
+                mouse.body.moveRight(200);
+            }
+            else if (mouse.x > 790) {
+                mouse.body.moveLeft(200);
+            }
+            if (mouse.x >= 995) {
+                mouse.movingRight = false;
+                mouse.frame = 0;
+            }
+            else if (mouse.x <= 790) {
+                mouse.movingRight = true;
+                mouse.frame = 4;
+            }
+            if (mouse.x > 1015 || mouse.x < 775 || mouse.y < 255 || mouse.y > 275) {
+                mouse.reset(790, 265);
+            }
+        }
+    }
 }
 
 
