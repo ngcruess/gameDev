@@ -81,31 +81,55 @@ demo.state1.prototype = {
         mice = game.add.group();
         mice.enabledBody = true;
         mice.physicsBodyType = Phaser.Physics.P2JS;
-        var mouse = mice.create(790, 265, 'mouse');
+        var mouse = mice.create(790, 275, 'mouse');
         mouse.scale.setTo(.4, .4);
         game.physics.p2.enable(mouse, false);
         mouse.body.fixedRotation = true;
         mouse.id = 0;
-        mouse.movingRight = true ;
-        mouse.leftXLim = 790;
-        mouse.rightXLim = 995;
-        mouse.yLim = 265;
+        mouse.movingRight = false ;
+        mouse.leftXLim = 780;
+        mouse.rightXLim = 885;
+        mouse.yLim = 275;
+        mouse.speed = 150;
+        
+        mouse = mice.create(1240, 275, 'mouse');
+        mouse.scale.setTo(.4, .4); 
+        game.physics.p2.enable(mouse);
+        mouse.frame = 4;
+        mouse.id = 1;
+        mouse.movingRight = false;
+        mouse.leftXLim = 1045;
+        mouse.rightXLim = 1240;
+        mouse.yLim = 275;
+        mouse.speed = 150;
         
         mouse = mice.create(1405, 545, 'mouse');
         mouse.scale.setTo(.4, .4);
         game.physics.p2.enable(mouse, false);
-        mouse.id = 1;
+        mouse.id = 2;
         mouse.movingRight = true;
         mouse.leftXLim = 1405;
         mouse.rightXLim = 1705;
         mouse.yLim = 545;
+        mouse.speed = 300;
+        
+        mouse = mice.create(1945, 648, 'mouse');
+        mouse.scale.setTo(.4, .4);
+        game.physics.p2.enable(mouse, false);
+        mouse.id = 3;
+        mouse.movingRight = true;
+        mouse.leftXLim = 1405;
+        mouse.rightXLim = 1705;
+        mouse.yLim = 545;
+        mouse.speed = 300;
+        mouse.body.fixedRotation = true; 
         ///////////////////////////////////////////////////
         
                         //SOCKS//
         ///////////////////////////////////////////////////
-        //sock = game.add.sprite(1255, 260, 'sock');
+        //sock = game.add.sprite(0, 0, 'sock');
         //sock.scale.setTo(.4, .4);
-        //game.physics.p2.enable(sock, false);
+        //game.physics.p2.enable(sock, true);
         ///////////////////////////////////////////////////
         
                         //BULLETS//
@@ -134,7 +158,7 @@ demo.state1.prototype = {
         platform.body.setMaterial(platformMaterial);
         platform.body.static = true;
         
-        platform = game.add.sprite(950, 325, 'shelf');
+        platform = game.add.sprite(950, 335, 'shelf');
         updateAnchor(.5, 1, platform);
         platform.scale.setTo(0.3, 0.15);
         game.physics.p2.enable(platform);
@@ -144,6 +168,13 @@ demo.state1.prototype = {
         platform = game.add.sprite(1550, 600, 'shelf');
         updateAnchor(.5, 1, platform);
         platform.scale.setTo(0.15, 0.15);
+        game.physics.p2.enable(platform);
+        platform.body.setMaterial(platformMaterial);
+        platform.body.static = true;
+        
+        platform = game.add.sprite(1950, 700, 'shelf');
+        updateAnchor(.5, 1, platform);
+        platform.scale.setTo(0.05, 0.15);
         game.physics.p2.enable(platform);
         platform.body.setMaterial(platformMaterial);
         platform.body.static = true;
@@ -208,22 +239,29 @@ function updateTimer() {
 function moveMice() {
     for (var i = 0, len = mice.children.length; i < len; i++) {
         var mouse = mice.children[i];
-        if (mouse.movingRight && mouse.x < mouse.rightXLim) {
-            mouse.body.moveRight(200);
+        if (mouse.id == 3) {
+            if (bottomTouching(mouse)) {
+                mouse.body.moveUp(1000);
+            }
         }
-        else if (mouse.x > mouse.leftXLim) {
-            mouse.body.moveLeft(200);
-        }
-        if (mouse.x >= mouse.rightXLim) {
-            mouse.movingRight = false;
-            mouse.frame = 0;
-        }
-        else if (mouse.x <= mouse.leftXLim) {
-            mouse.movingRight = true;
-            mouse.frame = 4;
-        }
-        if (mouse.x > mouse.rightXLim + 10 || mouse.x < mouse.leftXLim - 10 || mouse.y < mouse.yLim - 10 || mouse.y > mouse.yLim + 10) {
-            mouse.reset(mouse.leftXLim, mouse.yLim);
+        else {
+            if (mouse.movingRight && mouse.x < mouse.rightXLim) {
+                mouse.body.moveRight(mouse.speed);
+            }
+            else if (mouse.x > mouse.leftXLim) {
+                mouse.body.moveLeft(mouse.speed);
+            }
+            if (mouse.x >= mouse.rightXLim) {
+                mouse.movingRight = false;
+                mouse.frame = 0;
+            }
+            else if (mouse.x <= mouse.leftXLim) {
+                mouse.movingRight = true;
+                mouse.frame = 4;
+            }
+            if (mouse.x > mouse.rightXLim + 10 || mouse.x < mouse.leftXLim - 10 || mouse.y < mouse.yLim - 10 || mouse.y > mouse.yLim + 10) {
+                mouse.reset(mouse.leftXLim, mouse.yLim);
+            }
         }
     }
 }
