@@ -9,7 +9,8 @@ demo.state1.prototype = {
         game.load.image('shelf', '../assets/images/Shelf.png');
         game.load.image('hitzone', '../assets/images/hitbox.png');
         game.load.image('shot', '../assets/images/projectile.png');
-        game.load.spritesheet('mouse','../assets/sprites/ToyMouse2.png', 390, 180);
+        //game.load.spritesheet('mouse','../assets/sprites/ToyMouse2.png', 390, 180);
+        game.load.image('mouse', '../assets/sprites/ToyMouse-1.png')
         game.load.spritesheet('sock','../assets/sprites/EvilSock.png', 280, 450);
         game.load.spritesheet('mittens2', '../assets/sprites/WalkingM.png', 90, 86);
         
@@ -18,6 +19,8 @@ demo.state1.prototype = {
         game.load.physics('mittensPhysicsData', '../assets/polygons/mittensSingleFrame.json');
         game.load.physics('enemyPhysicsData', '../assets/polygons/Mouse1.json');
         game.load.physics('mittensPhysics', '../assets/polygons/Mittens.json');
+        game.load.physics('mousePhysicsL', '../assets/polygons/ToyMouseL.json')
+        game.load.physics('mousePhysicsR', '../assets/polygons/ToyMouseR.json')
         
         game.load.audio('music', '../assets/audio/bgmusic02.mp3');
         
@@ -83,9 +86,9 @@ demo.state1.prototype = {
         
         mittens = game.add.sprite(125, 555, 'mittens2');
         updateAnchor(0.5, 0.5, mittens);
-        game.physics.p2.enable(mittens, false);
-        //mittens.body.clearShapes();
-        //mittens.body.loadPolygon('mittensPhysics', 'WalkingM', 1, -Math.PI * 2);
+        game.physics.p2.enable(mittens, true);
+        mittens.body.clearShapes();
+        mittens.body.loadPolygon('mittensPhysics', 'ShootingMouth-2', 1, -Math.PI * 2);
         mittens.frame = 3;
         mittens.body.fixedRotation = true;
         mittens.animations.add('left', [0,1,2], 10, true);
@@ -105,20 +108,22 @@ demo.state1.prototype = {
         mice.enabledBody = true;
         mice.physicsBodyType = Phaser.Physics.P2JS;
         var mouse = mice.create(790, 275, 'mouse');
-        mouse.scale.setTo(.4, .4);
-        game.physics.p2.enable(mouse, false);
+        //mouse.scale.setTo(.4, .4);
+        game.physics.p2.enable(mouse, true);
+        mouse.body.clearShapes();
+        mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
         mouse.body.fixedRotation = true;
         mouse.id = 0;
         mouse.movingRight = false ;
         mouse.leftXLim = 780;
         mouse.rightXLim = 865;
-        mouse.yLim = 275;
+        mouse.yLim = 305;
         mouse.speed = 150;
         
         mouse = mice.create(1240, 275, 'mouse');
-        mouse.scale.setTo(.4, .4); 
-        game.physics.p2.enable(mouse);
-        mouse.frame = 4;
+        //mouse.scale.setTo(.4, .4); 
+        game.physics.p2.enable(mouse, true);
+        //mouse.frame = 4;
         mouse.id = 1;
         mouse.movingRight = false;
         mouse.leftXLim = 1100;
@@ -127,8 +132,8 @@ demo.state1.prototype = {
         mouse.speed = 150;
         
         mouse = mice.create(1405, 545, 'mouse');
-        mouse.scale.setTo(.4, .4);
-        game.physics.p2.enable(mouse, false);
+        //mouse.scale.setTo(.4, .4);
+        game.physics.p2.enable(mouse, true);
         mouse.id = 2;
         mouse.movingRight = true;
         mouse.leftXLim = 1405;
@@ -137,8 +142,8 @@ demo.state1.prototype = {
         mouse.speed = 200;
         
         mouse = mice.create(1945, 648, 'mouse');
-        mouse.scale.setTo(.4, .4);
-        game.physics.p2.enable(mouse, false);
+        //mouse.scale.setTo(.4, .4);
+        game.physics.p2.enable(mouse, true);
         mouse.id = 3;
         mouse.movingRight = true;
         mouse.leftXLim = 1405;
