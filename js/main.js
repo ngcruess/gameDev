@@ -30,10 +30,15 @@ function moveMittens() {
             mittens.body.velocity.x = 0;
             mittens.animations.stop();
         }
-        if (cursor.up.isDown && jumpRel) {
-            mittensJump();
-            jumpRel = false;
-            console.log(jumps);
+        if (cursor.up.isDown) {
+            if (mittens.flight) {
+                mittens.body.moveUp(mittensRunSpeed); 
+            }
+            else if (jumpRel) {                
+                mittensJump();
+                jumpRel = false;
+                console.log(jumps);
+            }
         }
 }
 
@@ -166,7 +171,9 @@ function bulletHit(target) {
                 //This should do something other than killing mittens -- 
                 //probably reset him to another state where the player can then enter 
                 //the boss fight again 
-                mittens.kill()
+                if (!mittens.invincible) {
+                    mittens.kill();
+                }
             }
             bullet.kill();
         }
@@ -202,6 +209,8 @@ function mittensHit(body, bodyB, shapeA, shapeB, equation) {
         return
     }
     if (body.sprite.key == 'mouse') {
-        mittens.reset(125, 555);
+        if (!mittens.invincible) {
+            mittens.reset(125, 555);
+        }
     }
 }
