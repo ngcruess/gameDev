@@ -3,7 +3,6 @@ var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, health
 demo.state1 = function() {};
 demo.state1.prototype = {
     preload: function() {
-        game.load.spritesheet('mittens', '../assets/sprites/mittensSingleFrame.png', 100, 80);
         game.load.image('sidetable', '../assets/images/SideTable.png');
         game.load.image('table', '../assets/images/Table.png');
         game.load.image('shelf', '../assets/images/Shelf.png');
@@ -16,7 +15,6 @@ demo.state1.prototype = {
         
         game.load.image('wall', '../assets/images/livingroomwall.png');
         game.load.image('sky', '../assets/images/sky.png');
-        game.load.physics('mittensPhysicsData', '../assets/polygons/mittensSingleFrame.json');
         game.load.physics('enemyPhysicsData', '../assets/polygons/Mouse1.json');
         game.load.physics('mittensPhysics', '../assets/polygons/Mittens.json');
         game.load.physics('mousePhysicsL', '../assets/polygons/ToyMouseL.json')
@@ -93,6 +91,8 @@ demo.state1.prototype = {
         mittens.body.fixedRotation = true;
         mittens.animations.add('left', [0,1,2], 10, true);
         mittens.animations.add('right', [3,4,5], 10, true);
+        mittens.invincible = false;
+        mittens.flight = false;
         
         game.camera.follow(mittens);
         mittens.body.onBeginContact.add(mittensHit);

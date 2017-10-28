@@ -3,7 +3,7 @@ var vacuum, jumpRel, timer, healthText, healthBarWidth = 29.6, healthBarFill, bo
 demo.state2 = function() {};
 demo.state2.prototype = {
     preload: function(){
-        game.load.image('mittens', '../assets/sprites/mittensSingleFrame.png');
+        game.load.spritesheet('mittens2', '../assets/sprites/WalkingM.png', 90, 86);
         game.load.image('platform', '../assets/images/block.png');
         game.load.image('shot', '../assets/images/projectile.png'); game.load.image('mShot','../assets/images/mouseprojectile.png');
         game.load.image('sShot','../assets/images/sockprojectile.png');
@@ -14,8 +14,8 @@ demo.state2.prototype = {
         game.load.image('healthBarBorder', '../assets/images/blackBlock.png');
         
         game.load.spritesheet('mittensSheet', '../assets/spritesheets/BatCat.png', 100, 80);
+        game.load.physics('mittensPhysics', '../assets/polygons/Mittens.json');        
         
-        game.load.physics('mittensPhysicsData', '../assets/polygons/mittensSingleFrame.json');
         game.load.audio('bossMusic', '../assets/audio/bossMusic.mp3');
     },
     create: function(){
@@ -77,13 +77,18 @@ demo.state2.prototype = {
         SPRITES
         */
         //Mittens
-        mittens = game.add.sprite(153,354,'mittens');
+        mittens = game.add.sprite(153,354,'mittens2');
         updateAnchor(0.5, 0.5, mittens);
         game.physics.p2.enable(mittens, false);
         mittens.body.fixedRotation = true;
         mittens.body.clearShapes();
-        mittens.body.loadPolygon('mittensPhysicsData', 'mittensSingleFrame', 1, -Math.PI * 2); 
-        mittens.health = 100;
+        mittens.body.loadPolygon('mittensPhysics', 'ShootingMouth-2', 1, -Math.PI * 2);
+        mittens.animations.add('left', [0,1,2], 10, true);
+        mittens.animations.add('right', [3,4,5], 10, true);
+        mittens.frame = 3;
+        mittens.health = 100;        
+        mittens.invincible = false;
+        mittens.flight = false;
        
         //Vacuum
         vacuum = game.add.sprite(700,400,'vacuum');
