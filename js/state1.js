@@ -123,32 +123,38 @@ demo.state1.prototype = {
         mouse = mice.create(1240, 275, 'mouse');
         //mouse.scale.setTo(.4, .4); 
         game.physics.p2.enable(mouse, true);
+        mouse.body.clearShapes();
+        mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
         //mouse.frame = 4;
         mouse.id = 1;
         mouse.movingRight = false;
         mouse.leftXLim = 1100;
         mouse.rightXLim = 1240;
-        mouse.yLim = 275;
+        mouse.yLim = 305;
         mouse.speed = 150;
         
         mouse = mice.create(1405, 545, 'mouse');
         //mouse.scale.setTo(.4, .4);
         game.physics.p2.enable(mouse, true);
+        mouse.body.clearShapes();
+        mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
         mouse.id = 2;
         mouse.movingRight = true;
         mouse.leftXLim = 1405;
         mouse.rightXLim = 1705;
-        mouse.yLim = 545;
+        mouse.yLim = 575;
         mouse.speed = 200;
         
         mouse = mice.create(1945, 648, 'mouse');
         //mouse.scale.setTo(.4, .4);
         game.physics.p2.enable(mouse, true);
+        mouse.body.clearShapes();
+        mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
         mouse.id = 3;
         mouse.movingRight = true;
         mouse.leftXLim = 1405;
         mouse.rightXLim = 1705;
-        mouse.yLim = 545;
+        mouse.yLim = 575;
         mouse.speed = 300;
         mouse.body.fixedRotation = true; 
         ///////////////////////////////////////////////////
