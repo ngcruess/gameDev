@@ -84,7 +84,7 @@ demo.state1.prototype = {
         
         mittens = game.add.sprite(125, 555, 'mittens2');
         updateAnchor(0.5, 0.5, mittens);
-        game.physics.p2.enable(mittens, true);
+        game.physics.p2.enable(mittens, false);
         mittens.body.clearShapes();
         mittens.body.loadPolygon('mittensPhysics', 'ShootingMouth-2', 1, -Math.PI * 2);
         mittens.frame = 3;
@@ -109,7 +109,7 @@ demo.state1.prototype = {
         mice.physicsBodyType = Phaser.Physics.P2JS;
         var mouse = mice.create(790, 275, 'mouse');
         //mouse.scale.setTo(.4, .4);
-        game.physics.p2.enable(mouse, true);
+        game.physics.p2.enable(mouse, false);
         mouse.body.clearShapes();
         mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
         mouse.body.fixedRotation = true;
@@ -122,7 +122,7 @@ demo.state1.prototype = {
         
         mouse = mice.create(1240, 275, 'mouse');
         //mouse.scale.setTo(.4, .4); 
-        game.physics.p2.enable(mouse, true);
+        game.physics.p2.enable(mouse, false);
         mouse.body.clearShapes();
         mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
         //mouse.frame = 4;
@@ -135,7 +135,7 @@ demo.state1.prototype = {
         
         mouse = mice.create(1405, 545, 'mouse');
         //mouse.scale.setTo(.4, .4);
-        game.physics.p2.enable(mouse, true);
+        game.physics.p2.enable(mouse, false);
         mouse.body.clearShapes();
         mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
         mouse.id = 2;
@@ -147,7 +147,7 @@ demo.state1.prototype = {
         
         mouse = mice.create(1945, 648, 'mouse');
         //mouse.scale.setTo(.4, .4);
-        game.physics.p2.enable(mouse, true);
+        game.physics.p2.enable(mouse, false);
         mouse.body.clearShapes();
         mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
         mouse.id = 3;
