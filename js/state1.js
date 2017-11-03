@@ -9,7 +9,8 @@ demo.state1.prototype = {
         game.load.image('hitzone', '../assets/images/hitbox.png');
         game.load.image('shot', '../assets/images/projectile.png');
         game.load.image('mouse', '../assets/sprites/ToyMouse-1.png')
-        game.load.spritesheet('sock','../assets/sprites/EvilSock.png', 90, 135);
+        game.load.spritesheet('sockSheet','../assets/sprites/EvilSock.png', 90, 135);
+        game.load.image('sockL', '../assets/sprites/EvilSockL.png');
         game.load.spritesheet('mittens2', '../assets/sprites/WalkingM.png', 90, 86);
         
         game.load.image('wall', '../assets/images/livingroomwall.png');
@@ -145,7 +146,7 @@ demo.state1.prototype = {
         
                         //SOCKS//
         ///////////////////////////////////////////////////
-        sock = game.add.sprite(0, 0, 'sock');
+        sock = game.add.sprite(0, 0, 'sockL');
         game.physics.p2.enable(sock, true);
         ///////////////////////////////////////////////////
         
