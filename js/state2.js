@@ -17,6 +17,7 @@ demo.state2.prototype = {
         game.load.physics('mittensPhysics', '../assets/polygons/Mittens.json');        
         
         game.load.audio('bossMusic', '../assets/audio/bossMusic.mp3');
+        game.load.audio('gun', '../assets/audio/gun.wav');
     },
     create: function(){
         //Physics settings
@@ -28,6 +29,8 @@ demo.state2.prototype = {
         
         bossMusic = game.add.audio('bossMusic');
         bossMusic.play();
+        
+        gunShot = game.add.audio('gun');
         
         //Input feedback
         game.input.keyboard.onUpCallback = function (e) {
