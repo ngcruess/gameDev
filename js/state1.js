@@ -1,4 +1,4 @@
-var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mice, mouseMovingRight = true, sock, sockJumpTimer = 1000, music;
+var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mice, mouseMovingRight = true, sock, sockJumpTimer = 1000, music, death;
 
 demo.state1 = function() {};
 demo.state1.prototype = {
@@ -21,6 +21,7 @@ demo.state1.prototype = {
         game.load.physics('mousePhysicsR', '../assets/polygons/ToyMouseR.json')
         
         game.load.audio('music', '../assets/audio/bgmusic02.mp3');
+        game.load.audio('death', '../assets/audio/mittensDeath.wav');
         
     },
     create: function() {
@@ -52,6 +53,8 @@ demo.state1.prototype = {
         
         music = game.add.audio('music');
         music.play();
+        
+        death = game.add.audio('death');
         ////////////////////////////////////////////////////
         
         
