@@ -74,16 +74,6 @@ demo.state1.prototype = {
         
                         // MITTENS //
         ///////////////////////////////////////////////////
-        /*
-        mittens = game.add.sprite(125,555, 'mittens');
-        updateAnchor(0.5, 0.5, mittens);
-        game.physics.p2.enable(mittens, false);
-        mittens.body.fixedRotation = true;
-        //mittens.body.setZeroDamping();
-        mittens.body.clearShapes();
-        mittens.body.loadPolygon('mittensPhysicsData', 'mittensSingleFrame', 1, -Math.PI * 2);
-        */
-        
         mittens = game.add.sprite(125, 555, 'mittens2');
         updateAnchor(0.5, 0.5, mittens);
         game.physics.p2.enable(mittens, false);
@@ -101,11 +91,7 @@ demo.state1.prototype = {
         ///////////////////////////////////////////////////
         
                         //MICE//
-        ///////////////////////////////////////////////////
-        //mouse = game.add.sprite(790, 265, 'mouse');
-        //mouse.scale.setTo(.4, .4);
-        //game.physics.p2.enable(mouse, false);
-        
+        ///////////////////////////////////////////////////        
         mice = game.add.group();
         mice.enabledBody = true;
         mice.physicsBodyType = Phaser.Physics.P2JS;
@@ -123,11 +109,9 @@ demo.state1.prototype = {
         mouse.speed = 150;
         
         mouse = mice.create(1240, 275, 'mouse');
-        //mouse.scale.setTo(.4, .4); 
         game.physics.p2.enable(mouse, false);
         mouse.body.clearShapes();
         mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
-        //mouse.frame = 4;
         mouse.id = 1;
         mouse.movingRight = false;
         mouse.leftXLim = 1100;
@@ -136,7 +120,6 @@ demo.state1.prototype = {
         mouse.speed = 150;
         
         mouse = mice.create(1405, 545, 'mouse');
-        //mouse.scale.setTo(.4, .4);
         game.physics.p2.enable(mouse, false);
         mouse.body.clearShapes();
         mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
@@ -148,7 +131,6 @@ demo.state1.prototype = {
         mouse.speed = 200;
         
         mouse = mice.create(1945, 648, 'mouse');
-        //mouse.scale.setTo(.4, .4);
         game.physics.p2.enable(mouse, false);
         mouse.body.clearShapes();
         mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
