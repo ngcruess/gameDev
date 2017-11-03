@@ -8,7 +8,7 @@ var mittens, cursor, jumps, platform, bullets, vbullets, fireRate = 200, shotTim
 game.state.add('state0', demo.state0);
 game.state.add('state1', demo.state1);
 game.state.add('state2', demo.state2);
-game.state.start('state2');
+game.state.start('state0');
 
 /*
 CORE FUNCTIONS
@@ -72,6 +72,7 @@ function fight(mittens, mouse) {
 function killMittens(mittens) {
     miceKilled = 0;
     game.state.start('state1');
+    music.stop();
     death.play();
 }
 function mittensShoot() {
@@ -212,7 +213,9 @@ function mittensHit(body, bodyB, shapeA, shapeB, equation) {
     }
     if (body.sprite.key == 'mouse') {
         if (!mittens.invincible) {
-            mittens.reset(125, 555);
+            killMittens();
+            //mittens.reset(125, 500);
+            //mittens.body.velocity.y = 0;
         }
     }
 }

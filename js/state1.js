@@ -51,10 +51,12 @@ demo.state1.prototype = {
         timer = game.add.text(875,0, "00:00:00");
         timer.fixedToCamera = true;
         
-        music = game.add.audio('music');
+        music = game.sound.add('music');
+        music.allowMultiple = false;
         music.play();
         
-        death = game.add.audio('death');
+        death = game.sound.add('death');
+        death.startTime = 200;
         ////////////////////////////////////////////////////
         
         
@@ -233,7 +235,8 @@ demo.state1.prototype = {
     update: function() { 
         moveMittens();
         if (mittens.y > 750) {
-            mittens.reset(125,555)
+            //mittens.reset(125,555)
+            killMittens();
         }
         moveMice();
         //healthText.x = mittens.x;
@@ -241,6 +244,7 @@ demo.state1.prototype = {
         updateTimer();
         if (mittens.x > 2750){
             game.state.start("state2");
+            music.stop();
         }
     }
 };
