@@ -1,4 +1,4 @@
-var vacuum, jumpRel, timer, healthText, healthBarWidth = 29.6, healthBarFill, bossMusic;
+var vacuum, jumpRel, timer, healthText, healthBarWidth = 29.6, healthBarFill, bossMusic, vacTimer;
 
 demo.state2 = function() {};
 demo.state2.prototype = {
@@ -25,7 +25,7 @@ demo.state2.prototype = {
         game.physics.p2.gravity.y = globalGravity;
         game.physics.p2.restitution = 0;
         game.physics.p2.world.setGlobalStiffness(1e5);
-        game.world.setBounds(0, 0, 1000, 800);
+        game.world.setBounds(0, 0, 1500, 1200);
         
         bossMusic = game.add.audio('bossMusic');
         bossMusic.play();
@@ -43,28 +43,52 @@ demo.state2.prototype = {
         var background = game.add.sprite(0,0, 'background');
         background.scale.setTo(10, 10);
         
-        platform = game.add.sprite(200, 400, 'platform');
+        // left side platforms
+        platform = game.add.sprite(300, 200, 'platform');
         updateAnchor(.5, .5, platform);
         platform.scale.setTo(1.25, .2);
         game.physics.p2.enable(platform);
         platform.body.setMaterial(platformMaterial);
         platform.body.static = true;
         
-        platform = game.add.sprite(300, 525, 'platform');
+        platform = game.add.sprite(200, 425, 'platform');
         updateAnchor(.5, .5, platform);
         platform.scale.setTo(1.25, .2);
         game.physics.p2.enable(platform);
         platform.body.setMaterial(platformMaterial);
         platform.body.static = true;
         
-        platform = game.add.sprite(300, 275, 'platform');
+        platform = game.add.sprite(300, 650, 'platform');
         updateAnchor(.5, .5, platform);
         platform.scale.setTo(1.25, .2);
         game.physics.p2.enable(platform);
         platform.body.setMaterial(platformMaterial);
         platform.body.static = true;
         
-        platform = game.add.sprite(200, 650, 'platform');
+        // right side platforms
+        platform = game.add.sprite(1200, 200, 'platform');
+        updateAnchor(.5, .5, platform);
+        platform.scale.setTo(1.25, .2);
+        game.physics.p2.enable(platform);
+        platform.body.setMaterial(platformMaterial);
+        platform.body.static = true;
+        
+        platform = game.add.sprite(1300, 425, 'platform');
+        updateAnchor(.5, .5, platform);
+        platform.scale.setTo(1.25, .2);
+        game.physics.p2.enable(platform);
+        platform.body.setMaterial(platformMaterial);
+        platform.body.static = true;
+        
+        platform = game.add.sprite(1200, 650, 'platform');
+        updateAnchor(.5, .5, platform);
+        platform.scale.setTo(1.25, .2);
+        game.physics.p2.enable(platform);
+        platform.body.setMaterial(platformMaterial);
+        platform.body.static = true;
+        
+        // center platform
+        platform = game.add.sprite(700, 750, 'platform');
         updateAnchor(.5, .5, platform);
         platform.scale.setTo(1.25, .2);
         game.physics.p2.enable(platform);
@@ -73,8 +97,10 @@ demo.state2.prototype = {
         
         healthBarBorder = game.add.sprite(20, 20, 'healthBarBorder');
         healthBarBorder.scale.setTo(30, 3);
+        healthBarBorder.fixedToCamera = true;
         healthBarFill = game.add.sprite(25, 24, 'healthBarFill');
         healthBarFill.scale.setTo(healthBarWidth, 2);
+        healthBarFill.fixedToCamera = true;
         
         /*
         SPRITES
@@ -92,6 +118,9 @@ demo.state2.prototype = {
         mittens.health = 100;        
         mittens.invincible = false;
         mittens.flight = false;
+        
+        game.camera.follow(mittens);
+        game.camera.bounds = new Phaser.Rectangle(0, 0, 1500, 800);
        
         //Vacuum
         vacuum = game.add.sprite(700,400,'vacuum');
@@ -100,7 +129,13 @@ demo.state2.prototype = {
         game.physics.p2.enable(vacuum); 
         vacuum.body.data.gravityScale = 0;
         vacuum.body.static = true;
-        vacuum.health = 1; 
+        vacuum.health = 1;
+        vacuum.leftXLim = 600;
+        vacuum.rightXLim = 800;
+        vacuum.upLim = 100;
+        vacuum.botLim = 600;
+        vacuum.speed = 150;
+        vacuum.movingDown = true;
         
         //Bullets        
         bullets = game.add.group();
@@ -148,6 +183,7 @@ demo.state2.prototype = {
     },
     update: function(){
         moveMittens();
+        moveVacuum();
         //healthText.text = 'Health: ' + vacuum.health;
         healthBarFill.scale.setTo(healthBarWidth * vacuum.health, 2)
         if (shootButton.isDown) {
@@ -155,7 +191,10 @@ demo.state2.prototype = {
         }
         if (vacuum.health > 0) {
             vbullets.forEachAlive(moveBullets, this);            
-        }        
+        }
+        if (mittens.y > 1000) {
+            mittens.kill();
+        }
     }
 };
 
@@ -170,8 +209,23 @@ function mittensHit(body, bodyB, shapeA, shapeB, equation) {
 }
 
 //will come back to this...
-//function vacuumMovement(){
-//    vacuum.x = game.rnd.integerInRange(600, 800);
-//    vacuum.y = game.rnd.integerInRange(200, 400);
-//}
+function moveVacuum(){
+    if (vacuum.movingDown && vacuum.y < vacuum.botLim) {
+                vacuum.body.moveDown(vacuum.speed);
+            }
+            else if (vacuum.y > vacuum.upLim) {
+                vacuum.body.moveUp(vacuum.speed);
+            }
+            if (vacuum.y >= vacuum.botLim) {
+                vacuum.movingDown = false;
+                //vacuum.frame = 0;
+            }
+            else if (vacuum.y <= vacuum.upLim) {
+                vacuum.movingDown = true;
+                //vacuum.frame = 4;
+            }
+            if (vacuum.y > vacuum.botLim + 10 || vacuum.y < vacuum.topLim - 10 || vacuum.y < vacuum.botLim - 800 || vacuum.y > vacuum.yLim + 800) {
+                vacuum.reset(vacuum.botLim, vacuum.upLim);
+            }
+}
 
