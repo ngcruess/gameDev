@@ -8,9 +8,8 @@ demo.state1.prototype = {
         game.load.image('shelf', '../assets/images/Shelf.png');
         game.load.image('hitzone', '../assets/images/hitbox.png');
         game.load.image('shot', '../assets/images/projectile.png');
-        //game.load.spritesheet('mouse','../assets/sprites/ToyMouse2.png', 390, 180);
         game.load.image('mouse', '../assets/sprites/ToyMouse-1.png')
-        game.load.spritesheet('sock','../assets/sprites/EvilSock.png', 280, 450);
+        game.load.spritesheet('sock','../assets/sprites/EvilSock.png', 90, 135);
         game.load.spritesheet('mittens2', '../assets/sprites/WalkingM.png', 90, 86);
         
         game.load.image('wall', '../assets/images/livingroomwall.png');
@@ -164,9 +163,8 @@ demo.state1.prototype = {
         
                         //SOCKS//
         ///////////////////////////////////////////////////
-        //sock = game.add.sprite(0, 0, 'sock');
-        //sock.scale.setTo(.4, .4);
-        //game.physics.p2.enable(sock, true);
+        sock = game.add.sprite(0, 0, 'sock');
+        game.physics.p2.enable(sock, true);
         ///////////////////////////////////////////////////
         
                         //BULLETS//
@@ -278,10 +276,11 @@ function moveMice() {
         var mouse = mice.children[i];
         if (mouse.id == 3) {
             var y = mouse.y;
+            mouse.body.velocity.x = 0;
             if (bottomTouching(mouse)) {
                 mouse.body.moveUp(1000);
             }
-            if (Math.abs(mouse.x - 1945) > 10) {
+            if (Math.abs(mouse.x - 1945) > 20) {
                 mouse.reset(1945, mouse.y);
             }
         }
