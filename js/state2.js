@@ -1,4 +1,4 @@
-var vacuum, jumpRel, timer, healthText, healthBarWidth = 29.6, healthBarFill, bossMusic, vacTimer;
+var vacuum, jumpRel, timer, healthText, healthBarWidth = 29.6, healthBarFill, bossMusic, vacTimer, stage = 1, vacBulletPos = 200;
 
 demo.state2 = function() {};
 demo.state2.prototype = {
@@ -145,7 +145,7 @@ demo.state2.prototype = {
         bullets.setAll('anchor.x', 0.5);
         bullets.setAll('anchor.y', 0.5);
         bullets.setAll('outOfBoundsKill', true);
-        bullets.setAll('ckeckWorldBounds', true);
+        bullets.setAll('checkWorldBounds', true);
         bullets.forEach(function(bullet) {
             bullet.body.onBeginContact.add(bulletHit, bullet);
         })
@@ -161,9 +161,9 @@ demo.state2.prototype = {
         vbullets.setAll('anchor.x', 0.5);
         vbullets.setAll('anchor.y', 0.5);
         vbullets.setAll('outOfBoundsKill', true);
-        vbullets.setAll('ckeckWorldBounds', true);
-        vbullets.forEach(function(bullet) {
-            bullet.body.onBeginContact.add(bulletHit, bullet);
+        vbullets.setAll('checkWorldBounds', true);
+        vbullets.forEach(function(vbullet) {
+            vbullet.body.onBeginContact.add(bulletHit, vbullet);
         })
        
         //come back to this...
@@ -193,7 +193,7 @@ demo.state2.prototype = {
             vbullets.forEachAlive(moveBullets, this);            
         }
         if (mittens.y > 1000) {
-            mittens.kill();
+            killMittens();
         }
     }
 };
@@ -208,7 +208,7 @@ function mittensHit(body, bodyB, shapeA, shapeB, equation) {
     mittens.health -= 10; 
 }
 
-//will come back to this...
+// VACUUM MECHANICS
 function moveVacuum(){
     if (vacuum.movingDown && vacuum.y < vacuum.botLim) {
                 vacuum.body.moveDown(vacuum.speed);
@@ -227,5 +227,40 @@ function moveVacuum(){
             if (vacuum.y > vacuum.botLim + 10 || vacuum.y < vacuum.topLim - 10 || vacuum.y < vacuum.botLim - 800 || vacuum.y > vacuum.yLim + 800) {
                 vacuum.reset(vacuum.botLim, vacuum.upLim);
             }
+    
+    if (mittens.x > 750) {
+        vacuum.scale.setTo(-1, 1);
+        vacBulletPos = -200;
+    } else if (mittens.x <750) {
+        vacuum.scale.setTo(1, 1);
+        vacBulletPos = 200;
+    }
 }
+
+function vacShoot() {
+    if (game.time.now >= vshotTimer && vacuum.health > 0) {
+        //vshotTimer = game.time.now + 200;
+        var vbullet = vbullets.getFirstExists(false);
+        vbullet.body.data.gravityScale = 0;
+        vbullet.scale.setTo(0.5, 0.5);
+        vbullet.body.mass = 1;
+        vbullet.body.moveLeft(vbulletSpeed);
+        
+        vbullet.reset(vacuum.x-vacBulletPos, vacuum.y);        
+    }
+}
+
+function moveBullets(bullet) {
+    accelerateToObject(bullet, mittens, 500);    
+}
+
+function accelerateToObject(obj1, obj2, speed) {
+    if (typeof speed === 'undefined') { speed = 60; }
+    var angle = Math.atan2(obj2.y - obj1.y, obj2.x - obj1.x);
+    obj1.body.rotation = angle + game.math.degToRad(90);  // correct angle of angry bullets (depends on the sprite used)
+    obj1.body.force.x = Math.cos(angle) * speed;    // accelerateToObject 
+    obj1.body.force.y = Math.sin(angle) * speed;
+}
+
+
 

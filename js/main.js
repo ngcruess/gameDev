@@ -8,7 +8,7 @@ var mittens, cursor, jumps, platform, bullets, vbullets, fireRate = 200, shotTim
 game.state.add('state0', demo.state0);
 game.state.add('state1', demo.state1);
 game.state.add('state2', demo.state2);
-game.state.start('state0');
+game.state.start('state2');
 
 /*
 CORE FUNCTIONS
@@ -73,6 +73,7 @@ function killMittens(mittens) {
     miceKilled = 0;
     game.state.start('state1');
     music.stop();
+    //bossMusic.stop();
     death.play();
 }
 function mittensShoot() {
@@ -95,30 +96,7 @@ function mittensShoot() {
     }
 }
 
-function vacShoot() {
-    if (game.time.now >= vshotTimer && vacuum.health > 0) {
-        //vshotTimer = game.time.now + 200;
-        var vbullet = vbullets.getFirstExists(false);
-        vbullet.body.data.gravityScale = 0;
-        vbullet.scale.setTo(0.5, 0.5);
-        vbullet.body.mass = 1;
-        vbullet.body.moveLeft(vbulletSpeed);
-        
-        vbullet.reset(vacuum.x-200, vacuum.y);        
-    }
-}
 
-function moveBullets(bullet) {
-    accelerateToObject(bullet, mittens, 500);    
-}
-
-function accelerateToObject(obj1, obj2, speed) {
-    if (typeof speed === 'undefined') { speed = 60; }
-    var angle = Math.atan2(obj2.y - obj1.y, obj2.x - obj1.x);
-    obj1.body.rotation = angle + game.math.degToRad(90);  // correct angle of angry bullets (depends on the sprite used)
-    obj1.body.force.x = Math.cos(angle) * speed;    // accelerateToObject 
-    obj1.body.force.y = Math.sin(angle) * speed;
-}
 
 // ADDED DOUBLE JUMP
 function mittensJump() {
@@ -141,6 +119,7 @@ function mittensJump() {
 }
 function bottomTouching(character) {
     var result = false;
+    //jumps = 2;
 
     for (var i=0; i < game.physics.p2.world.narrowphase.contactEquations.length; i++)
     {
