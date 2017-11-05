@@ -1,4 +1,4 @@
-var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mice, mouseMovingRight = true, sock, sockJumpTimer = 1000, music, death;
+var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mice, mouseMovingRight = true, sock, sockJumpTimer = 1000, music, death, platforms;
 
 demo.state1 = function() {};
 demo.state1.prototype = {
@@ -6,6 +6,7 @@ demo.state1.prototype = {
         game.load.image('sidetable', '../assets/images/SideTable.png');
         game.load.image('table', '../assets/images/Table.png');
         game.load.image('shelf', '../assets/images/Shelf.png');
+        game.load.image('shelfStandard', '../assets/images/shelfStandard.png');
         game.load.image('hitzone', '../assets/images/hitbox.png');
         game.load.image('shot', '../assets/images/projectile.png');
         game.load.image('mouse', '../assets/sprites/ToyMouse-1.png')
@@ -48,6 +49,20 @@ demo.state1.prototype = {
         var instructionText = game.add.text(100, 80, "KITCHEN -->"); 
         var intoTheAbyss = game.add.text(game.world.width - 700, 80, "ONWARD BROTHER, INTO THE ABYSS -->");
         
+                            //PLATFORMS//
+        ////////////////////////////////////////////////////
+        var platformMaterial = game.physics.p2.createMaterial('platformMaterial');
+        platforms = game.add.group();
+        platforms.physicsBodyType = Phaser.Physics.P2JS;
+        platforms.enabledBody = true;
+        var platform = platforms.create(104, 584, 'shelfStandard');
+        platform.scale.setTo(1.84, 1);
+        game.physics.p2.enable(platform);
+        platform.body.setMaterial(platformMaterial);
+        platform.body.static = true;
+        
+        ////////////////////////////////////////////////////
+        
         timer = game.add.text(875,0, "00:00:00");
         timer.fixedToCamera = true;
         
@@ -77,7 +92,7 @@ demo.state1.prototype = {
         
                         // MITTENS //
         ///////////////////////////////////////////////////
-        mittens = game.add.sprite(125, 555, 'mittens2');
+        mittens = game.add.sprite(125, 525, 'mittens2');
         updateAnchor(0.5, 0.5, mittens);
         game.physics.p2.enable(mittens, false);
         mittens.body.clearShapes();
@@ -169,6 +184,7 @@ demo.state1.prototype = {
         
                        // PLATFORMS //
         ///////////////////////////////////////////////////
+        /*
         var platformMaterial = game.physics.p2.createMaterial('platformMaterial');
         
         platform = game.add.sprite(300, 700, 'table');
@@ -230,6 +246,7 @@ demo.state1.prototype = {
         game.physics.p2.enable(platform);
         platform.body.setMaterial(platformMaterial);
         platform.body.static = true;       
+        */
         ///////////////////////////////////////////////////            
     },
     update: function() { 
