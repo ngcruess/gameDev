@@ -57,14 +57,38 @@ demo.state1.prototype = {
         //platforms.physicsBodyType = Phaser.Physics.P2JS;
         //platforms.enabledBody = true;
         
-        shelf = game.add.sprite(196, 584, 'shelfStandard');
+        shelf = game.add.sprite(196, 600, 'shelfStandard');
         shelf.scale.setTo(1.84, 1);
         game.physics.p2.enable(shelf, true);
         //shelf.body.setMaterial(platformMaterial);
         shelf.body.static = true;
         
-        shelf = game.add.sprite(612, 328, 'shelfStandard');
+        shelf = game.add.sprite(612, 344, 'shelfStandard');
         shelf.scale.setTo(5.04, 1);
+        game.physics.p2.enable(shelf, true);
+        //shelf.body.setMaterial(platformMaterial);
+        shelf.body.static = true;
+        
+        shelf = game.add.sprite(600, 600, 'shelfStandard');
+        shelf.scale.setTo(0.32, 1);
+        game.physics.p2.enable(shelf, true);
+        //shelf.body.setMaterial(platformMaterial);
+        shelf.body.static = true;
+        
+        shelf = game.add.sprite(1340, 728, 'shelfStandard');
+        shelf.scale.setTo(2.96, 1);
+        game.physics.p2.enable(shelf, true);
+        //shelf.body.setMaterial(platformMaterial);
+        shelf.body.static = true;
+        
+        shelf = game.add.sprite(1616, 784, 'shelfStandard');
+        shelf.scale.setTo(0.96, 1);
+        game.physics.p2.enable(shelf, true);
+        //shelf.body.setMaterial(platformMaterial);
+        shelf.body.static = true;
+        
+        shelf = game.add.sprite(1816, 504, 'shelfStandard');
+        shelf.scale.setTo(0.96, 1);
         game.physics.p2.enable(shelf, true);
         //shelf.body.setMaterial(platformMaterial);
         shelf.body.static = true;
@@ -109,16 +133,16 @@ demo.state1.prototype = {
         mittens.body.fixedRotation = true;
         mittens.animations.add('left', [0,1,2], 10, true);
         mittens.animations.add('right', [3,4,5], 10, true);
-        mittens.invincible = false;
-        mittens.flight = false;
-        mittens.body.data.gravityScale = 0;
+        mittens.invincible = true;
+        mittens.flight = true;
         
         game.camera.follow(mittens);
         mittens.body.onBeginContact.add(mittensHit);
         ///////////////////////////////////////////////////
         
                         //MICE//
-        ///////////////////////////////////////////////////        
+        ///////////////////////////////////////////////////
+        /*
         mice = game.add.group();
         mice.enabledBody = true;
         mice.physicsBodyType = Phaser.Physics.P2JS;
@@ -168,12 +192,13 @@ demo.state1.prototype = {
         mouse.yLim = 575;
         mouse.speed = 300;
         mouse.body.fixedRotation = true; 
+        */
         ///////////////////////////////////////////////////
         
                         //SOCKS//
         ///////////////////////////////////////////////////
-        sock = game.add.sprite(0, 0, 'sockL');
-        game.physics.p2.enable(sock, true);
+        //sock = game.add.sprite(0, 0, 'sockL');
+        //game.physics.p2.enable(sock, true);
         ///////////////////////////////////////////////////
         
                         //BULLETS//
@@ -264,7 +289,7 @@ demo.state1.prototype = {
             //mittens.reset(125,555)
             killMittens();
         }
-        moveMice();
+        //moveMice();
         //healthText.x = mittens.x;
         //healthText.y = Math.floor(mittens.y - mittens.height);        
         updateTimer();
