@@ -1,4 +1,4 @@
-var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mice, mouseMovingRight = true, sock, sockJumpTimer = 1000, music, death, shelf;
+var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mice, mouseMovingRight = true, sock, sockJumpTimer = 1000, music, death, shelf, turret;
 
 demo.state1 = function() {};
 demo.state1.prototype = {
@@ -10,6 +10,7 @@ demo.state1.prototype = {
         game.load.image('hitzone', '../assets/images/hitbox.png');
         game.load.image('shot', '../assets/images/projectile.png');
         game.load.image('mouse', '../assets/sprites/ToyMouse-1.png')
+        game.load.image('turret', '../assets/sprites/mrShooty.png');
         game.load.spritesheet('sockSheet','../assets/sprites/EvilSock.png', 90, 135);
         game.load.image('sockL', '../assets/sprites/EvilSockL.png');
         game.load.spritesheet('mittens2', '../assets/sprites/WalkingM.png', 90, 86);
@@ -59,37 +60,37 @@ demo.state1.prototype = {
         
         shelf = game.add.sprite(196, 600, 'shelfStandard');
         shelf.scale.setTo(1.84, 1);
-        game.physics.p2.enable(shelf, true);
+        game.physics.p2.enable(shelf, false);
         //shelf.body.setMaterial(platformMaterial);
         shelf.body.static = true;
         
         shelf = game.add.sprite(612, 344, 'shelfStandard');
         shelf.scale.setTo(5.04, 1);
-        game.physics.p2.enable(shelf, true);
+        game.physics.p2.enable(shelf, false);
         //shelf.body.setMaterial(platformMaterial);
         shelf.body.static = true;
         
         shelf = game.add.sprite(600, 600, 'shelfStandard');
         shelf.scale.setTo(0.32, 1);
-        game.physics.p2.enable(shelf, true);
+        game.physics.p2.enable(shelf, false);
         //shelf.body.setMaterial(platformMaterial);
         shelf.body.static = true;
         
         shelf = game.add.sprite(1340, 728, 'shelfStandard');
         shelf.scale.setTo(2.96, 1);
-        game.physics.p2.enable(shelf, true);
+        game.physics.p2.enable(shelf, false);
         //shelf.body.setMaterial(platformMaterial);
         shelf.body.static = true;
         
         shelf = game.add.sprite(1616, 784, 'shelfStandard');
         shelf.scale.setTo(0.96, 1);
-        game.physics.p2.enable(shelf, true);
+        game.physics.p2.enable(shelf, false);
         //shelf.body.setMaterial(platformMaterial);
         shelf.body.static = true;
         
         shelf = game.add.sprite(1816, 504, 'shelfStandard');
         shelf.scale.setTo(0.96, 1);
-        game.physics.p2.enable(shelf, true);
+        game.physics.p2.enable(shelf, false);
         //shelf.body.setMaterial(platformMaterial);
         shelf.body.static = true;
         
@@ -126,7 +127,7 @@ demo.state1.prototype = {
         ///////////////////////////////////////////////////
         mittens = game.add.sprite(125, 525, 'mittens2');
         updateAnchor(0.5, 0.5, mittens);
-        game.physics.p2.enable(mittens, true);
+        game.physics.p2.enable(mittens, false);
         mittens.body.clearShapes();
         mittens.body.loadPolygon('mittensPhysics', 'ShootingMouth-2', 1, -Math.PI * 2);
         mittens.frame = 3;
@@ -138,6 +139,16 @@ demo.state1.prototype = {
         
         game.camera.follow(mittens);
         mittens.body.onBeginContact.add(mittensHit);
+        ///////////////////////////////////////////////////
+        
+                        //MR SHOOTY//
+        ///////////////////////////////////////////////////
+        /////HE SHOOT || HE STOP || HE SHOOT SOME MORE/////
+        turret = game.add.sprite(600, 568, 'turret');
+        game.physics.p2.enable(turret, false);
+        turret.body.fixedRotation = true;
+        turret.body.static = true;
+        
         ///////////////////////////////////////////////////
         
                         //MICE//
