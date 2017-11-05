@@ -1,4 +1,4 @@
-var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mice, mouseMovingRight = true, sock, sockJumpTimer = 1000, music, death, platforms;
+var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mice, mouseMovingRight = true, sock, sockJumpTimer = 1000, music, death, shelf;
 
 demo.state1 = function() {};
 demo.state1.prototype = {
@@ -52,14 +52,22 @@ demo.state1.prototype = {
                             //PLATFORMS//
         ////////////////////////////////////////////////////
         var platformMaterial = game.physics.p2.createMaterial('platformMaterial');
-        platforms = game.add.group();
-        platforms.physicsBodyType = Phaser.Physics.P2JS;
-        platforms.enabledBody = true;
-        var platform = platforms.create(104, 584, 'shelfStandard');
-        platform.scale.setTo(1.84, 1);
-        game.physics.p2.enable(platform);
-        platform.body.setMaterial(platformMaterial);
-        platform.body.static = true;
+        //platforms = game.add.group();
+        
+        //platforms.physicsBodyType = Phaser.Physics.P2JS;
+        //platforms.enabledBody = true;
+        
+        shelf = game.add.sprite(196, 584, 'shelfStandard');
+        shelf.scale.setTo(1.84, 1);
+        game.physics.p2.enable(shelf, true);
+        //shelf.body.setMaterial(platformMaterial);
+        shelf.body.static = true;
+        
+        shelf = game.add.sprite(612, 328, 'shelfStandard');
+        shelf.scale.setTo(5.04, 1);
+        game.physics.p2.enable(shelf, true);
+        //shelf.body.setMaterial(platformMaterial);
+        shelf.body.static = true;
         
         ////////////////////////////////////////////////////
         
@@ -94,7 +102,7 @@ demo.state1.prototype = {
         ///////////////////////////////////////////////////
         mittens = game.add.sprite(125, 525, 'mittens2');
         updateAnchor(0.5, 0.5, mittens);
-        game.physics.p2.enable(mittens, false);
+        game.physics.p2.enable(mittens, true);
         mittens.body.clearShapes();
         mittens.body.loadPolygon('mittensPhysics', 'ShootingMouth-2', 1, -Math.PI * 2);
         mittens.frame = 3;
@@ -103,6 +111,7 @@ demo.state1.prototype = {
         mittens.animations.add('right', [3,4,5], 10, true);
         mittens.invincible = false;
         mittens.flight = false;
+        mittens.body.data.gravityScale = 0;
         
         game.camera.follow(mittens);
         mittens.body.onBeginContact.add(mittensHit);
