@@ -144,7 +144,7 @@ function bottomTouching(character) {
 }
 function bulletHit(target) {
     if (target === null) {
-        bullet.kill();
+        bullet.destroy();
     }
     else{
         bullet = this;
@@ -161,7 +161,7 @@ function bulletHit(target) {
         }
         else if (target == vacuum.body) {
             bullet.kill();
-            vacuum.health -= .025;
+            vacuum.health -= .005;
             //healthText = vacuum.health;
             if (vacuum.health <= 0){
                 vacuum.kill()

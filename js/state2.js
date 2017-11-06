@@ -1,4 +1,4 @@
-var vacuum, jumpRel, timer, healthText, healthBarWidth = 29.6, healthBarFill, bossMusic, vacTimer, stage = 1, vacBulletPos = 200;
+var vacuum, jumpRel, timer, healthText, healthBarWidth = 29.6, healthBarFill, bossMusic, vacTimer, stage = 1, vacBulletPos = 200, aoeTime, aoeSide;
 
 demo.state2 = function() {};
 demo.state2.prototype = {
@@ -12,6 +12,7 @@ demo.state2.prototype = {
         game.load.image('background', '../assets/images/brick.png');
         game.load.image('healthBarFill', '../assets/images/whiteBlock.png');
         game.load.image('healthBarBorder', '../assets/images/blackBlock.png');
+        game.load.image('deathSquare', '../assets/images/death.png');
         
         game.load.spritesheet('mittensSheet', '../assets/spritesheets/BatCat.png', 100, 80);
         game.load.physics('mittensPhysics', '../assets/polygons/Mittens.json');        
@@ -101,6 +102,13 @@ demo.state2.prototype = {
         healthBarFill = game.add.sprite(25, 24, 'healthBarFill');
         healthBarFill.scale.setTo(healthBarWidth, 2);
         healthBarFill.fixedToCamera = true;
+        
+        //  STAGE 2 SPRITES //
+        leftSquare = game.add.sprite(0,0, 'deathSquare');
+        leftSquare.alpha = 0;
+        
+        rightSquare = game.add.sprite(750, 0, 'deathSquare');
+        rightSquare.alpha = 0;
         
         /*
         SPRITES
@@ -192,8 +200,32 @@ demo.state2.prototype = {
         if (vacuum.health > 0) {
             vbullets.forEachAlive(moveBullets, this);            
         }
+        if (vacuum.health <= 0.67 && stage === 1){
+            stage2Transition();
+        }
         if (mittens.y > 1000) {
             killMittens();
+        }
+        if (stage === 2) {
+            console.log('aoeSide: ' + aoeSide);
+            console.log('aoeTime: ' + aoeTime);
+            console.log(game.time.now);
+            if (aoeSide === 'left' && game.time.now > aoeTime + 7500) {
+                if (mittens.x <= 750) {
+                    killMittens();
+                }
+                else {
+                    aoeDeath('right');
+                }
+            }
+            if (aoeSide === 'right' && game.time.now > aoeTime + 7500) {
+                if (mittens.x >= 750) {
+                    killMittens();
+                }
+                else {
+                    aoeDeath('left');
+                }
+            }
         }
     }
 };
@@ -237,6 +269,7 @@ function moveVacuum(){
     }
 }
 
+// VACUUM BULLETS //
 function vacShoot() {
     if (game.time.now >= vshotTimer && vacuum.health > 0) {
         //vshotTimer = game.time.now + 200;
@@ -260,6 +293,34 @@ function accelerateToObject(obj1, obj2, speed) {
     obj1.body.rotation = angle + game.math.degToRad(90);  // correct angle of angry bullets (depends on the sprite used)
     obj1.body.force.x = Math.cos(angle) * speed;    // accelerateToObject 
     obj1.body.force.y = Math.sin(angle) * speed;
+}
+
+
+// STAGE 2 ///
+function stage2Transition() {
+    console.log('stage2begins');
+    stage = 2;
+    if (mittens.x < 750) {
+        aoeDeath('left');
+    }
+    else {
+        aoeDeath('right');
+    }
+    
+}
+
+function aoeDeath(side) {
+    aoeTime = game.time.now;
+    aoeSide = side;
+    if (aoeSide === 'left') {
+        rightSquare.alpha = 0;
+        leftSquare.alpha = 0.5;
+    }
+    else if (aoeSide === 'right') {
+        leftSquare.alpha = 0;
+        rightSquare.alpha = 0.5;
+    }
+    
 }
 
 
