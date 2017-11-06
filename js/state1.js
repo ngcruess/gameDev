@@ -1,4 +1,4 @@
-var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mice, mouseMovingRight = true, sock, sockJumpTimer = 1000, music, death, shelf, turret;
+var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mice, mouseMovingRight = true, sock, sockJumpTimer = 1000, music, death, shelf, turrets, turretBullets;
 
 demo.state1 = function() {};
 demo.state1.prototype = {
@@ -189,7 +189,9 @@ demo.state1.prototype = {
                         //MR SHOOTY//
         ///////////////////////////////////////////////////
         /////HE SHOOT || HE STOP || HE SHOOT SOME MORE/////
-        turret = game.add.sprite(600, 568, 'turret');
+        turrets = game.add.group();
+        
+        var turret = turrets.create(600, 568, 'turret');
         game.physics.p2.enable(turret, false);
         turret.body.fixedRotation = true;
         turret.body.static = true;
@@ -308,18 +310,20 @@ demo.state1.prototype = {
         
                         //BULLETS//
         ///////////////////////////////////////////////////
-        bullets = game.add.group();
-        bullets.enableBody = true;
-        bullets.physicsBodyType = Phaser.Physics.P2JS;
-        bullets.createMultiple(100, 'shot', false);
-        bullets.setAll('anchor.x', 0.5);
-        bullets.setAll('anchor.y', 0.5);
-        bullets.setAll('outOfBoundsKill', true);
-        bullets.setAll('ckeckWorldBounds', true);
-        bullets.forEach(function(bullet) {
-            bullet.body.onBeginContact.add(bulletHit, bullet);
+        turretBullets = game.add.group();
+        turretBullets.enableBody = true;
+        turretBullets.physicsBodyType = Phaser.Physics.P2JS;
+        turretBullets.createMultiple(100, 'shot', false);
+        turretBullets.setAll('anchor.x', 0.5);
+        turretBullets.setAll('anchor.y', 0.5);
+        turretBullets.setAll('outOfBoundsKill', true);
+        turretBullets.setAll('ckeckWorldBounds', true);
+        turretBullets.forEach(function(turretBullet) {
+            turretBullet.body.onBeginContact.add(turretBulletHit, turretBullet);
         })
-        ///////////////////////////////////////////////////        
+        ///////////////////////////////////////////////////       
+        
+        game.time.events.repeat(Phaser.Timer.SECOND *2, 1000, turretShoot, this);
     },
     update: function() { 
         //console.log(mittens.x, mittens.y)
@@ -333,6 +337,7 @@ demo.state1.prototype = {
             game.state.start("state2");
             music.stop();
         }
+        //turretShoot();
     }
 };
 function updateTimer() {
@@ -378,6 +383,18 @@ function moveMice() {
             }
         }
     }
+}
+function turretShoot() {
+    for (var i = 0, len = turrets.children.length; i < len; i++){
+        var turret = turrets.children[i];
+        var turretBullet = turretBullets.getFirstExists(false);
+        turretBullet.body.data.gravityScale = 0;
+        turretBullet.scale.setTo(0.5, 0.5);
+        turretBullet.body.mass = 1;
+        turretBullet.body.moveLeft(700);
+
+        turretBullet.reset(turret.x-20, turret.y);      
+    }     
 }
 
 

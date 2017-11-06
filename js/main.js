@@ -172,6 +172,23 @@ function bulletHit(target) {
         }        
     }
 }
+function turretBulletHit(target) {
+    turretBullet = this;
+    if (target == null) {
+        turretBullet.destroy();
+    }
+    else {
+        if (turretBullets.children.indexOf(turretBullet) > -1) {
+            if (target == mittens.body) {
+                if (!mittens.invincible) {
+                    mittens.kill();
+                }
+            }
+            turretBullet.kill();
+        }        
+    }
+    turretBullet.kill()
+}
 function bulletHitMittens(target) {
     bullet = this;
     if (target == mittens.body) {
