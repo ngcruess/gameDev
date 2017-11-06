@@ -1,4 +1,4 @@
-var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mice, mouseMovingRight = true, sock, sockJumpTimer = 1000, music, death, shelf, turrets, turretBullets;
+var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mice, mouseMovingRight = true, sock, sockJumpTimer = 1000, music, death, shelf, turrets, turretBullets, turretShotTimer = Phaser.Timer.SECOND * 2;
 demo.state1 = function() {};
 demo.state1.prototype = {
     preload: function() {
@@ -384,16 +384,18 @@ function moveMice() {
     }
 }
 function turretShoot() {
-    for (var i = 0, len = turrets.children.length; i < len; i++){
-        var turret = turrets.children[i];
-        var turretBullet = turretBullets.getFirstExists(false);
-        turretBullet.body.data.gravityScale = 0;
-        turretBullet.scale.setTo(0.5, 0.5);
-        turretBullet.body.mass = 1;
-        turretBullet.body.moveLeft(700);
+    if (game.time.now >= turretShotTimer) {
+        for (var i = 0, len = turrets.children.length; i < len; i++){
+            var turret = turrets.children[i];
+            var turretBullet = turretBullets.getFirstExists(false);
+            turretBullet.body.data.gravityScale = 0;
+            turretBullet.scale.setTo(0.5, 0.5);
+            turretBullet.body.mass = 1;
+            turretBullet.body.moveLeft(700);
 
-        turretBullet.reset(turret.x-20, turret.y);      
-    }     
+            turretBullet.reset(turret.x-20, turret.y);      
+        }   
+    }
 }
 
 
