@@ -3,11 +3,7 @@ var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, health
 demo.state1 = function() {};
 demo.state1.prototype = {
     preload: function() {
-        game.load.image('sidetable', '../assets/images/SideTable.png');
-        game.load.image('table', '../assets/images/Table.png');
-        game.load.image('shelf', '../assets/images/Shelf.png');
         game.load.image('shelfStandard', '../assets/images/shelfStandard.png');
-        game.load.image('hitzone', '../assets/images/hitbox.png');
         game.load.image('shot', '../assets/images/projectile.png');
         game.load.image('mouse', '../assets/sprites/ToyMouse-1.png')
         game.load.image('turret', '../assets/sprites/mrShooty.png');
@@ -17,7 +13,6 @@ demo.state1.prototype = {
         
         game.load.image('wall', '../assets/images/livingroomwall.png');
         game.load.image('sky', '../assets/images/sky.png');
-        game.load.physics('enemyPhysicsData', '../assets/polygons/Mouse1.json');
         game.load.physics('mittensPhysics', '../assets/polygons/Mittens.json');
         game.load.physics('mousePhysicsL', '../assets/polygons/ToyMouseL.json')
         game.load.physics('mousePhysicsR', '../assets/polygons/ToyMouseR.json')
@@ -47,20 +42,12 @@ demo.state1.prototype = {
         wall = game.add.sprite(3000,0, 'wall');
         wall.scale.setTo(10, 10);
         
-        //healthText = game.add.text(0, 0, "Health: 100%");
-        //healthText.anchor.set(0.5);
-        
         var instructionText = game.add.text(100, 80, "KITCHEN -->"); 
         var intoTheAbyss = game.add.text(game.world.width - 700, 80, "ONWARD BROTHER, INTO THE ABYSS -->");
         
                             //PLATFORMS//
         ////////////////////////////////////////////////////
         var platformMaterial = game.physics.p2.createMaterial('platformMaterial');
-        //platforms = game.add.group();
-        
-        //platforms.physicsBodyType = Phaser.Physics.P2JS;
-        //platforms.enabledBody = true;
-        
         shelf = game.add.sprite(196, 600, 'shelfStandard');
         shelf.scale.setTo(1.84, 1);
         game.physics.p2.enable(shelf, false);
@@ -133,19 +120,19 @@ demo.state1.prototype = {
         //shelf.body.setMaterial(platformMaterial);
         shelf.body.static = true;
         
-        shelf = game.add.sprite(3232, 592, 'shelfStandard');
+        shelf = game.add.sprite(3032, 592, 'shelfStandard');
         shelf.scale.setTo(0.64, 1);
         game.physics.p2.enable(shelf, false);
         //shelf.body.setMaterial(platformMaterial);
         shelf.body.static = true;
         
-        shelf = game.add.sprite(3552, 320, 'shelfStandard');
+        shelf = game.add.sprite(3352, 320, 'shelfStandard');
         shelf.scale.setTo(0.64, 1);
         game.physics.p2.enable(shelf, false);
         //shelf.body.setMaterial(platformMaterial);
         shelf.body.static = true;
         
-        shelf = game.add.sprite(4320, 216, 'shelfStandard');
+        shelf = game.add.sprite(4120, 216, 'shelfStandard');
         shelf.scale.setTo(6.40, 1);
         game.physics.p2.enable(shelf, false);
         //shelf.body.setMaterial(platformMaterial);
@@ -181,9 +168,9 @@ demo.state1.prototype = {
         
                         // MITTENS //
         ///////////////////////////////////////////////////
-        //mittens = game.add.sprite(125, 525, 'mittens2');
+        mittens = game.add.sprite(125, 525, 'mittens2');
         //mittens = game.add.sprite(1812, 447, 'mittens2');
-        mittens = game.add.sprite(3561, 263, 'mittens2');
+        //mittens = game.add.sprite(3561, 263, 'mittens2');
         updateAnchor(0.5, 0.5, mittens);
         game.physics.p2.enable(mittens, false);
         mittens.body.clearShapes();
@@ -192,8 +179,8 @@ demo.state1.prototype = {
         mittens.body.fixedRotation = true;
         mittens.animations.add('left', [0,1,2], 10, true);
         mittens.animations.add('right', [3,4,5], 10, true);
-        mittens.invincible = true;
-        mittens.flight = true;
+        mittens.invincible = false;
+        mittens.flight = false;
         
         game.camera.follow(mittens);
         mittens.body.onBeginContact.add(mittensHit);
@@ -210,8 +197,7 @@ demo.state1.prototype = {
         ///////////////////////////////////////////////////
         
                         //MICE//
-        ///////////////////////////////////////////////////
-        
+        ///////////////////////////////////////////////////        
         mice = game.add.group();
         mice.enabledBody = true;
         mice.physicsBodyType = Phaser.Physics.P2JS;
@@ -250,7 +236,7 @@ demo.state1.prototype = {
         mouse.leftXLim = 1222;
         mouse.rightXLim = 1455;
         mouse.yLim = 700;
-        mouse.speed = 200;
+        mouse.speed = 300;
         
         mouse = mice.create(1624, 756, 'mouse');
         game.physics.p2.enable(mouse, false);
@@ -288,7 +274,7 @@ demo.state1.prototype = {
         mouse.yLim = 564;
         mouse.speed = 300;
         
-        mouse = mice.create(3252, 564, 'mouse');
+        mouse = mice.create(3052, 564, 'mouse');
         game.physics.p2.enable(mouse, false);
         mouse.body.clearShapes();
         mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
@@ -296,23 +282,22 @@ demo.state1.prototype = {
         mouse.body.data.gravityScale = 0.7;
         mouse.id = 6;
         mouse.movingRight = true;
-        mouse.leftXLim = 3252;
-        mouse.rightXLim = 3252;
+        mouse.leftXLim = 3052;
+        mouse.rightXLim = 3052;
         mouse.yLim = 564;
         mouse.speed = 300;
         
-        mouse = mice.create(4606, 159, 'mouse');
+        mouse = mice.create(4406, 159, 'mouse');
         game.physics.p2.enable(mouse, false);
         mouse.body.clearShapes();
         mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
         mouse.body.fixedRotation = true;
         mouse.id = 7;
         mouse.movingRight = true;
-        mouse.leftXLim = 4000;
-        mouse.rightXLim = 4606;
+        mouse.leftXLim = 3800;
+        mouse.rightXLim = 4406;
         mouse.yLim = 188;
-        mouse.speed = 1000;
-        
+        mouse.speed = 1000;        
         ///////////////////////////////////////////////////
         
                         //SOCKS//
@@ -334,85 +319,15 @@ demo.state1.prototype = {
         bullets.forEach(function(bullet) {
             bullet.body.onBeginContact.add(bulletHit, bullet);
         })
-        ///////////////////////////////////////////////////
-        
-                       // PLATFORMS //
-        ///////////////////////////////////////////////////
-        /*
-        var platformMaterial = game.physics.p2.createMaterial('platformMaterial');
-        
-        platform = game.add.sprite(300, 700, 'table');
-        updateAnchor(.5, 1, platform);
-        platform.scale.setTo(0.15, 0.15);
-        game.physics.p2.enable(platform);
-        platform.body.setMaterial(platformMaterial);
-        platform.body.static = true;
-        
-        platform = game.add.sprite(950, 335, 'shelf');
-        updateAnchor(.5, 1, platform);
-        platform.scale.setTo(0.3, 0.15);
-        game.physics.p2.enable(platform);
-        platform.body.setMaterial(platformMaterial);
-        platform.body.static = true;
-        
-        platform = game.add.sprite(1550, 600, 'shelf');
-        updateAnchor(.5, 1, platform);
-        platform.scale.setTo(0.15, 0.15);
-        game.physics.p2.enable(platform);
-        platform.body.setMaterial(platformMaterial);
-        platform.body.static = true;
-        
-        platform = game.add.sprite(1950, 700, 'shelf');
-        updateAnchor(.5, 1, platform);
-        platform.scale.setTo(0.05, 0.15);
-        game.physics.p2.enable(platform);
-        platform.body.setMaterial(platformMaterial);
-        platform.body.static = true;
-        
-        platform = game.add.sprite(2100, 350, 'shelf');
-        updateAnchor(.5, 1, platform);
-        platform.scale.setTo(0.025, 0.15);
-        game.physics.p2.enable(platform);
-        platform.body.setMaterial(platformMaterial);
-        platform.body.static = true;
-        
-        platform = game.add.sprite(2650, 150, 'shelf');
-        updateAnchor(.5, 1, platform);
-        platform.scale.setTo(0.025, 0.15);
-        game.physics.p2.enable(platform);
-        platform.body.setMaterial(platformMaterial);
-        platform.body.static = true;        
-        platform = game.add.sprite(2650, 300, 'shelf');
-        updateAnchor(.5, 1, platform);
-        platform.scale.setTo(0.025, 0.15);
-        game.physics.p2.enable(platform);
-        platform.body.setMaterial(platformMaterial);
-        platform.body.static = true;        
-        platform = game.add.sprite(2650, 450, 'shelf');
-        updateAnchor(.5, 1, platform);
-        platform.scale.setTo(0.025, 0.15);
-        game.physics.p2.enable(platform);
-        platform.body.setMaterial(platformMaterial);
-        platform.body.static = true;        
-        platform = game.add.sprite(2650, 600, 'shelf');
-        updateAnchor(.5, 1, platform);
-        platform.scale.setTo(0.025, 0.15);
-        game.physics.p2.enable(platform);
-        platform.body.setMaterial(platformMaterial);
-        platform.body.static = true;       
-        */
-        ///////////////////////////////////////////////////            
+        ///////////////////////////////////////////////////        
     },
     update: function() { 
         //console.log(mittens.x, mittens.y)
         moveMittens();
         if (mittens.y > 750) {
-            //mittens.reset(125,555)
             killMittens();
         }
-        moveMice();
-        //healthText.x = mittens.x;
-        //healthText.y = Math.floor(mittens.y - mittens.height);        
+        moveMice();     
         updateTimer();
         if (mittens.x > 6000){
             game.state.start("state2");
@@ -458,7 +373,7 @@ function moveMice() {
                 mouse.movingRight = true;
                 mouse.frame = 4;
             }
-            if (mouse.x > mouse.rightXLim + 10 || mouse.x < mouse.leftXLim - 10 || mouse.y < mouse.yLim - 10 || mouse.y > mouse.yLim + 10) {
+            if (mouse.x > mouse.rightXLim + 30 || mouse.x < mouse.leftXLim - 10 || mouse.y < mouse.yLim - 10 || mouse.y > mouse.yLim + 10) {
                 mouse.reset(mouse.leftXLim, mouse.yLim);
             }
         }
