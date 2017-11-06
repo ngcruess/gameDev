@@ -6,7 +6,8 @@ demo.state0.prototype= {
     },
     create: function(){
         //game.stage.backgroundColor = '#B25F55';
-        game.stage.backgroundColor = '#3d7c48';        
+        game.stage.backgroundColor = '#3d7c48'; 
+        game.physics.startSystem(Phaser.Physics.P2JS);
         var titleText = game.add.text(game.world.width / 2, 30, {fontsize: '256px', fill: '#FFFFFF', align: 'center'});     
         updateAnchor(0.5, 0.5, titleText)
         var subtitleText1 = game.add.text(30, 70, {fontsize: '128px', fill: '#CCCCCC', align: 'center'});
