@@ -30,7 +30,7 @@ demo.state1.prototype = {
         
                     // P2 PHYSICS AND ENVIRONMENT //
         ////////////////////////////////////////////////////
-        game.world.setBounds(0, 0, 3000, 800);
+        game.world.setBounds(0, 0, 6400, 800);
         game.stage.backgroundColor = '#B25F55';
         game.physics.startSystem(Phaser.Physics.P2JS);
         game.physics.p2.gravity.y = globalGravity;
@@ -42,6 +42,9 @@ demo.state1.prototype = {
         sky.scale.setTo(10, 1.5);
         
         var wall = game.add.sprite(0,0, 'wall');
+        wall.scale.setTo(10, 10);
+        
+        wall = game.add.sprite(3000,0, 'wall');
         wall.scale.setTo(10, 10);
         
         //healthText = game.add.text(0, 0, "Health: 100%");
@@ -89,11 +92,58 @@ demo.state1.prototype = {
         shelf.body.static = true;
         
         shelf = game.add.sprite(1816, 504, 'shelfStandard');
-        shelf.scale.setTo(0.96, 1);
+        shelf.scale.setTo(0.4, 1);
         game.physics.p2.enable(shelf, false);
         //shelf.body.setMaterial(platformMaterial);
         shelf.body.static = true;
         
+        shelf = game.add.sprite(2080, 200, 'shelfStandard');
+        shelf.scale.setTo(5.12, 1);
+        game.physics.p2.enable(shelf, false);
+        //shelf.body.setMaterial(platformMaterial);
+        shelf.body.static = true;
+        
+        shelf = game.add.sprite(1952, 512, 'shelfStandard');
+        shelf.scale.setTo(0.32, 20);
+        game.physics.p2.enable(shelf, false);
+        //shelf.body.setMaterial(platformMaterial);
+        shelf.body.static = true;
+        
+        shelf = game.add.sprite(2462, 224, 'shelfStandard');
+        shelf.scale.setTo(0.32, 12);
+        game.physics.p2.enable(shelf, false);
+        //shelf.body.setMaterial(platformMaterial);
+        shelf.body.static = true;
+        
+        shelf = game.add.sprite(2296, 400, 'shelfStandard');
+        shelf.scale.setTo(3.36, 1);
+        game.physics.p2.enable(shelf, false);
+        //shelf.body.setMaterial(platformMaterial);
+        shelf.body.static = true;
+        
+        shelf = game.add.sprite(2128, 384, 'shelfStandard');
+        shelf.scale.setTo(0.32, 2);
+        game.physics.p2.enable(shelf, false);
+        //shelf.body.setMaterial(platformMaterial);
+        shelf.body.static = true;
+        
+        shelf = game.add.sprite(2352, 592, 'shelfStandard');
+        shelf.scale.setTo(4.16, 1);
+        game.physics.p2.enable(shelf, false);
+        //shelf.body.setMaterial(platformMaterial);
+        shelf.body.static = true;
+        
+        shelf = game.add.sprite(3232, 592, 'shelfStandard');
+        shelf.scale.setTo(0.64, 1);
+        game.physics.p2.enable(shelf, false);
+        //shelf.body.setMaterial(platformMaterial);
+        shelf.body.static = true;
+        
+        shelf = game.add.sprite(3552, 320, 'shelfStandard');
+        shelf.scale.setTo(0.64, 1);
+        game.physics.p2.enable(shelf, false);
+        //shelf.body.setMaterial(platformMaterial);
+        shelf.body.static = true;
         ////////////////////////////////////////////////////
         
         timer = game.add.text(875,0, "00:00:00");
@@ -125,7 +175,9 @@ demo.state1.prototype = {
         
                         // MITTENS //
         ///////////////////////////////////////////////////
-        mittens = game.add.sprite(125, 525, 'mittens2');
+        //mittens = game.add.sprite(125, 525, 'mittens2');
+        //mittens = game.add.sprite(1812, 447, 'mittens2');
+        mittens = game.add.sprite(3561, 263, 'mittens2');
         updateAnchor(0.5, 0.5, mittens);
         game.physics.p2.enable(mittens, false);
         mittens.body.clearShapes();
@@ -304,7 +356,7 @@ demo.state1.prototype = {
         //healthText.x = mittens.x;
         //healthText.y = Math.floor(mittens.y - mittens.height);        
         updateTimer();
-        if (mittens.x > 2750){
+        if (mittens.x > 6000){
             game.state.start("state2");
             music.stop();
         }

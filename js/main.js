@@ -32,7 +32,7 @@ function moveMittens() {
         }
         if (cursor.up.isDown) {
             if (mittens.flight) {
-                mittens.body.moveUp(mittensRunSpeed); 
+                mittens.body.moveUp(mittensJumpVelocity); 
             }
             else if (jumpRel) {                
                 mittensJump();
