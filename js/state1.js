@@ -121,8 +121,8 @@ demo.state1.prototype = {
         //shelf.body.setMaterial(platformMaterial);
         shelf.body.static = true;
         
-        shelf = game.add.sprite(2128, 384, 'shelfStandard');
-        shelf.scale.setTo(0.32, 2);
+        shelf = game.add.sprite(2128, 368, 'shelfStandard');
+        shelf.scale.setTo(0.32, 3);
         game.physics.p2.enable(shelf, false);
         //shelf.body.setMaterial(platformMaterial);
         shelf.body.static = true;
@@ -141,6 +141,12 @@ demo.state1.prototype = {
         
         shelf = game.add.sprite(3552, 320, 'shelfStandard');
         shelf.scale.setTo(0.64, 1);
+        game.physics.p2.enable(shelf, false);
+        //shelf.body.setMaterial(platformMaterial);
+        shelf.body.static = true;
+        
+        shelf = game.add.sprite(4320, 216, 'shelfStandard');
+        shelf.scale.setTo(6.40, 1);
         game.physics.p2.enable(shelf, false);
         //shelf.body.setMaterial(platformMaterial);
         shelf.body.static = true;
@@ -205,57 +211,108 @@ demo.state1.prototype = {
         
                         //MICE//
         ///////////////////////////////////////////////////
-        /*
+        
         mice = game.add.group();
         mice.enabledBody = true;
         mice.physicsBodyType = Phaser.Physics.P2JS;
-        var mouse = mice.create(790, 275, 'mouse');
-        //mouse.scale.setTo(.4, .4);
+        
+        var mouse = mice.create(429, 316, 'mouse');
         game.physics.p2.enable(mouse, false);
         mouse.body.clearShapes();
         mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
         mouse.body.fixedRotation = true;
         mouse.id = 0;
         mouse.movingRight = false ;
-        mouse.leftXLim = 780;
-        mouse.rightXLim = 865;
-        mouse.yLim = 305;
+        mouse.leftXLim = 429;
+        mouse.rightXLim = 579;
+        mouse.yLim = 316;
         mouse.speed = 150;
         
-        mouse = mice.create(1240, 275, 'mouse');
+        mouse = mice.create(851, 316, 'mouse');
         game.physics.p2.enable(mouse, false);
         mouse.body.clearShapes();
         mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
+        mouse.body.fixedRotation = true;
         mouse.id = 1;
         mouse.movingRight = false;
-        mouse.leftXLim = 1100;
-        mouse.rightXLim = 1240;
-        mouse.yLim = 305;
+        mouse.leftXLim = 649;
+        mouse.rightXLim = 851;
+        mouse.yLim = 316;
         mouse.speed = 150;
         
-        mouse = mice.create(1405, 545, 'mouse');
+        mouse = mice.create(1222, 700, 'mouse');
         game.physics.p2.enable(mouse, false);
         mouse.body.clearShapes();
         mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
+        mouse.body.fixedRotation = true;
         mouse.id = 2;
         mouse.movingRight = true;
-        mouse.leftXLim = 1405;
-        mouse.rightXLim = 1705;
-        mouse.yLim = 575;
+        mouse.leftXLim = 1222;
+        mouse.rightXLim = 1455;
+        mouse.yLim = 700;
         mouse.speed = 200;
         
-        mouse = mice.create(1945, 648, 'mouse');
+        mouse = mice.create(1624, 756, 'mouse');
         game.physics.p2.enable(mouse, false);
         mouse.body.clearShapes();
         mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
+        mouse.body.fixedRotation = true;
         mouse.id = 3;
         mouse.movingRight = true;
-        mouse.leftXLim = 1405;
-        mouse.rightXLim = 1705;
+        mouse.leftXLim = 1624;
+        mouse.rightXLim = 1624;
         mouse.yLim = 575;
         mouse.speed = 300;
-        mouse.body.fixedRotation = true; 
-        */
+        
+        mouse = mice.create(2227, 372, 'mouse');
+        game.physics.p2.enable(mouse, false);
+        mouse.body.clearShapes();
+        mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
+        mouse.body.fixedRotation = true;
+        mouse.id = 4;
+        mouse.movingRight = true;
+        mouse.leftXLim = 2227;
+        mouse.rightXLim = 2400;
+        mouse.yLim = 372;
+        mouse.speed = 300;
+        
+        mouse = mice.create(2234, 564, 'mouse');
+        game.physics.p2.enable(mouse, false);
+        mouse.body.clearShapes();
+        mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
+        mouse.body.fixedRotation = true;
+        mouse.id = 5;
+        mouse.movingRight = true;
+        mouse.leftXLim = 2234;
+        mouse.rightXLim = 2540;
+        mouse.yLim = 564;
+        mouse.speed = 300;
+        
+        mouse = mice.create(3252, 564, 'mouse');
+        game.physics.p2.enable(mouse, false);
+        mouse.body.clearShapes();
+        mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
+        mouse.body.fixedRotation = true;
+        mouse.body.data.gravityScale = 0.7;
+        mouse.id = 6;
+        mouse.movingRight = true;
+        mouse.leftXLim = 3252;
+        mouse.rightXLim = 3252;
+        mouse.yLim = 564;
+        mouse.speed = 300;
+        
+        mouse = mice.create(4606, 159, 'mouse');
+        game.physics.p2.enable(mouse, false);
+        mouse.body.clearShapes();
+        mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
+        mouse.body.fixedRotation = true;
+        mouse.id = 7;
+        mouse.movingRight = true;
+        mouse.leftXLim = 4000;
+        mouse.rightXLim = 4606;
+        mouse.yLim = 188;
+        mouse.speed = 1000;
+        
         ///////////////////////////////////////////////////
         
                         //SOCKS//
@@ -347,12 +404,13 @@ demo.state1.prototype = {
         ///////////////////////////////////////////////////            
     },
     update: function() { 
+        //console.log(mittens.x, mittens.y)
         moveMittens();
         if (mittens.y > 750) {
             //mittens.reset(125,555)
             killMittens();
         }
-        //moveMice();
+        moveMice();
         //healthText.x = mittens.x;
         //healthText.y = Math.floor(mittens.y - mittens.height);        
         updateTimer();
@@ -375,14 +433,14 @@ function updateTimer() {
 function moveMice() {
     for (var i = 0, len = mice.children.length; i < len; i++) {
         var mouse = mice.children[i];
-        if (mouse.id == 3) {
+        if (mouse.id == 3 || mouse.id == 6) {
             var y = mouse.y;
             mouse.body.velocity.x = 0;
             if (bottomTouching(mouse)) {
                 mouse.body.moveUp(1000);
             }
-            if (Math.abs(mouse.x - 1945) > 20) {
-                mouse.reset(1945, mouse.y);
+            if (Math.abs(mouse.x - mouse.leftXLim) > 20) {
+                mouse.reset(mouse.leftXLim, mouse.y);
             }
         }
         else {
