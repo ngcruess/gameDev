@@ -26,7 +26,7 @@ demo.state1.prototype = {
         ////////////////////////////////////////////////////
         game.world.setBounds(0, 0, 6400, 800);
         game.stage.backgroundColor = '#B25F55';
-        game.physics.startSystem(Phaser.Physics.P2JS);
+        //game.physics.startSystem(Phaser.Physics.P2JS);
         game.physics.p2.gravity.y = globalGravity;
         game.physics.p2.restitution = 0;
         game.physics.p2.world.setGlobalStiffness(1e5);
@@ -42,7 +42,7 @@ demo.state1.prototype = {
         wall.scale.setTo(10, 10);
         
         var instructionText = game.add.text(100, 80, "KITCHEN -->"); 
-        var intoTheAbyss = game.add.text(game.world.width - 700, 80, "ONWARD BROTHER, INTO THE ABYSS -->");
+        var intoTheAbyss = game.add.text(4200, 80, "ONWARD BROTHER, INTO THE ABYSS -->");
         
                             //PLATFORMS//
         ////////////////////////////////////////////////////
@@ -138,7 +138,7 @@ demo.state1.prototype = {
         shelf.body.static = true;
         ////////////////////////////////////////////////////
         
-        timer = game.add.text(875,0, "00:00:00");
+        timer = game.add.text(1375,0, "00:00:00");
         timer.fixedToCamera = true;
         
         music = game.sound.add('music');
@@ -336,7 +336,7 @@ demo.state1.prototype = {
             game.state.start("state2");
             music.stop();
         }
-        //turretShoot();
+        turretShoot();
     }
 };
 function updateTimer() {
