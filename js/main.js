@@ -1,14 +1,14 @@
-var game = new Phaser.Game(1000, 800, Phaser.AUTO);
+var game = new Phaser.Game(1500, 800, Phaser.AUTO);
 
 //Variables to be used in many states
 var mittens, cursor, jumps, platform, bullets, vbullets, fireRate = 200, shotTimer = 0, vfireRate = 200, vshotTimer = 0, 
     mittensFacingLeft = false, mittensJumpVelocity = 600, 
-    mittensRunSpeed = 400, bulletSpeed = 700, vbulletSpeed = 700, yAxis = p2.vec2.fromValues(0, 1), globalGravity = 1200, jumps, death;
+    mittensRunSpeed = 600, bulletSpeed = 1050, vbulletSpeed = 1050, yAxis = p2.vec2.fromValues(0, 1), globalGravity = 1200, jumps, death;
 
 game.state.add('state0', demo.state0);
 game.state.add('state1', demo.state1);
 game.state.add('state2', demo.state2);
-game.state.start('state1');
+game.state.start('state0');
 
 /*
 CORE FUNCTIONS

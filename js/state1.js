@@ -1,5 +1,4 @@
 var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mice, mouseMovingRight = true, sock, sockJumpTimer = 1000, music, death, shelf, turrets, turretBullets;
-
 demo.state1 = function() {};
 demo.state1.prototype = {
     preload: function() {
@@ -214,7 +213,7 @@ demo.state1.prototype = {
         mouse.leftXLim = 429;
         mouse.rightXLim = 579;
         mouse.yLim = 316;
-        mouse.speed = 150;
+        mouse.speed = 225;
         
         mouse = mice.create(851, 316, 'mouse');
         game.physics.p2.enable(mouse, false);
@@ -226,7 +225,7 @@ demo.state1.prototype = {
         mouse.leftXLim = 649;
         mouse.rightXLim = 851;
         mouse.yLim = 316;
-        mouse.speed = 150;
+        mouse.speed = 225;
         
         mouse = mice.create(1222, 700, 'mouse');
         game.physics.p2.enable(mouse, false);
@@ -238,7 +237,7 @@ demo.state1.prototype = {
         mouse.leftXLim = 1222;
         mouse.rightXLim = 1455;
         mouse.yLim = 700;
-        mouse.speed = 300;
+        mouse.speed = 450;
         
         mouse = mice.create(1624, 756, 'mouse');
         game.physics.p2.enable(mouse, false);
@@ -250,7 +249,7 @@ demo.state1.prototype = {
         mouse.leftXLim = 1624;
         mouse.rightXLim = 1624;
         mouse.yLim = 575;
-        mouse.speed = 300;
+        mouse.speed = 450;
         
         mouse = mice.create(2227, 372, 'mouse');
         game.physics.p2.enable(mouse, false);
@@ -262,7 +261,7 @@ demo.state1.prototype = {
         mouse.leftXLim = 2227;
         mouse.rightXLim = 2400;
         mouse.yLim = 372;
-        mouse.speed = 300;
+        mouse.speed = 450;
         
         mouse = mice.create(2234, 564, 'mouse');
         game.physics.p2.enable(mouse, false);
@@ -274,7 +273,7 @@ demo.state1.prototype = {
         mouse.leftXLim = 2234;
         mouse.rightXLim = 2540;
         mouse.yLim = 564;
-        mouse.speed = 300;
+        mouse.speed = 450;
         
         mouse = mice.create(3052, 564, 'mouse');
         game.physics.p2.enable(mouse, false);
@@ -287,7 +286,7 @@ demo.state1.prototype = {
         mouse.leftXLim = 3052;
         mouse.rightXLim = 3052;
         mouse.yLim = 564;
-        mouse.speed = 300;
+        mouse.speed = 450;
         
         mouse = mice.create(4406, 159, 'mouse');
         game.physics.p2.enable(mouse, false);
@@ -299,7 +298,7 @@ demo.state1.prototype = {
         mouse.leftXLim = 3800;
         mouse.rightXLim = 4406;
         mouse.yLim = 188;
-        mouse.speed = 1000;        
+        mouse.speed = 1500;        
         ///////////////////////////////////////////////////
         
                         //SOCKS//
