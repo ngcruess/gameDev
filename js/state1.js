@@ -26,7 +26,6 @@ demo.state1.prototype = {
         ////////////////////////////////////////////////////
         game.world.setBounds(0, 0, 6400, 800);
         game.stage.backgroundColor = '#B25F55';
-        //game.physics.startSystem(Phaser.Physics.P2JS);
         game.physics.p2.gravity.y = globalGravity;
         game.physics.p2.restitution = 0;
         game.physics.p2.world.setGlobalStiffness(1e5);
@@ -318,16 +317,11 @@ demo.state1.prototype = {
                         //BULLETS//
         ///////////////////////////////////////////////////
         turretBullets = game.add.group();
-        //turretBullets.enableBody = true;
-        //turretBullets.physicsBodyType = Phaser.Physics.P2JS;
         turretBullets.createMultiple(100, 'shot', false);
         turretBullets.setAll('anchor.x', 0.5);
         turretBullets.setAll('anchor.y', 0.5);
         turretBullets.setAll('outOfBoundsKill', true);
         turretBullets.setAll('ckeckWorldBounds', true);
-        //turretBullets.forEach(function(turretBullet) {
-        //    turretBullet.body.onBeginContact.add(turretBulletHit, turretBullet);
-        //})
         ///////////////////////////////////////////////////       
         
         game.time.events.repeat(Phaser.Timer.SECOND *2, 1000, turretShoot, this);
