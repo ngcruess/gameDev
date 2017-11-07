@@ -74,7 +74,7 @@ function fight(mittens, mouse) {
 }
 function killMittens(mittens) {
     game.state.start(game.state.current);
-    music.stop();
+    //music.stop();
     //bossMusic.stop();
     death.play();
 }
