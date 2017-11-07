@@ -5,7 +5,7 @@ demo.state1.prototype = {
         game.load.image('shelfStandard', '../assets/images/shelfStandard.png');
         game.load.image('shot', '../assets/images/turretShot.png');
         game.load.image('mouse', '../assets/sprites/ToyMouse-1.png')
-        game.load.image('turret', '../assets/sprites/mrShootyTall.png');
+        game.load.image('turret', '../assets/sprites/mrShootyTall_v2.png');
         game.load.spritesheet('sockSheet','../assets/sprites/EvilSock.png', 90, 135);
         game.load.image('sockL', '../assets/sprites/EvilSockL.png');
         game.load.spritesheet('mittens2', '../assets/sprites/WalkingM.png', 90, 86);
@@ -196,6 +196,13 @@ demo.state1.prototype = {
         turrets = game.add.group();
         
         var turret = turrets.create(600, 557, 'turret');
+        game.physics.p2.enable(turret, false);
+        turret.body.fixedRotation = true;
+        turret.body.static = true;
+        turret.nextShot = 4000;
+        turret.shotTimer = 2000;
+        
+        turret = turrets.create(1990, 158, 'turret');
         game.physics.p2.enable(turret, false);
         turret.body.fixedRotation = true;
         turret.body.static = true;
