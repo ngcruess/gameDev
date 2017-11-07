@@ -22,27 +22,27 @@ function moveMittens() {
             mittensFacingLeft = false;
             mittens.body.moveRight(mittensRunSpeed);
             mittens.animations.play('right');
+    }
+    else if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT) || game.input.keyboard.isDown(Phaser.Keyboard.A)){
+        mittensFacingLeft = true;
+        mittens.body.moveLeft(mittensRunSpeed);
+        mittens.animations.play('left');
+    }
+    else{
+        mittens.body.velocity.x = 0;
+        mittens.animations.stop();
+    }
+    if (cursor.up.isDown || game.input.keyboard.isDown(Phaser.Keyboard.W)) {
+        console.log('W or UP');
+        if (mittens.flight) {
+            mittens.body.moveUp(mittensJumpVelocity); 
         }
-        else if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT) || game.input.keyboard.isDown(Phaser.Keyboard.A)){
-            mittensFacingLeft = true;
-            mittens.body.moveLeft(mittensRunSpeed);
-            mittens.animations.play('left');
+        else if (jumpRel) {                
+            mittensJump();
+            jumpRel = false;
+            console.log(jumps);
         }
-        else{
-            mittens.body.velocity.x = 0;
-            mittens.animations.stop();
-        }
-        if (cursor.up.isDown || game.input.keyboard.isDown(Phaser.Keyboard.W)) {
-            console.log('W or UP');
-            if (mittens.flight) {
-                mittens.body.moveUp(mittensJumpVelocity); 
-            }
-            else if (jumpRel) {                
-                mittensJump();
-                jumpRel = false;
-                console.log(jumps);
-            }
-        }
+    }
 }
 
 
@@ -74,7 +74,7 @@ function fight(mittens, mouse) {
 }
 function killMittens(mittens) {
     miceKilled = 0;
-    game.state.start('state1');
+    game.state.start(game.state.current);
     music.stop();
     //bossMusic.stop();
     death.play();

@@ -341,7 +341,7 @@ demo.state1.prototype = {
         }
         moveMice();     
         updateTimer();
-        if (mittens.x > 6000){
+        if (mittens.x > 4600){
             game.state.start("state2");
             music.stop();
         }
