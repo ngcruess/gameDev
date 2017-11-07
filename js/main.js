@@ -15,15 +15,15 @@ CORE FUNCTIONS
 These are functions which will be reused in many states
 */
 
-var cursor = game.input.keyboard.createCursorKeys();
+cursor = game.input.keyboard.createCursorKeys();
 var shootButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 function moveMittens() {
-    if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
+    if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT) || game.input.keyboard.isDown(Phaser.Keyboard.D)){
             mittensFacingLeft = false;
             mittens.body.moveRight(mittensRunSpeed);
             mittens.animations.play('right');
         }
-        else if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
+        else if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT) || game.input.keyboard.isDown(Phaser.Keyboard.A)){
             mittensFacingLeft = true;
             mittens.body.moveLeft(mittensRunSpeed);
             mittens.animations.play('left');
@@ -32,7 +32,8 @@ function moveMittens() {
             mittens.body.velocity.x = 0;
             mittens.animations.stop();
         }
-        if (cursor.up.isDown) {
+        if (cursor.up.isDown || game.input.keyboard.isDown(Phaser.Keyboard.W)) {
+            console.log('W or UP');
             if (mittens.flight) {
                 mittens.body.moveUp(mittensJumpVelocity); 
             }
