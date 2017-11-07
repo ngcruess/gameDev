@@ -1,11 +1,11 @@
-var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mice, mouseMovingRight = true, sock, sockJumpTimer = 1000, music, death, shelf, turrets, turretBullets, turretShotTimer = Phaser.Timer.SECOND * 2;
+var centerX =  vel = 100, jumpvel = -300, sock, mittens, socksKilled = 0, healthText, timer, milliseconds = 0, seconds = 0, minutes = 0, mice, mouseMovingRight = true, sock, sockJumpTimer = 1000, music, death, shelf, turrets, turretBullets, turretShotTimer = 4000;
 demo.state1 = function() {};
 demo.state1.prototype = {
     preload: function() {
         game.load.image('shelfStandard', '../assets/images/shelfStandard.png');
-        game.load.image('shot', '../assets/images/projectile.png');
+        game.load.image('shot', '../assets/images/turretShot.png');
         game.load.image('mouse', '../assets/sprites/ToyMouse-1.png')
-        game.load.image('turret', '../assets/sprites/mrShooty.png');
+        game.load.image('turret', '../assets/sprites/mrShootyTall.png');
         game.load.spritesheet('sockSheet','../assets/sprites/EvilSock.png', 90, 135);
         game.load.image('sockL', '../assets/sprites/EvilSockL.png');
         game.load.spritesheet('mittens2', '../assets/sprites/WalkingM.png', 90, 86);
@@ -190,10 +190,12 @@ demo.state1.prototype = {
         /////HE SHOOT || HE STOP || HE SHOOT SOME MORE/////
         turrets = game.add.group();
         
-        var turret = turrets.create(600, 568, 'turret');
+        var turret = turrets.create(600, 557, 'turret');
         game.physics.p2.enable(turret, false);
         turret.body.fixedRotation = true;
         turret.body.static = true;
+        turret.nextShot = 4000;
+        turret.shotTimer = 2000;
         
         ///////////////////////////////////////////////////
         
@@ -310,16 +312,16 @@ demo.state1.prototype = {
                         //BULLETS//
         ///////////////////////////////////////////////////
         turretBullets = game.add.group();
-        turretBullets.enableBody = true;
-        turretBullets.physicsBodyType = Phaser.Physics.P2JS;
+        //turretBullets.enableBody = true;
+        //turretBullets.physicsBodyType = Phaser.Physics.P2JS;
         turretBullets.createMultiple(100, 'shot', false);
         turretBullets.setAll('anchor.x', 0.5);
         turretBullets.setAll('anchor.y', 0.5);
         turretBullets.setAll('outOfBoundsKill', true);
         turretBullets.setAll('ckeckWorldBounds', true);
-        turretBullets.forEach(function(turretBullet) {
-            turretBullet.body.onBeginContact.add(turretBulletHit, turretBullet);
-        })
+        //turretBullets.forEach(function(turretBullet) {
+        //    turretBullet.body.onBeginContact.add(turretBulletHit, turretBullet);
+        //})
         ///////////////////////////////////////////////////       
         
         game.time.events.repeat(Phaser.Timer.SECOND *2, 1000, turretShoot, this);
@@ -336,7 +338,6 @@ demo.state1.prototype = {
             game.state.start("state2");
             music.stop();
         }
-        turretShoot();
     }
 };
 function updateTimer() {
@@ -384,17 +385,25 @@ function moveMice() {
     }
 }
 function turretShoot() {
-    if (game.time.now >= turretShotTimer) {
-        for (var i = 0, len = turrets.children.length; i < len; i++){
-            var turret = turrets.children[i];
+    for (var i = 0, len = turrets.children.length; i < len; i++){
+        var turret = turrets.children[i];
             var turretBullet = turretBullets.getFirstExists(false);
+            game.physics.p2.enable(turretBullet, false);
             turretBullet.body.data.gravityScale = 0;
-            turretBullet.scale.setTo(0.5, 0.5);
             turretBullet.body.mass = 1;
-            turretBullet.body.moveLeft(700);
+            turretBullet.body.onBeginContact.add(turretBulletHit, turretBullet);
 
-            turretBullet.reset(turret.x-20, turret.y);      
-        }   
+            turretBullet.reset(turret.x - 25, turret.y - 12); 
+            turretBullet.body.moveLeft(700);  
+        
+            turretBullet = turretBullets.getFirstExists(false);
+            game.physics.p2.enable(turretBullet, false);
+            turretBullet.body.data.gravityScale = 0;
+            turretBullet.body.mass = 1;
+            turretBullet.body.onBeginContact.add(turretBulletHit, turretBullet);
+
+            turretBullet.reset(turret.x + 50, turret.y - 12); 
+            turretBullet.body.moveRight(700); 
     }
 }
 

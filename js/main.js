@@ -182,6 +182,7 @@ function turretBulletHit(target) {
             if (target == mittens.body) {
                 if (!mittens.invincible) {
                     mittens.kill();
+                    game.state.start(game.state.current);
                 }
             }
             turretBullet.kill();
