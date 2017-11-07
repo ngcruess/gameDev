@@ -354,7 +354,7 @@ function updateTimer() {
     
     if (milliseconds < 10) { milliseconds = "0" + milliseconds};
     if (seconds < 10) { seconds = '0' + seconds};
-    if (minutes <10) { minutes = '0' + minutes};
+    if (minutes < 10) { minutes = '0' + minutes};
     timer.setText(minutes + ":" + seconds + ":" + milliseconds);    
 }
 function moveMice() {
