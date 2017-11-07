@@ -3,7 +3,7 @@ var game = new Phaser.Game(1500, 800, Phaser.AUTO);
 //Variables to be used in many states
 var mittens, cursor, jumps, platform, bullets, vbullets, fireRate = 200, shotTimer = 0, vfireRate = 200, vshotTimer = 0, 
     mittensFacingLeft = false, mittensJumpVelocity = 600, 
-    mittensRunSpeed = 600, bulletSpeed = 1050, vbulletSpeed = 1050, yAxis = p2.vec2.fromValues(0, 1), globalGravity = 1200, jumps, death;
+    mittensRunSpeed = 400, bulletSpeed = 700, vbulletSpeed = 700, yAxis = p2.vec2.fromValues(0, 1), globalGravity = 1200, jumps, death;
 
 game.state.add('state0', demo.state0);
 game.state.add('state1', demo.state1);
@@ -15,6 +15,8 @@ CORE FUNCTIONS
 These are functions which will be reused in many states
 */
 
+var cursor = game.input.keyboard.createCursorKeys();
+var shootButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 function moveMittens() {
     if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
             mittensFacingLeft = false;
