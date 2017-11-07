@@ -158,9 +158,13 @@ function bulletHit(target) {
                 if (!mittens.invincible) {
                     killMittens();
                 }
+                bullet.kill();
             }
             else if (bullets.children.indexOf(target) > -1) {
                 target.kill();
+            }
+            else {
+                bullet.kill();
             }
         }
         else if (target == vacuum.body) {
