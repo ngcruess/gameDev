@@ -73,7 +73,6 @@ function fight(mittens, mouse) {
     }
 }
 function killMittens(mittens) {
-    miceKilled = 0;
     game.state.start(game.state.current);
     music.stop();
     //bossMusic.stop();
@@ -157,10 +156,12 @@ function bulletHit(target) {
                 //probably reset him to another state where the player can then enter 
                 //the boss fight again 
                 if (!mittens.invincible) {
-                    mittens.kill();
+                    killMittens();
                 }
             }
-            bullet.kill();
+            else if (bullets.children.indexOf(target) > -1) {
+                target.kill();
+            }
         }
         else if (target == vacuum.body) {
             bullet.kill();

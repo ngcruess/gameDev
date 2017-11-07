@@ -150,6 +150,7 @@ demo.state2.prototype = {
         bullets.enableBody = true;
         bullets.physicsBodyType = Phaser.Physics.P2JS;
         bullets.createMultiple(100, 'shot', false);
+        bullets.setAll('owner', 'm');
         bullets.setAll('anchor.x', 0.5);
         bullets.setAll('anchor.y', 0.5);
         bullets.setAll('outOfBoundsKill', true);
@@ -166,6 +167,7 @@ demo.state2.prototype = {
         vbullets.enableBody = true;
         vbullets.physicsBodyType = Phaser.Physics.P2JS;
         vbullets.createMultiple(200, 'shot', false);
+        vbullets.setAll('owner', 'v');
         vbullets.setAll('anchor.x', 0.5);
         vbullets.setAll('anchor.y', 0.5);
         vbullets.setAll('outOfBoundsKill', true);
