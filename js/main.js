@@ -3,7 +3,7 @@ var game = new Phaser.Game(1500, 800, Phaser.AUTO);
 //Variables to be used in many states
 var mittens, cursor, jumps, platform, bullets, vbullets, fireRate = 200, shotTimer = 0, vfireRate = 200, vshotTimer = 0, 
     mittensFacingLeft = false, mittensJumpVelocity = 600, 
-    mittensRunSpeed = 400, bulletSpeed = 700, vbulletSpeed = 700, yAxis = p2.vec2.fromValues(0, 1), globalGravity = 1200, jumps, death;
+    mittensRunSpeed = 400, bulletSpeed = 700, vbulletSpeed = 700, yAxis = p2.vec2.fromValues(0, 1), globalGravity = 1200, jumps, death, state1Deaths = 0;
 
 game.state.add('state0', demo.state0);
 game.state.add('state1', demo.state1);
@@ -73,10 +73,15 @@ function fight(mittens, mouse) {
     }
 }
 function killMittens(mittens) {
+    console.log('in killMittens');
+    if (game.state.current == 'state1') {
+        state1Deaths ++;
+        //console.log(state1Deaths);
+    }
     game.state.start(game.state.current);
     //music.stop();
     //bossMusic.stop();
-    death.play();
+    //death.play();
 }
 function mittensShoot() {
     if (game.time.now >= shotTimer) {
@@ -189,8 +194,7 @@ function turretBulletHit(target) {
         if (turretBullets.children.indexOf(turretBullet) > -1) {
             if (target == mittens.body) {
                 if (!mittens.invincible) {
-                    mittens.kill();
-                    game.state.start(game.state.current);
+                    killMittens();
                 }
             }
             turretBullet.kill();

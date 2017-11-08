@@ -16,7 +16,6 @@ demo.state1.prototype = {
         game.load.physics('mousePhysicsL', '../assets/polygons/ToyMouseL.json')
         game.load.physics('mousePhysicsR', '../assets/polygons/ToyMouseR.json')
         
-        game.load.audio('music', '../assets/audio/bgmusic02.mp3');
         game.load.audio('death', '../assets/audio/mittensDeath.wav');
         
     },
@@ -145,10 +144,6 @@ demo.state1.prototype = {
         
         timer = game.add.text(1375,0, "00:00:00");
         timer.fixedToCamera = true;
-        
-        music = game.sound.add('music');
-        music.allowMultiple = false;
-        music.play();
         
         death = game.sound.add('death');
         death.startTime = 200;

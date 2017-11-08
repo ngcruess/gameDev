@@ -1,8 +1,10 @@
 var demo = {}, spaceKey;
+var state1Music;
 demo.state0 = function(){};
 demo.state0.prototype= {
     preload: function(){
         game.load.image('mittens','../assets/sprites/BatCat.png');
+        game.load.audio('state1Music', '../assets/audio/bgmusic02.mp3');
     },
     create: function(){
         //game.stage.backgroundColor = '#B25F55';
@@ -28,12 +30,16 @@ demo.state0.prototype= {
         updateAnchor(0.5, 0.5, mittens);
         mittens.scale.setTo(1.25, 1.25);
         
+        state1Music = game.sound.add('state1Music');
+        state1Music.allowMultiple = false;
+        
         spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     },
     update: function(){
         if (spaceKey.isDown) {
             console.log('SPACE');
             game.state.start('state1');
+            state1Music.play();
         } 
     }
 };
