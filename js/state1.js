@@ -167,9 +167,9 @@ demo.state1.prototype = {
         
                         // MITTENS //
         ///////////////////////////////////////////////////
-        //mittens = game.add.sprite(125, 525, 'mittens2');
+        mittens = game.add.sprite(125, 525, 'mittens2');
         //mittens = game.add.sprite(1812, 447, 'mittens2');
-        mittens = game.add.sprite(3360, 263, 'mittens2');
+        //mittens = game.add.sprite(3360, 263, 'mittens2');
         updateAnchor(0.5, 0.5, mittens);
         game.physics.p2.enable(mittens, false);
         mittens.body.clearShapes();
