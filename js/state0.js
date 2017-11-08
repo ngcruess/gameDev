@@ -40,6 +40,7 @@ demo.state0.prototype= {
             console.log('SPACE');
             game.state.start('state1');
             state1Music.play();
+            state1Music.loopFull();
         } 
     }
 };
