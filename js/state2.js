@@ -15,9 +15,8 @@ demo.state2.prototype = {
         game.load.image('deathSquare', '../assets/images/death.png');
         
         game.load.spritesheet('mittensSheet', '../assets/spritesheets/BatCat.png', 100, 80);
-        game.load.physics('mittensPhysics', '../assets/polygons/Mittens.json');        
+        game.load.physics('mittensPhysics', '../assets/polygons/Mittens.json');
         
-        game.load.audio('bossMusic', '../assets/audio/bossMusic.mp3');
         game.load.audio('gun', '../assets/audio/gun.wav');
     },
     create: function(){
