@@ -225,7 +225,7 @@ demo.state1.prototype = {
         mouse.speed = 150;
         
         mouse = mice.create(851, 316, 'mouse');
-        game.physics.p2.enable(mouse, true);
+        game.physics.p2.enable(mouse, false);
         mouse.body.clearShapes();
         mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
         mouse.body.fixedRotation = true;
