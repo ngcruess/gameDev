@@ -39,7 +39,7 @@ demo.state1.prototype = {
         wall = game.add.sprite(3000,0, 'wall');
         wall.scale.setTo(10, 10);
         
-        var instructionText = game.add.text(100, 80, "KITCHEN -->"); 
+        var instructionText = game.add.text(100, 80, "GO FORTH -->"); 
         var intoTheAbyss = game.add.text(4200, 80, "ONWARD BROTHER, INTO THE ABYSS -->");
         
                             //PLATFORMS//
@@ -225,7 +225,7 @@ demo.state1.prototype = {
         mouse.speed = 150;
         
         mouse = mice.create(851, 316, 'mouse');
-        game.physics.p2.enable(mouse, false);
+        game.physics.p2.enable(mouse, true);
         mouse.body.clearShapes();
         mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
         mouse.body.fixedRotation = true;

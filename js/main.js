@@ -82,7 +82,7 @@ function killMittens(mittens) {
     game.state.start(game.state.current);
     //music.stop();
     //bossMusic.stop();
-    //death.play();
+    death.play();
 }
 function mittensShoot() {
     if (game.time.now >= shotTimer) {
