@@ -39,8 +39,8 @@ demo.state1.prototype = {
         wall = game.add.sprite(3000,0, 'wall');
         wall.scale.setTo(10, 10);
         
-        var instructionText = game.add.text(100, 80, "GO FORTH -->"); 
-        var intoTheAbyss = game.add.text(4200, 80, "ONWARD BROTHER, INTO THE ABYSS -->");
+        
+//        var intoTheAbyss = game.add.text(4200, 80, "ONWARD BROTHER, INTO THE ABYSS -->");
         
                             //PLATFORMS//
         ////////////////////////////////////////////////////
