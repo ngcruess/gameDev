@@ -5,7 +5,7 @@ demo.state0.prototype= {
     preload: function(){
         game.load.image('mittens','../assets/sprites/BatCat.png');
         game.load.spritesheet('title','../assets/sprites/titleanimation.png', 545, 200);
-        game.load.spritesheet ('sbutton','../assets/buttons/startspritesheet.png',71, 44);
+        game.load.spritesheet ('sbutton','../assets/buttons/startspritesheet.png',71, 44); 
          
         game.load.audio('state1Music', '../assets/audio/bgmusic02.mp3');
     },
@@ -33,6 +33,8 @@ demo.state0.prototype= {
         title.animations.play('tail', 4,true);
         state1Music = game.sound.add('state1Music');
         state1Music.allowMultiple = false;
+        
+        
         
 //        spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     },

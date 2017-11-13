@@ -5,22 +5,26 @@ demo.intro.prototype= {
     preload: function(){
         game.load.image('mittens','../assets/sprites/BatCat.png');
         game.load.image('doubleJump','../assets/images/textdoublejump.png');
-        game.load.image('walkt','../assets/images/textwalk.png');  game.load.image('keys','../assets/sprites/arrowKeys.png');
+        game.load.image('walkt','../assets/images/textwalk.png');  game.load.image('keys','../assets/sprites/arrowkeys.png');
         game.load.image('bg','../assets/images/yellowbg.png');
        
          game.load.spritesheet ('cbutton','../assets/buttons/continuespritesheet.png',107, 44);
         game.load.image('shelfStandard', '../assets/images/shelfStandard.png');
         game.load.spritesheet('mittens2', '../assets/sprites/WalkingM.png', 90, 86);
         
+        game.load.physics('mittensPhysics', '../assets/polygons/Mittens.json');
+        
         
     },
     create: function(){
         //game.stage.backgroundColor = '#B25F55';
 //        game.stage.backgroundColor = '#3d7c48';
+        game.physics.p2.gravity.y = globalGravity;
+        game.physics.p2.restitution = 0;
+        game.physics.p2.world.setGlobalStiffness(1e5);
         game.stage.backgroundColor = '#332e31';
         var bg = game.add.sprite(50,100, 'bg');
         bg.scale.setTo(20, 12);
-        game.add.sprite(100, 400, 'shelfStandard');
         cbutton = game.add.button(game.world.centerX,game.world.centerY +300, 'cbutton', function actionOnClick(){
             game.state.start('state1');
         }, this, 1,0,1,2);
@@ -48,6 +52,43 @@ demo.intro.prototype= {
         var walkt2 = game.add.sprite(game.world.width * 2.8 / 5 + 3 , game.world.height * 3.8 /5, 'walkt')
         walkt2.anchor.x = 0.5;
         walkt2.anchor.y = 0.5;
+        
+        
+        shelf = game.add.sprite(100, 468, 'shelfStandard');
+        game.physics.p2.enable(shelf, false);
+        shelf.body.static = true;
+        
+        
+                            // KEYBOARD //
+        ////////////////////////////////////////////////////
+        // CALLBACK FOR DOUBLE JUMP
+        game.input.keyboard.onUpCallback = function (e) {
+            console.log(e.keyCode)
+            if (e.keyCode == 38){
+                jumpRel = true;
+            } 
+        }          
+        cursor = game.input.keyboard.createCursorKeys();
+        shootButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);       
+        
+                        // MITTENS //
+        ///////////////////////////////////////////////////
+        mittens = game.add.sprite(108, 343, 'mittens2');
+        //mittens = game.add.sprite(1812, 447, 'mittens2');
+        //mittens = game.add.sprite(3360, 263, 'mittens2');
+        updateAnchor(0.5, 0.5, mittens);
+        game.physics.p2.enable(mittens, false);
+        mittens.body.clearShapes();
+        mittens.body.loadPolygon('mittensPhysics', 'ShootingMouth-2', 1, -Math.PI * 2);
+        mittens.frame = 3;
+        mittens.body.fixedRotation = true;
+        mittens.animations.add('left', [0,1,2], 10, true);
+        mittens.animations.add('right', [3,4,5], 10, true);
+        mittens.invincible = false;
+        mittens.flight = false;
+        
+        game.camera.follow(mittens);
+        mittens.body.onBeginContact.add(mittensHit);
 
         
 //        var titleText = game.add.text(game.world.width / 2, 30, {fontsize: '256px', fill: '#FFFFFF', align: 'center'});     
@@ -73,10 +114,10 @@ demo.intro.prototype= {
         spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     },
     update: function(){
-//        if (spaceKey.isDown) {
-//            console.log('SPACE');
-//            game.state.start('state1');
-//        } 
+        moveMittens();
+        if (mittens.y > 500) {
+            mittens.reset(108, 343);
+        }
     }
     
 };
