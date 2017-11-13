@@ -4,7 +4,10 @@ demo.intro = function(){};
 demo.intro.prototype= {
     preload: function(){
         game.load.image('mittens','../assets/sprites/BatCat.png');
+        game.load.image('doubleJump','../assets/images/textdoublejump.png');
+        game.load.image('walkt','../assets/images/textwalk.png');  game.load.image('keys','../assets/sprites/arrowKeys.png');
          game.load.spritesheet ('cbutton','../assets/buttons/continuespritesheet.png',107, 44); 
+        
         
     },
     create: function(){
@@ -23,7 +26,22 @@ demo.intro.prototype= {
         cbutton.input.useHandCursor = true;
         cbutton.scale.setTo(1.5, 1.5);
         
+        var keys = game.add.sprite(game.world.width / 4, game.world.height*3 / 4, 'keys')
+        keys.anchor.x = 0.5;
+        keys.anchor.y = 0.5;
         
+        var doubleJump = game.add.sprite(game.world.width /3 +80, game.world.height * 2.5 /4, 'doubleJump')
+        doubleJump.anchor.x = 0.5;
+        doubleJump.anchor.y = 0.5;
+        
+        var walkt = game.add.sprite(game.world.width / 4 + 50, game.world.height * 3.8 /5, 'walkt')
+        walkt.anchor.x = 0.5;
+        walkt.anchor.y = 0.5;
+        
+        var walkt2 = game.add.sprite(game.world.width * 2.8 / 5 + 3 , game.world.height * 3.8 /5, 'walkt')
+        walkt2.anchor.x = 0.5;
+        walkt2.anchor.y = 0.5;
+
         
 //        var titleText = game.add.text(game.world.width / 2, 30, {fontsize: '256px', fill: '#FFFFFF', align: 'center'});     
 //        updateAnchor(0.5, 0.5, titleText)

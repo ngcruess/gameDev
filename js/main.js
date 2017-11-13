@@ -10,7 +10,7 @@ game.state.add('intro', demo.intro);
 game.state.add('state1', demo.state1);
 game.state.add('state1b', demo.state1b);
 game.state.add('state2', demo.state2);
-game.state.start('state0');
+game.state.start('intro');
 
 /*
 CORE FUNCTIONS
