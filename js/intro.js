@@ -10,7 +10,7 @@ demo.intro.prototype= {
     create: function(){
         //game.stage.backgroundColor = '#B25F55';
 //        game.stage.backgroundColor = '#3d7c48';
-        game.stage.backgroundColor = '#FFFFFF';
+        game.stage.backgroundColor = '#332e31';
         cbutton = game.add.button(game.world.centerX,game.world.centerY +300, 'cbutton', function actionOnClick(){
             game.state.start('state1');
         }, this, 1,0,1,2);
