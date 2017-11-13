@@ -54,7 +54,25 @@ demo.intro.prototype= {
         walkt2.anchor.y = 0.5;
         
         
-        shelf = game.add.sprite(100, 468, 'shelfStandard');
+        shelf = game.add.sprite(200, 468, 'shelfStandard');
+        shelf.scale.setTo(3, 1);
+        game.physics.p2.enable(shelf, false);
+        shelf.body.static = true;
+        
+        shelf = game.add.sprite(500, 328, 'shelfStandard');
+        game.physics.p2.enable(shelf, false);
+        shelf.body.static = true;
+        
+        shelf = game.add.sprite(700, 468, 'shelfStandard');
+        game.physics.p2.enable(shelf, false);
+        shelf.body.static = true;
+        
+        shelf = game.add.sprite(900, 188, 'shelfStandard');
+        game.physics.p2.enable(shelf, false);
+        shelf.body.static = true;
+        
+        shelf = game.add.sprite(1300, 468, 'shelfStandard');
+        shelf.scale.setTo(3, 1);
         game.physics.p2.enable(shelf, false);
         shelf.body.static = true;
         
