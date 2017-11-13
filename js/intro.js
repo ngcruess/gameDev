@@ -6,7 +6,11 @@ demo.intro.prototype= {
         game.load.image('mittens','../assets/sprites/BatCat.png');
         game.load.image('doubleJump','../assets/images/textdoublejump.png');
         game.load.image('walkt','../assets/images/textwalk.png');  game.load.image('keys','../assets/sprites/arrowKeys.png');
-         game.load.spritesheet ('cbutton','../assets/buttons/continuespritesheet.png',107, 44); 
+        game.load.image('bg','../assets/images/yellowbg.png');
+       
+         game.load.spritesheet ('cbutton','../assets/buttons/continuespritesheet.png',107, 44);
+        game.load.image('shelfStandard', '../assets/images/shelfStandard.png');
+        game.load.spritesheet('mittens2', '../assets/sprites/WalkingM.png', 90, 86);
         
         
     },
@@ -14,6 +18,9 @@ demo.intro.prototype= {
         //game.stage.backgroundColor = '#B25F55';
 //        game.stage.backgroundColor = '#3d7c48';
         game.stage.backgroundColor = '#332e31';
+        var bg = game.add.sprite(50,100, 'bg');
+        bg.scale.setTo(20, 12);
+        game.add.sprite(100, 400, 'shelfStandard');
         cbutton = game.add.button(game.world.centerX,game.world.centerY +300, 'cbutton', function actionOnClick(){
             game.state.start('state1');
         }, this, 1,0,1,2);

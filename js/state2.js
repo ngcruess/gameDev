@@ -228,6 +228,9 @@ demo.state2.prototype = {
                 }
             }
         }
+        if (vacuum.health == 0){
+            game.state.start('state0');
+        }
     }
 };
 
