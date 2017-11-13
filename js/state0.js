@@ -1,15 +1,24 @@
-var demo = {}, spaceKey;
+var demo = {}, spaceKey, sbutton;
 var state1Music;
 demo.state0 = function(){};
 demo.state0.prototype= {
     preload: function(){
         game.load.image('mittens','../assets/sprites/BatCat.png');
+        game.load.spritesheet ('sbutton','../assets/buttons/startspritesheet.png',71, 44);
         game.load.audio('state1Music', '../assets/audio/bgmusic02.mp3');
     },
     create: function(){
         //game.stage.backgroundColor = '#B25F55';
         game.stage.backgroundColor = '#3d7c48'; 
         game.physics.startSystem(Phaser.Physics.P2JS);
+        sbutton = game.add.button(game.world.centerX-50, 400, 'sbutton', function actionOnClick(){
+            game.state.start('intro');
+        }, this, 1,0,3,1);
+        sbutton.onInputOver.add(over, this);
+        sbutton.onInputOut.add(out, this);
+        sbutton.onInputUp.add(up, this);
+        sbutton.onInputDown.add(down, this);
+        sbutton.input.useHandCursor = true;
         var titleText = game.add.text(game.world.width / 2, 30, {fontsize: '256px', fill: '#FFFFFF', align: 'center'});     
         updateAnchor(0.5, 0.5, titleText)
         var subtitleText1 = game.add.text(30, 70, {fontsize: '128px', fill: '#CCCCCC', align: 'center'});

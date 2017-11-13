@@ -6,6 +6,7 @@ var mittens, cursor, jumps, platform, bullets, vbullets, fireRate = 200, shotTim
     mittensRunSpeed = 400, bulletSpeed = 700, vbulletSpeed = 700, yAxis = p2.vec2.fromValues(0, 1), globalGravity = 1200, jumps, death, state1Deaths = 0;
 
 game.state.add('state0', demo.state0);
+game.state.add('intro', demo.intro);
 game.state.add('state1', demo.state1);
 game.state.add('state1b', demo.state1b);
 game.state.add('state2', demo.state2);
@@ -228,4 +229,16 @@ function mittensHit(body, bodyB, shapeA, shapeB, equation) {
             //mittens.body.velocity.y = 0;
         }
     }
+}
+function up(){
+    console.log('button up', arguments);
+}
+function over(){
+    console.log('button over');
+}
+function out(){
+    console.log('button out');
+}
+function down(){
+    console.log('button down');
 }
