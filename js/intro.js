@@ -7,6 +7,7 @@ demo.intro.prototype= {
         game.load.image('doubleJump','../assets/images/textdoublejump.png');
         game.load.image('walkt','../assets/images/textwalk.png'); game.load.image('keys','../assets/sprites/arrowkeys.png');
         game.load.image('bg','../assets/images/yellowbg.png');
+        game.load.image('square', '../assets/images/emptySquare.png');
        
         game.load.spritesheet ('cbutton','../assets/buttons/continuespritesheet.png',107, 44);
         game.load.image('shelfStandard', '../assets/images/shelfStandard.png');
@@ -53,7 +54,8 @@ demo.intro.prototype= {
         walkt2.anchor.x = 0.5;
         walkt2.anchor.y = 0.5;
         
-        
+                        //PLATFORMS//
+        ///////////////////////////////////////////////////
         shelf = game.add.sprite(200, 468, 'shelfStandard');
         shelf.scale.setTo(3, 1);
         game.physics.p2.enable(shelf, false);
@@ -67,7 +69,7 @@ demo.intro.prototype= {
         game.physics.p2.enable(shelf, false);
         shelf.body.static = true;
         
-        shelf = game.add.sprite(900, 188, 'shelfStandard');
+        shelf = game.add.sprite(900, 196, 'shelfStandard');
         game.physics.p2.enable(shelf, false);
         shelf.body.static = true;
         
@@ -75,6 +77,26 @@ demo.intro.prototype= {
         shelf.scale.setTo(3, 1);
         game.physics.p2.enable(shelf, false);
         shelf.body.static = true;
+        ///////////////////////////////////////////////////
+        
+                            //INVISIBLE BOUNDS//
+        ///////////////////////////////////////////////////
+        var box = game.add.sprite(45, 290, 'square');
+        box.scale.setTo(1, 38);
+        game.physics.p2.enable(box, false);
+        box.body.static = true;
+        
+        box = game.add.sprite(750, 95, 'square');
+        box.scale.setTo(150, 1);
+        game.physics.p2.enable(box, false);
+        box.body.static = true;
+        
+        box = game.add.sprite(1455, 290, 'square');
+        box.scale.setTo(1, 38);
+        game.physics.p2.enable(box, false);
+        box.body.static = true;
+        
+        ///////////////////////////////////////////////////
         
         
                             // KEYBOARD //
