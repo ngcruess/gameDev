@@ -3,14 +3,14 @@ var game = new Phaser.Game(1500, 800, Phaser.AUTO);
 //Variables to be used in many states
 var mittens, cursor, jumps, platform, bullets, vbullets, fireRate = 200, shotTimer = 0, vfireRate = 200, vshotTimer = 0, 
     mittensFacingLeft = false, mittensJumpVelocity = 600, 
-    mittensRunSpeed = 400, bulletSpeed = 700, vbulletSpeed = 700, yAxis = p2.vec2.fromValues(0, 1), globalGravity = 1200, jumps, death, state1Deaths = 0;
+    mittensRunSpeed = 400, bulletSpeed = 700, vbulletSpeed = 700, yAxis = p2.vec2.fromValues(0, 1), globalGravity = 1200, jumps = 2, jumpRel = true, death, state1Deaths = 0;
 
 game.state.add('state0', demo.state0);
 game.state.add('intro', demo.intro);
 game.state.add('state1', demo.state1);
 game.state.add('state1b', demo.state1b);
 game.state.add('state2', demo.state2);
-game.state.start('state0');
+game.state.start('state1b');
 
 /*
 CORE FUNCTIONS
@@ -35,14 +35,13 @@ function moveMittens() {
         mittens.animations.stop();
     }
     if (cursor.up.isDown || game.input.keyboard.isDown(Phaser.Keyboard.W)) {
-        console.log('W or UP');
+        //console.log('W or UP');
         if (mittens.flight) {
             mittens.body.moveUp(mittensJumpVelocity); 
         }
         else if (jumpRel) {                
             mittensJump();
             jumpRel = false;
-            console.log(jumps);
         }
     }
 }
@@ -83,7 +82,7 @@ function killMittens(mittens) {
     game.state.start(game.state.current);
     //music.stop();
     //bossMusic.stop();
-    death.play();
+    //death.play();
 }
 function mittensShoot() {
     if (game.time.now >= shotTimer) {
@@ -109,6 +108,7 @@ function mittensShoot() {
 
 // ADDED DOUBLE JUMP
 function mittensJump() {
+    console.log(jumps);
     
     if (bottomTouching(mittens)) {
         jumps = 2;
@@ -116,7 +116,7 @@ function mittensJump() {
         jumpTime = game.time.now
         jumps --;        
     }
-    else if (jumps > 0 && game.time.now > jumpTime + 200 && game.time.now < jumpTime+700) {
+    else if (jumps == 1  && game.time.now > jumpTime + 200 && game.time.now < jumpTime+700) {
         mittens.body.moveUp(mittensJumpVelocity);
         jumps = jumps -1;
     }
@@ -128,7 +128,6 @@ function mittensJump() {
 }
 function bottomTouching(character) {
     var result = false;
-    //jumps = 2;
 
     for (var i=0; i < game.physics.p2.world.narrowphase.contactEquations.length; i++)
     {
@@ -167,11 +166,12 @@ function bulletHit(target) {
                 }
                 bullet.kill();
             }
-            else if (bullets.children.indexOf(target) > -1) {
+            else if (bullets.children.indexOf(target) > -1) { 
                 target.kill();
             }
             else {
                 bullet.kill();
+                
             }
         }
         else if (target == vacuum.body) {

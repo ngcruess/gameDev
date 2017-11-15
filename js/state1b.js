@@ -162,6 +162,11 @@ demo.state1b.prototype= {
         if (mittens.y > 500) {
             mittens.reset(108, 343);
         }
+        
+        if (bottomTouching(mittens)) {
+            jumps = 2;
+        }
+        
     }
 };
 

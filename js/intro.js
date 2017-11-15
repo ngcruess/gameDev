@@ -100,7 +100,7 @@ demo.intro.prototype= {
         ////////////////////////////////////////////////////
         // CALLBACK FOR DOUBLE JUMP
         game.input.keyboard.onUpCallback = function (e) {
-            console.log(e.keyCode)
+            //console.log(e.keyCode)
             if (e.keyCode == 38){
                 jumpRel = true;
             } 
@@ -132,6 +132,10 @@ demo.intro.prototype= {
         moveMittens();
         if (mittens.y > 500) {
             mittens.reset(108, 343);
+        }
+        
+        if (bottomTouching(mittens)) {
+            jumps = 2;
         }
     }
     

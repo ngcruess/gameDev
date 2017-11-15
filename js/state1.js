@@ -339,6 +339,9 @@ demo.state1.prototype = {
         if (mittens.x > 4600){
             game.state.start("state1b");
         }
+        if (bottomTouching(mittens)) {
+            jumps = 2;
+        }
     }
 };
 function updateTimer() {

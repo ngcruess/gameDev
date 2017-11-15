@@ -27,8 +27,8 @@ demo.state2.prototype = {
         game.physics.p2.world.setGlobalStiffness(1e5);
         game.world.setBounds(0, 0, 1500, 1200);
         
-        bossMusic = game.add.audio('bossMusic');
-        bossMusic.play();
+        //bossMusic = game.add.audio('bossMusic');
+        //bossMusic.play();
         
         gunShot = game.add.audio('gun');
         
@@ -193,6 +193,10 @@ demo.state2.prototype = {
     update: function(){
         moveMittens();
         moveVacuum();
+        
+        if (bottomTouching(mittens)) {
+            jumps = 2;
+        }
         //healthText.text = 'Health: ' + vacuum.health;
         healthBarFill.scale.setTo(healthBarWidth * vacuum.health, 2)
         if (shootButton.isDown) {
@@ -208,12 +212,13 @@ demo.state2.prototype = {
             killMittens();
         }
         if (stage === 2) {
-            console.log('aoeSide: ' + aoeSide);
-            console.log('aoeTime: ' + aoeTime);
-            console.log(game.time.now);
+            //console.log('aoeSide: ' + aoeSide);
+            //console.log('aoeTime: ' + aoeTime);
+            //console.log(game.time.now);
             if (aoeSide === 'left' && game.time.now > aoeTime + 7500) {
                 if (mittens.x <= 750) {
                     killMittens();
+                    stage = 1;
                 }
                 else {
                     aoeDeath('right');
@@ -222,6 +227,7 @@ demo.state2.prototype = {
             if (aoeSide === 'right' && game.time.now > aoeTime + 7500) {
                 if (mittens.x >= 750) {
                     killMittens();
+                    stage = 1;
                 }
                 else {
                     aoeDeath('left');
