@@ -40,7 +40,7 @@ demo.state1b.prototype= {
         cbutton.input.useHandCursor = true;
         cbutton.scale.setTo(1.5, 1.5);
         
-        var spacebar = game.add.sprite(game.world.width / 4, game.world.height*3 / 4, 'spacebar')
+        var spacebar = game.add.sprite(0,0, 'spacebar')
         spacebar.anchor.x = 0.5;
         spacebar.anchor.y = 0.5;
         
@@ -104,7 +104,7 @@ demo.state1b.prototype= {
         // CALLBACK FOR DOUBLE JUMP
         game.input.keyboard.onUpCallback = function (e) {
             console.log(e.keyCode)
-            if (e.keyCode == 38){
+            if (e.keyCode == 38 || e.keyCode == 87){
                 jumpRel = true;
             } 
         }          
