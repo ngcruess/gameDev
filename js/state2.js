@@ -35,7 +35,7 @@ demo.state2.prototype = {
         //Input feedback
         game.input.keyboard.onUpCallback = function (e) {
             console.log(e.keyCode)
-            if (e.keyCode == 38){
+            if (e.keyCode == 38 || e.keyCode == 87){
                 jumpRel = true;
             }            
         }

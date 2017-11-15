@@ -35,7 +35,7 @@ function moveMittens() {
         mittens.animations.stop();
     }
     if (cursor.up.isDown || game.input.keyboard.isDown(Phaser.Keyboard.W)) {
-        //console.log('W or UP');
+        console.log('W or UP\n' + jumpRel);
         if (mittens.flight) {
             mittens.body.moveUp(mittensJumpVelocity); 
         }
