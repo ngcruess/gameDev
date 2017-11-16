@@ -5,7 +5,8 @@ demo.state1b.prototype= {
         game.load.audio('bossMusic', '../assets/audio/bossMusic.mp3');
         game.load.image('mittens','../assets/sprites/BatCat.png');
         game.load.image('doubleJump','../assets/images/textdoublejump.png');
-        game.load.image('shoot','../assets/images/textshoot.png'); game.load.image('spacebar','../assets/sprites/spacebar.png');
+        game.load.image('shoot','../assets/images/textshoot.png'); 
+        game.load.image('shot', '../assets/images/projectile.png'); game.load.image('spacebar','../assets/sprites/spacebar.png');
         game.load.image('bg','../assets/images/yellowbg.png');
         game.load.image('square', '../assets/images/emptySquare.png');
        
@@ -40,15 +41,11 @@ demo.state1b.prototype= {
         cbutton.input.useHandCursor = true;
         cbutton.scale.setTo(1.5, 1.5);
         
-        var spacebar = game.add.sprite(0,0, 'spacebar')
+        var spacebar = game.add.sprite(300, 570, 'spacebar')
         spacebar.anchor.x = 0.5;
         spacebar.anchor.y = 0.5;
         
-        var doubleJump = game.add.sprite(game.world.width /3 +80, game.world.height * 2.5 /4, 'doubleJump')
-        doubleJump.anchor.x = 0.5;
-        doubleJump.anchor.y = 0.5;
-        
-        var shoot = game.add.sprite(game.world.width / 4 + 50, game.world.height * 3.8 /5, 'shoot')
+        var shoot = game.add.sprite(300, 630, 'shoot')
         shoot.anchor.x = 0.5;
         shoot.anchor.y = 0.5;
         
@@ -129,31 +126,20 @@ demo.state1b.prototype= {
         
         game.camera.follow(mittens);
         mittens.body.onBeginContact.add(mittensHit);
-
         
-//        var titleText = game.add.text(game.world.width / 2, 30, {fontsize: '256px', fill: '#FFFFFF', align: 'center'});     
-//        updateAnchor(0.5, 0.5, titleText)
-//        var subtitleText1 = game.add.text(30, 70, {fontsize: '128px', fill: '#CCCCCC', align: 'center'});
-//        var subtitleText2 = game.add.text(30, 110, {fontsize: '128px', fill: '#CCCCCC', align: 'center'});
-//        var subtitleText3 = game.add.text(30, 180, {fontsize: '128px', fill: '#CCCCCC', align: 'center'});
-//        var subtitleText4 = game.add.text(30, 250, {fontsize: '128px', fill: '#CCCCCC', align: 'center'});
-//        var actionPrompt = game.add.text(game.world.width /2 , game.world.height - 100, {fontsize: '128px', fill: '#CCCCCC', align: 'center'});
-//        updateAnchor(0.5, 0.5, actionPrompt);
-//        
-      
-//        subtitleText1.text = "You are Mittens, the mischievously imaginative warrior cat. ";
-//        subtitleText2.text = "Use the arrow keys to navigate the house. Press the up arrow to jump, \nand again to jump once while in the air."
-//        subtitleText3.text = "Press space to attack, but be careful! Some enemies are too powerful \nto be destroyed."
-//        subtitleText4.text = "Always remember: the floor is lava!"
-//        actionPrompt.text = "[Press SPACE to continue]"
-//        
-        //var mittens = game.add.sprite(game.world.width / 2, game.world.height /2, 'mittens');
-//        updateAnchor(0.5, 0.5, mittens);
-//        mittens.scale.setTo(1.25, 1.25);
-//        
-      
-        
-        
+        //Bullets        
+        bullets = game.add.group();
+        bullets.enableBody = true;
+        bullets.physicsBodyType = Phaser.Physics.P2JS;
+        bullets.createMultiple(100, 'shot', false);
+        bullets.setAll('owner', 'm');
+        bullets.setAll('anchor.x', 0.5);
+        bullets.setAll('anchor.y', 0.5);
+        bullets.setAll('outOfBoundsKill', true);
+        bullets.setAll('checkWorldBounds', true);
+        bullets.forEach(function(bullet) {
+            bullet.body.onBeginContact.add(bulletHit, bullet);
+        })     
     },
     update: function(){
         
@@ -165,6 +151,9 @@ demo.state1b.prototype= {
         
         if (bottomTouching(mittens)) {
             jumps = 2;
+        }
+        if (shootButton.isDown) {
+            mittensShoot();
         }
         
     }

@@ -100,7 +100,7 @@ function mittensShoot() {
             bullet.reset(mittens.x + 50, mittens.y);
             bullet.body.moveRight(bulletSpeed); 
         }
-        gunShot.play(); 
+        //gunShot.play(); 
     }
 }
 
@@ -156,7 +156,7 @@ function bulletHit(target) {
     }
     else{
         bullet = this;
-        if (vbullets.children.indexOf(bullet) > -1) {
+        if (vbullets != null && vbullets.children.indexOf(bullet) > -1) {
             if (target == mittens.body) {
                 //This should do something other than killing mittens -- 
                 //probably reset him to another state where the player can then enter 
@@ -174,7 +174,7 @@ function bulletHit(target) {
                 
             }
         }
-        else if (target == vacuum.body) {
+        else if (vacuum != null && target == vacuum.body) {
             bullet.kill();
             vacuum.health -= .005;
             //healthText = vacuum.health;
