@@ -185,14 +185,14 @@ function bulletHit(target) {
             }
         }
         //For targets in state1b shooting tutorial
-        else if (targets.children.indexOf(target.sprite) > -1) {
+        else if (targets != undefined && targets.children.indexOf(target.sprite) > -1) {
             target.sprite.kill();
             bullet.kill();
             targetsKilled ++;
         }
         else if (target != mittens.body) {
             bullet.kill();
-        }        
+        }
     }
 }
 function turretBulletHit(target) {

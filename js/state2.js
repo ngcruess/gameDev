@@ -1,4 +1,4 @@
-var vacuum, jumpRel, timer, healthText, healthBarWidth = 29.6, healthBarFill, bossMusic, vacTimer, stage = 1, vacBulletPos = 200, aoeTime, aoeSide;
+var vacuum, jumpRel, timer, healthText, healthBarWidth = 44.7, healthBarFill, bossMusic, vacTimer, stage = 1, vacBulletPos = 200, aoeTime, aoeSide;
 
 demo.state2 = function() {};
 demo.state2.prototype = {
@@ -96,7 +96,7 @@ demo.state2.prototype = {
         platform.body.static = true;
         
         healthBarBorder = game.add.sprite(20, 20, 'healthBarBorder');
-        healthBarBorder.scale.setTo(30, 3);
+        healthBarBorder.scale.setTo(45, 3);
         healthBarBorder.fixedToCamera = true;
         healthBarFill = game.add.sprite(25, 24, 'healthBarFill');
         healthBarFill.scale.setTo(healthBarWidth, 2);
