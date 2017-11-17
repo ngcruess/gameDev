@@ -1,4 +1,4 @@
-var state2Music, targets, targetsKilled = 0, cbutton;
+var state2Music, targets, targetsKilled = 0;
 demo.state1b = function(){};
 demo.state1b.prototype= {
     preload: function(){                

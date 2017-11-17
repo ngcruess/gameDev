@@ -314,6 +314,18 @@ demo.state1.prototype = {
         mouse.rightXLim = 4406;
         mouse.yLim = 188;
         mouse.speed = 1000;        
+        
+        mouse = mice.create(5400, 450, 'mouse');
+        game.physics.p2.enable(mouse, false);
+        mouse.body.clearShapes();
+        mouse.body.loadPolygon('mousePhysicsL', 'ToyMouse-1', 1, -Math.PI * 2);
+        mouse.body.fixedRotation = true;
+        mouse.id = 8;
+        mouse.movingRight = true;
+        mouse.leftXLim = 3800;
+        mouse.rightXLim = 4406;
+        mouse.yLim = 188;
+        mouse.speed = 1000;        
         ///////////////////////////////////////////////////
         
                         //BULLETS//
@@ -367,7 +379,7 @@ function moveMice() {
                 mouse.reset(mouse.leftXLim, mouse.y);
             }
         }
-        else {
+        else if (mouse.id != 8) {
             if (mouse.movingRight && mouse.x < mouse.rightXLim) {
                 mouse.body.moveRight(mouse.speed);
             }
@@ -384,6 +396,11 @@ function moveMice() {
             }
             if (mouse.x > mouse.rightXLim + 30 || mouse.x < mouse.leftXLim - 10 || mouse.y < mouse.yLim - 10 || mouse.y > mouse.yLim + 10) {
                 mouse.reset(mouse.leftXLim, mouse.yLim);
+            }
+        }
+        else {
+            if (mittens.x > 4950) {
+                mouse.body.moveLeft(mouse.speed);
             }
         }
     }
