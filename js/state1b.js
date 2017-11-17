@@ -1,4 +1,4 @@
-var state2Music, targets, targetsKilled = 0;
+var state2Music, targets, targetsKilled = 0, cbutton;
 demo.state1b = function(){};
 demo.state1b.prototype= {
     preload: function(){                
@@ -16,8 +16,10 @@ demo.state1b.prototype= {
         game.load.physics('mittensPhysics', '../assets/polygons/Mittens.json');
         
     },
-    create: function(){
-        
+    create: function(){        
+        game.physics.p2.gravity.y = globalGravity;
+        game.physics.p2.restitution = 0;
+        game.physics.p2.world.setGlobalStiffness(1e5);
         state2Music = game.sound.add('bossMusic');
         state2Music.allowMultiple = false;
         game.stage.backgroundColor = '#332e31';
