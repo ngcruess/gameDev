@@ -10,6 +10,7 @@ game.state.add('intro', demo.intro);
 game.state.add('livingRoomTitle', demo.livingRoomTitle);
 game.state.add('state1', demo.state1);
 game.state.add('state1b', demo.state1b);
+game.state.add('state2Title', demo.state2Title);
 game.state.add('state2', demo.state2);
 game.state.start('state0');
 

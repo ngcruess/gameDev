@@ -27,7 +27,7 @@ demo.state1b.prototype= {
         var bg = game.add.sprite(50,100, 'bg');
         bg.scale.setTo(20, 12);
         cbutton = game.add.button(game.world.centerX,game.world.centerY +300, 'cbutton', function actionOnClick(){
-            game.state.start('state2');
+            game.state.start('state2Title');
             state2Music.play();
             state2Music.loopFull();
         }, this, 1,0,1,2);
@@ -175,7 +175,7 @@ demo.state1b.prototype= {
             mittensShoot();
         }
         if (targetsKilled > 3) {
-            game.state.start('state2');
+            game.state.start('state2Title');
         }
     }
 };
