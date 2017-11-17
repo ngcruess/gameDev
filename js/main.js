@@ -152,7 +152,7 @@ function bottomTouching(character) {
     return result;
 }
 function bulletHit(target) {
-    if (target === null) {
+    if (target == null) {
         bullet.destroy();
     }
     else{
@@ -182,6 +182,12 @@ function bulletHit(target) {
             if (vacuum.health <= 0){
                 vacuum.kill()
             }
+        }
+        //For targets in state1b shooting tutorial
+        else if (targets.children.indexOf(target.sprite) > -1) {
+            target.sprite.kill();
+            bullet.kill();
+            targetsKilled ++;
         }
         else if (target != mittens.body) {
             bullet.kill();

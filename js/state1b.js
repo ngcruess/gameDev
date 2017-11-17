@@ -1,14 +1,13 @@
-var state2Music, cbutton;
+var state2Music, targets, targetsKilled = 0;
 demo.state1b = function(){};
 demo.state1b.prototype= {
     preload: function(){                
         game.load.audio('bossMusic', '../assets/audio/bossMusic.mp3');
-        game.load.image('mittens','../assets/sprites/BatCat.png');
-        game.load.image('doubleJump','../assets/images/textdoublejump.png');
         game.load.image('shoot','../assets/images/textshoot.png'); 
         game.load.image('shot', '../assets/images/projectile.png'); game.load.image('spacebar','../assets/sprites/spacebar.png');
         game.load.image('bg','../assets/images/yellowbg.png');
         game.load.image('square', '../assets/images/emptySquare.png');
+        game.load.image('target', '../assets/images/target.png');
        
         game.load.spritesheet ('cbutton','../assets/buttons/continuespritesheet.png',107, 44);
         game.load.image('shelfStandard', '../assets/images/shelfStandard.png');
@@ -91,8 +90,28 @@ demo.state1b.prototype= {
         box = game.add.sprite(1455, 290, 'square');
         box.scale.setTo(1, 38);
         game.physics.p2.enable(box, false);
-        box.body.static = true;
+        box.body.static = true;        
+        ///////////////////////////////////////////////////
         
+                              //TARGETS//
+        ///////////////////////////////////////////////////
+        targets = game.add.group();
+        var target = targets.create(500, 276, 'target');
+        game.physics.p2.enable(target, false);
+        target.body.static = true;
+        
+        var target = targets.create(700, 416, 'target');
+        game.physics.p2.enable(target, false);
+        target.body.static = true;
+        
+        var target = targets.create(900, 144, 'target');
+        game.physics.p2.enable(target, false);
+        target.body.static = true;
+        
+        var target = targets.create(1250, 416, 'target');
+        game.physics.p2.enable(target, false);
+        target.movingUp = true;
+        target.body.data.gravityScale = 0;
         ///////////////////////////////////////////////////
         
         
@@ -141,10 +160,10 @@ demo.state1b.prototype= {
             bullet.body.onBeginContact.add(bulletHit, bullet);
         })     
     },
-    update: function(){
-        
-        //state1Music.stop();
+    update: function(){        
+        state1Music.stop();
         moveMittens();
+        moveTarget();
         if (mittens.y > 500) {
             mittens.reset(108, 343);
         }
@@ -155,7 +174,27 @@ demo.state1b.prototype= {
         if (shootButton.isDown) {
             mittensShoot();
         }
-        
+        if (targetsKilled > 3) {
+            game.state.start('state2');
+        }
     }
 };
+function moveTarget() {
+    target = targets.children[3];
+    if (target.x != 1250) {
+        target.reset(1250, target.y);
+    }
+    if (target.movingUp && target.y > 138) {
+        target.body.moveUp(200);
+    }
+    else if (target.y <= 416 && !target.movingUp) {
+        target.body.moveDown(200);
+    }
+    if (target.y <= 138) {
+        target.movingUp = false;
+    }
+    if (target.y >= 416) {
+        target.movingUp = true;
+    }
+}
 
