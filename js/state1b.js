@@ -20,9 +20,6 @@ demo.state1b.prototype= {
         
         state2Music = game.sound.add('bossMusic');
         state2Music.allowMultiple = false;
-        game.physics.p2.gravity.y = globalGravity;
-        game.physics.p2.restitution = 0;
-        game.physics.p2.world.setGlobalStiffness(1e5);
         game.stage.backgroundColor = '#332e31';
         var bg = game.add.sprite(50,100, 'bg');
         bg.scale.setTo(20, 12);
