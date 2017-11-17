@@ -18,9 +18,6 @@ game.state.start('state0');
 CORE FUNCTIONS
 These are functions which will be reused in many states
 */
-
-cursor = game.input.keyboard.createCursorKeys();
-var shootButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 function moveMittens() {
     if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT) || game.input.keyboard.isDown(Phaser.Keyboard.D)){
             mittensFacingLeft = false;
