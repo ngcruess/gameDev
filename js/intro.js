@@ -7,6 +7,7 @@ demo.intro.prototype= {
         game.load.image('walkt','../assets/images/textwalk.png'); game.load.image('keys','../assets/sprites/arrowkeys.png');
         game.load.image('bg','../assets/images/yellowbg.png');
         game.load.image('square', '../assets/images/emptySquare.png');
+        game.load.image('flag', '../assets/images/flag.png');
        
         game.load.spritesheet ('cbutton','../assets/buttons/continuespritesheet.png',107, 44);
         game.load.image('shelfStandard', '../assets/images/shelfStandard.png');
@@ -76,6 +77,12 @@ demo.intro.prototype= {
         shelf.body.static = true;
         ///////////////////////////////////////////////////
         
+                                //FLAG//
+        ///////////////////////////////////////////////////
+        flag = game.add.sprite(1410, 392, 'flag')
+        updateAnchor(0.5, 0.5, flag);
+        ///////////////////////////////////////////////////
+        
                             //INVISIBLE BOUNDS//
         ///////////////////////////////////////////////////
         var box = game.add.sprite(45, 290, 'square');
@@ -136,6 +143,9 @@ demo.intro.prototype= {
         
         if (bottomTouching(mittens)) {
             jumps = 2;
+        }
+        if (mittens.x >= 1412 && mittens.y >= 360) {
+            game.state.start('state1');
         }
     }
     
