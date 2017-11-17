@@ -3,7 +3,6 @@ var state1Music;
 demo.state0 = function(){};
 demo.state0.prototype= {
     preload: function(){
-        game.load.image('mittens','../assets/sprites/BatCat.png');
         game.load.spritesheet('title','../assets/sprites/titleanimation.png', 545, 200);
         game.load.spritesheet ('sbutton','../assets/buttons/startspritesheet.png',71, 44); 
          
