@@ -25,7 +25,7 @@ demo.intro.prototype= {
         var bg = game.add.sprite(50,100, 'bg');
         bg.scale.setTo(20, 12);
         cbutton = game.add.button(game.world.centerX,game.world.centerY +300, 'cbutton', function actionOnClick(){
-            game.state.start('state1');
+            game.state.start('livingRoomTitle');
         }, this, 1,0,1,2);
         cbutton.anchor.x = 0.5;
         cbutton.anchor.y = 0.5;
@@ -145,7 +145,7 @@ demo.intro.prototype= {
             jumps = 2;
         }
         if (mittens.x >= 1412 && mittens.y >= 360) {
-            game.state.start('state1');
+            game.state.start('livingRoomTitle');
         }
     }
     

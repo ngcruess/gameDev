@@ -7,6 +7,7 @@ var mittens, cursor, jumps, platform, bullets, vbullets, fireRate = 200, shotTim
 
 game.state.add('state0', demo.state0);
 game.state.add('intro', demo.intro);
+game.state.add('livingRoomTitle', demo.livingRoomTitle);
 game.state.add('state1', demo.state1);
 game.state.add('state1b', demo.state1b);
 game.state.add('state2', demo.state2);
