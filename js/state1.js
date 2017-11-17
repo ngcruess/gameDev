@@ -23,7 +23,7 @@ demo.state1.prototype = {
         
                     // P2 PHYSICS AND ENVIRONMENT //
         ////////////////////////////////////////////////////
-        game.world.setBounds(0, 0, 6400, 800);
+        game.world.setBounds(0, 0, 6000, 800);
         game.stage.backgroundColor = '#B25F55';
         game.physics.p2.gravity.y = globalGravity;
         game.physics.p2.restitution = 0;
@@ -137,6 +137,12 @@ demo.state1.prototype = {
         
         shelf = game.add.sprite(4120, 216, 'shelfStandard');
         shelf.scale.setTo(6.40, 1);
+        game.physics.p2.enable(shelf, false);
+        //shelf.body.setMaterial(platformMaterial);
+        shelf.body.static = true;
+        
+        shelf = game.add.sprite(5275, 516, 'shelfStandard');
+        shelf.scale.setTo(7.0, 1);
         game.physics.p2.enable(shelf, false);
         //shelf.body.setMaterial(platformMaterial);
         shelf.body.static = true;
@@ -336,7 +342,7 @@ demo.state1.prototype = {
         }
         moveMice();     
         updateTimer();
-        if (mittens.x > 4600){
+        if (mittens.x > 5575){
             game.state.start("state1b");
         }
         if (bottomTouching(mittens)) {
