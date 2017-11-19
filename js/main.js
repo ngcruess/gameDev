@@ -248,3 +248,80 @@ function out(){
 function down(){
     console.log('button down');
 }
+function updateTimer() {
+    minutes = Math.floor(game.time.now/60000)% 60;
+    seconds = Math.floor(game.time.now/1000) % 60;
+    milliseconds = Math.floor(game.time.now) % 100;
+    
+    if (milliseconds < 10) { milliseconds = "0" + milliseconds};
+    if (seconds < 10) { seconds = '0' + seconds};
+    if (minutes < 10) { minutes = '0' + minutes};
+    timer.setText(minutes + ":" + seconds + ":" + milliseconds);    
+}
+function moveMice() {
+    for (var i = 0, len = mice.children.length; i < len; i++) {
+        var mouse = mice.children[i];
+        if (mouse.id == 3 || mouse.id == 6) {
+            var y = mouse.y;
+            mouse.body.velocity.x = 0;
+            if (bottomTouching(mouse)) {
+                mouse.body.moveUp(1000);
+            }
+            if (Math.abs(mouse.x - mouse.leftXLim) > 20) {
+                mouse.reset(mouse.leftXLim, mouse.y);
+            }
+        }
+        else if (mouse.id != 8) {
+            if (mouse.movingRight && mouse.x < mouse.rightXLim) {
+                mouse.body.moveRight(mouse.speed);
+            }
+            else if (mouse.x > mouse.leftXLim) {
+                mouse.body.moveLeft(mouse.speed);
+            }
+            if (mouse.x >= mouse.rightXLim) {
+                mouse.movingRight = false;
+                mouse.frame = 0;
+            }
+            else if (mouse.x <= mouse.leftXLim) {
+                mouse.movingRight = true;
+                mouse.frame = 4;
+            }
+            if (mouse.x > mouse.rightXLim + 30 || mouse.x < mouse.leftXLim - 10 || mouse.y < mouse.yLim - 10 || mouse.y > mouse.yLim + 10) {
+                mouse.reset(mouse.leftXLim, mouse.yLim);
+            }
+        }
+        else {
+            if (mittens.x > 4950) {
+                mouse.body.moveLeft(mouse.speed);
+            }
+        }
+    }
+}
+function turretShoot() {
+    for (var i = 0, len = turrets.children.length; i < len; i++){
+        var turret = turrets.children[i];
+            var turretBullet = turretBullets.getFirstExists(false);
+            game.physics.p2.enable(turretBullet, false);
+            turretBullet.body.data.gravityScale = 0;
+            turretBullet.body.mass = 1;
+            turretBullet.body.onBeginContact.add(turretBulletHit, turretBullet);
+            turretBullet.reset(turret.x - 25, turret.y - 12); 
+            turretBullet.body.moveLeft(700);  
+        
+            turretBullet = turretBullets.getFirstExists(false);
+            game.physics.p2.enable(turretBullet, false);
+            turretBullet.body.data.gravityScale = 0;
+            turretBullet.body.mass = 1;
+            turretBullet.body.onBeginContact.add(turretBulletHit, turretBullet);
+            turretBullet.reset(turret.x + 50, turret.y - 12); 
+            turretBullet.body.moveRight(700); 
+        
+            turretBullet = turretBullets.getFirstExists(false);
+            game.physics.p2.enable(turretBullet, false);
+            turretBullet.body.data.gravityScale = 0;
+            turretBullet.body.mass = 1;
+            turretBullet.body.onBeginContact.add(turretBulletHit, turretBullet);
+            turretBullet.reset(turret.x, turret.y - 40); 
+            turretBullet.body.moveUp(700); 
+    }
+}
