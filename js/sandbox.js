@@ -1,3 +1,5 @@
+var mittens;
+
 demo.sandbox = function() {};
 demo.sandbox.prototype = {
     preload: function() {
@@ -9,8 +11,9 @@ demo.sandbox.prototype = {
         
                     // P2 PHYSICS AND ENVIRONMENT //
         ////////////////////////////////////////////////////
+        game.physics.startSystem(Phaser.Physics.P2JS);
         game.world.setBounds(0, 0, 6000, 800);
-        game.stage.backgroundColor = '#FFFFFF';
+        game.stage.backgroundColor = '#CCCCCC';
         game.physics.p2.gravity.y = globalGravity;
         game.physics.p2.restitution = 0;
         game.physics.p2.world.setGlobalStiffness(1e5);
