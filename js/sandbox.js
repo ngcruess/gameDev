@@ -6,6 +6,7 @@ demo.sandbox.prototype = {
         game.load.image('shelfStandard', '../assets/images/shelfStandard.png');
         game.load.spritesheet('mittens2', '../assets/sprites/WalkingM.png', 90, 86);
         game.load.physics('mittensPhysics', '../assets/polygons/Mittens.json');
+        game.load.image('grid', '../assets/images/grid.png');
     },
     create: function() {
         
@@ -20,8 +21,9 @@ demo.sandbox.prototype = {
         
         timer = game.add.text(1375,0, "00:00:00");
         timer.fixedToCamera = true;
-        ////////////////////////////////////////////////////
         
+        var grid = game.add.sprite(0, 0, 'grid');
+        ////////////////////////////////////////////////////        
         
                             // KEYBOARD //
         ////////////////////////////////////////////////////
@@ -37,9 +39,17 @@ demo.sandbox.prototype = {
         shootButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         ////////////////////////////////////////////////////
         
+                        //PLATFORMS//
+        ////////////////////////////////////////////////////
+        shelf = game.add.sprite(304, 400, 'shelfStandard');
+        shelf.scale.setTo(.32, 25);
+        game.physics.p2.enable(shelf, false);
+        shelf.body.static = true;
+        ////////////////////////////////////////////////////
+        
         
                         // MITTENS //
-        ///////////////////////////////////////////////////
+        ////////////////////////////////////////////////////
         mittens = game.add.sprite(100, 100, 'mittens2');
         updateAnchor(0.5, 0.5, mittens);
         game.physics.p2.enable(mittens, false);
