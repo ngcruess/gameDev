@@ -85,7 +85,7 @@ demo.sandbox.prototype = {
         orb.leftXLim = 128;
         orb.rightXLim = 272;
         orb.yLim = 128;
-        orb.speed = 200;
+        orb.speed = 100;
         
         orb = orbs.create(224, 160, 'orb');
         game.physics.p2.enable(orb, false);
@@ -96,7 +96,7 @@ demo.sandbox.prototype = {
         orb.leftXLim = 128;
         orb.rightXLim = 272;
         orb.yLim = 160;
-        orb.speed = 200;
+        orb.speed = 100;
         
         orb = orbs.create(192, 192, 'orb');
         game.physics.p2.enable(orb, false);
@@ -107,7 +107,7 @@ demo.sandbox.prototype = {
         orb.leftXLim = 128;
         orb.rightXLim = 272;
         orb.yLim = 192;
-        orb.speed = 200;
+        orb.speed = 100;
         
         orb = orbs.create(160, 224, 'orb');
         game.physics.p2.enable(orb, false);
@@ -118,7 +118,7 @@ demo.sandbox.prototype = {
         orb.leftXLim = 128;
         orb.rightXLim = 272;
         orb.yLim = 224;
-        orb.speed = 200;
+        orb.speed = 100;
         
         orb = orbs.create(128, 256, 'orb');
         game.physics.p2.enable(orb, false);
@@ -129,7 +129,7 @@ demo.sandbox.prototype = {
         orb.leftXLim = 128;
         orb.rightXLim = 272;
         orb.yLim = 256;
-        orb.speed = 200;
+        orb.speed = 100;
         
         orb = orbs.create(128, 288, 'orb');
         game.physics.p2.enable(orb, false);
@@ -140,7 +140,7 @@ demo.sandbox.prototype = {
         orb.leftXLim = 128;
         orb.rightXLim = 272;
         orb.yLim = 288;
-        orb.speed = 200;
+        orb.speed = 100;
         
         orb = orbs.create(160, 320, 'orb');
         game.physics.p2.enable(orb, false);
@@ -151,7 +151,7 @@ demo.sandbox.prototype = {
         orb.leftXLim = 128;
         orb.rightXLim = 272;
         orb.yLim = 320;
-        orb.speed = 200;
+        orb.speed = 100;
         
         orb = orbs.create(192, 352, 'orb');
         game.physics.p2.enable(orb, false);
@@ -162,7 +162,7 @@ demo.sandbox.prototype = {
         orb.leftXLim = 128;
         orb.rightXLim = 272;
         orb.yLim = 352;
-        orb.speed = 200;
+        orb.speed = 100;
         
         orb = orbs.create(224, 384, 'orb');
         game.physics.p2.enable(orb, false);
@@ -173,7 +173,7 @@ demo.sandbox.prototype = {
         orb.leftXLim = 128;
         orb.rightXLim = 272;
         orb.yLim = 384;
-        orb.speed = 200;
+        orb.speed = 100;
         
         orb = orbs.create(256, 416, 'orb');
         game.physics.p2.enable(orb, false);
@@ -184,7 +184,7 @@ demo.sandbox.prototype = {
         orb.leftXLim = 128;
         orb.rightXLim = 272;
         orb.yLim = 416;
-        orb.speed = 200;
+        orb.speed = 100;
         
         orb = orbs.create(256, 448, 'orb');
         game.physics.p2.enable(orb, false);
@@ -195,7 +195,7 @@ demo.sandbox.prototype = {
         orb.leftXLim = 128;
         orb.rightXLim = 272;
         orb.yLim = 448;
-        orb.speed = 200;
+        orb.speed = 100;
         
         orb = orbs.create(224, 480, 'orb');
         game.physics.p2.enable(orb, false);
@@ -206,7 +206,7 @@ demo.sandbox.prototype = {
         orb.leftXLim = 128;
         orb.rightXLim = 272;
         orb.yLim = 480;
-        orb.speed = 200;
+        orb.speed = 100;
         
         orb = orbs.create(192, 512, 'orb');
         game.physics.p2.enable(orb, false);
@@ -217,7 +217,7 @@ demo.sandbox.prototype = {
         orb.leftXLim = 128;
         orb.rightXLim = 272;
         orb.yLim = 512;
-        orb.speed = 200;
+        orb.speed = 100;
         
         orb = orbs.create(160, 544, 'orb');
         game.physics.p2.enable(orb, false);
@@ -228,18 +228,7 @@ demo.sandbox.prototype = {
         orb.leftXLim = 128;
         orb.rightXLim = 272;
         orb.yLim = 544;
-        orb.speed = 200;
-        
-        orb = orbs.create(128, 576, 'orb');
-        game.physics.p2.enable(orb, false);
-        orb.body.data.gravityScale = 0;
-        orb.body.fixedRotation = true;
-        orb.id = 14;
-        orb.movingRight = false;
-        orb.leftXLim = 128;
-        orb.rightXLim = 272;
-        orb.yLim = 576;
-        orb.speed = 200;
+        orb.speed = 100;
         ///////////////////////////////////////////////////
     },
     update: function() { 
