@@ -202,6 +202,9 @@ demo.state1.prototype = {
         turret.body.static = true;
         turret.nextShot = 4000;
         turret.shotTimer = 2000;
+        turret.shootL = true;
+        turret.shootR = true;
+        turret.shootU = true;
         
         turret = turrets.create(1990, 158, 'turret');
         game.physics.p2.enable(turret, false);
@@ -209,6 +212,9 @@ demo.state1.prototype = {
         turret.body.static = true;
         turret.nextShot = 4000;
         turret.shotTimer = 2000;
+        turret.shootL = true;
+        turret.shootR = true;
+        turret.shootU = true;
         
         ///////////////////////////////////////////////////
         
@@ -356,12 +362,3 @@ demo.state1.prototype = {
         }
     }
 };
-
-
-
-
-
-
-
-
-

@@ -298,30 +298,36 @@ function moveMice() {
     }
 }
 function turretShoot() {
+    var turretBullet;
     for (var i = 0, len = turrets.children.length; i < len; i++){
         var turret = turrets.children[i];
-            var turretBullet = turretBullets.getFirstExists(false);
+        if (turret.shootL) {
+            turretBullet = turretBullets.getFirstExists(false);
             game.physics.p2.enable(turretBullet, false);
             turretBullet.body.data.gravityScale = 0;
             turretBullet.body.mass = 1;
             turretBullet.body.onBeginContact.add(turretBulletHit, turretBullet);
             turretBullet.reset(turret.x - 25, turret.y - 12); 
-            turretBullet.body.moveLeft(700);  
-        
+            turretBullet.body.moveLeft(700);            
+        }  
+
+        if (turret.shootR) {
             turretBullet = turretBullets.getFirstExists(false);
             game.physics.p2.enable(turretBullet, false);
             turretBullet.body.data.gravityScale = 0;
             turretBullet.body.mass = 1;
             turretBullet.body.onBeginContact.add(turretBulletHit, turretBullet);
             turretBullet.reset(turret.x + 50, turret.y - 12); 
-            turretBullet.body.moveRight(700); 
-        
+            turretBullet.body.moveRight(700);             
+        }
+        if (turret.shootU) {
             turretBullet = turretBullets.getFirstExists(false);
             game.physics.p2.enable(turretBullet, false);
             turretBullet.body.data.gravityScale = 0;
             turretBullet.body.mass = 1;
             turretBullet.body.onBeginContact.add(turretBulletHit, turretBullet);
             turretBullet.reset(turret.x, turret.y - 40); 
-            turretBullet.body.moveUp(700); 
+            turretBullet.body.moveUp(700);             
+        }
     }
 }
