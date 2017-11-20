@@ -216,8 +216,7 @@ demo.state1.prototype = {
         turret.lastShot = 0;
         turret.shootL = true;
         turret.shootR = true;
-        turret.shootU = true;
-        
+        turret.shootU = true;        
         ///////////////////////////////////////////////////
         
                         //MICE//
