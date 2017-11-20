@@ -13,7 +13,7 @@ game.state.add('state1b', demo.state1b);
 game.state.add('state2Title', demo.state2Title);
 game.state.add('state2', demo.state2);
 game.state.add('sandbox', demo.sandbox);
-game.state.start('state0 ');
+game.state.start('sandbox');
 
 /*
 CORE FUNCTIONS
@@ -62,16 +62,6 @@ function attack() {
 function updateAnchor(x, y, item) {
     item.anchor.x = x;
     item.anchor.y = y;
-}
-function fight(mittens, mouse) {
-    if (attacking) {
-        mouse.kill();
-        miceKilled += 1;
-    }
-    else {
-        miceKilled = 0;
-        game.state.start('state1');
-    }
 }
 function killMittens(mittens) {
     console.log('in killMittens');
@@ -228,7 +218,7 @@ function mittensHit(body, bodyB, shapeA, shapeB, equation) {
     if (body == null) {
         return
     }
-    if (body.sprite.key == 'mouse') {
+    if (body.sprite.key == 'mouse' || body.sprite.key == 'orb') {
         if (!mittens.invincible) {
             killMittens();
             //mittens.reset(125, 500);

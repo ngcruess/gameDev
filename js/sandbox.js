@@ -47,7 +47,7 @@ demo.sandbox.prototype = {
         game.physics.p2.enable(shelf, false);
         shelf.body.static = true;
         
-        shelf = game.add.sprite(304, 336, 'shelfStandard');
+        shelf = game.add.sprite(336, 336, 'shelfStandard');
         shelf.scale.setTo(.32, 21);
         game.physics.p2.enable(shelf, false);
         shelf.body.static = true;
@@ -76,159 +76,181 @@ demo.sandbox.prototype = {
         ///////////////////////////////////////////////////
         orbs = game.add.group();
         
-        var orb = orbs.create(256, 128, 'orb');
+        var orb = orbs.create(256, 160, 'orb');
         game.physics.p2.enable(orb, false);
         orb.body.data.gravityScale = 0;
         orb.body.fixedRotation = true;
         orb.id = 0;
         orb.movingRight = false;
         orb.leftXLim = 128;
-        orb.rightXLim = 272;
-        orb.yLim = 128;
-        orb.speed = 100;
+        orb.rightXLim = 308;
+        orb.yLim = 160;
+        orb.speed = 140;
         
-        orb = orbs.create(224, 160, 'orb');
+        orb = orbs.create(224, 192, 'orb');
         game.physics.p2.enable(orb, false);
         orb.body.data.gravityScale = 0;
         orb.body.fixedRotation = true;
         orb.id = 1;
         orb.movingRight = false;
         orb.leftXLim = 128;
-        orb.rightXLim = 272;
-        orb.yLim = 160;
-        orb.speed = 100;
+        orb.rightXLim = 308;
+        orb.yLim = 192;
+        orb.speed = 140;
         
-        orb = orbs.create(192, 192, 'orb');
+        orb = orbs.create(192, 224, 'orb');
         game.physics.p2.enable(orb, false);
         orb.body.data.gravityScale = 0;
         orb.body.fixedRotation = true;
         orb.id = 2;
         orb.movingRight = false;
         orb.leftXLim = 128;
-        orb.rightXLim = 272;
-        orb.yLim = 192;
-        orb.speed = 100;
+        orb.rightXLim = 308;
+        orb.yLim = 224;
+        orb.speed = 140;
         
-        orb = orbs.create(160, 224, 'orb');
+        orb = orbs.create(160, 256, 'orb');
         game.physics.p2.enable(orb, false);
         orb.body.data.gravityScale = 0;
         orb.body.fixedRotation = true;
         orb.id = 3;
         orb.movingRight = false;
         orb.leftXLim = 128;
-        orb.rightXLim = 272;
-        orb.yLim = 224;
-        orb.speed = 100;
+        orb.rightXLim = 308;
+        orb.yLim = 256;
+        orb.speed = 140;
         
-        orb = orbs.create(128, 256, 'orb');
+        orb = orbs.create(128, 288, 'orb');
         game.physics.p2.enable(orb, false);
         orb.body.data.gravityScale = 0;
         orb.body.fixedRotation = true;
         orb.id = 4;
         orb.movingRight = false;
         orb.leftXLim = 128;
-        orb.rightXLim = 272;
-        orb.yLim = 256;
-        orb.speed = 100;
+        orb.rightXLim = 308;
+        orb.yLim = 288;
+        orb.speed = 140;
         
-        orb = orbs.create(128, 288, 'orb');
+        orb = orbs.create(128, 320, 'orb');
         game.physics.p2.enable(orb, false);
         orb.body.data.gravityScale = 0;
         orb.body.fixedRotation = true;
         orb.id = 5;
         orb.movingRight = false;
         orb.leftXLim = 128;
-        orb.rightXLim = 272;
-        orb.yLim = 288;
-        orb.speed = 100;
+        orb.rightXLim = 308;
+        orb.yLim = 320;
+        orb.speed = 140;
         
-        orb = orbs.create(160, 320, 'orb');
+        orb = orbs.create(160, 352, 'orb');
         game.physics.p2.enable(orb, false);
         orb.body.data.gravityScale = 0;
         orb.body.fixedRotation = true;
         orb.id = 6;
         orb.movingRight = false;
         orb.leftXLim = 128;
-        orb.rightXLim = 272;
-        orb.yLim = 320;
-        orb.speed = 100;
+        orb.rightXLim = 308;
+        orb.yLim = 352;
+        orb.speed = 140;
         
-        orb = orbs.create(192, 352, 'orb');
+        orb = orbs.create(192, 384, 'orb');
         game.physics.p2.enable(orb, false);
         orb.body.data.gravityScale = 0;
         orb.body.fixedRotation = true;
         orb.id = 7;
         orb.movingRight = false;
         orb.leftXLim = 128;
-        orb.rightXLim = 272;
-        orb.yLim = 352;
-        orb.speed = 100;
+        orb.rightXLim = 308;
+        orb.yLim = 384;
+        orb.speed = 140;
         
-        orb = orbs.create(224, 384, 'orb');
+        orb = orbs.create(224, 416, 'orb');
         game.physics.p2.enable(orb, false);
         orb.body.data.gravityScale = 0;
         orb.body.fixedRotation = true;
         orb.id = 8;
         orb.movingRight = false;
         orb.leftXLim = 128;
-        orb.rightXLim = 272;
-        orb.yLim = 384;
-        orb.speed = 100;
+        orb.rightXLim = 308;
+        orb.yLim = 416;
+        orb.speed = 140;
         
-        orb = orbs.create(256, 416, 'orb');
+        orb = orbs.create(256, 448, 'orb');
         game.physics.p2.enable(orb, false);
         orb.body.data.gravityScale = 0;
         orb.body.fixedRotation = true;
         orb.id = 9;
         orb.movingRight = false;
         orb.leftXLim = 128;
-        orb.rightXLim = 272;
-        orb.yLim = 416;
-        orb.speed = 100;
+        orb.rightXLim = 308;
+        orb.yLim = 448;
+        orb.speed = 140;
         
-        orb = orbs.create(256, 448, 'orb');
+        orb = orbs.create(256, 480, 'orb');
         game.physics.p2.enable(orb, false);
         orb.body.data.gravityScale = 0;
         orb.body.fixedRotation = true;
         orb.id = 10;
         orb.movingRight = false;
         orb.leftXLim = 128;
-        orb.rightXLim = 272;
-        orb.yLim = 448;
-        orb.speed = 100;
+        orb.rightXLim = 308;
+        orb.yLim = 480;
+        orb.speed = 140;
         
-        orb = orbs.create(224, 480, 'orb');
+        orb = orbs.create(224, 512, 'orb');
         game.physics.p2.enable(orb, false);
         orb.body.data.gravityScale = 0;
         orb.body.fixedRotation = true;
         orb.id = 11;
         orb.movingRight = false;
         orb.leftXLim = 128;
-        orb.rightXLim = 272;
-        orb.yLim = 480;
-        orb.speed = 100;
+        orb.rightXLim = 308;
+        orb.yLim = 512;
+        orb.speed = 140;
         
-        orb = orbs.create(192, 512, 'orb');
+        orb = orbs.create(192, 544, 'orb');
         game.physics.p2.enable(orb, false);
         orb.body.data.gravityScale = 0;
         orb.body.fixedRotation = true;
         orb.id = 12;
         orb.movingRight = false;
         orb.leftXLim = 128;
-        orb.rightXLim = 272;
-        orb.yLim = 512;
-        orb.speed = 100;
+        orb.rightXLim = 308;
+        orb.yLim = 544;
+        orb.speed = 140;
         
-        orb = orbs.create(160, 544, 'orb');
+        orb = orbs.create(160, 576, 'orb');
         game.physics.p2.enable(orb, false);
         orb.body.data.gravityScale = 0;
         orb.body.fixedRotation = true;
         orb.id = 13;
         orb.movingRight = false;
         orb.leftXLim = 128;
-        orb.rightXLim = 272;
-        orb.yLim = 544;
-        orb.speed = 100;
+        orb.rightXLim = 308;
+        orb.yLim = 576;
+        orb.speed = 140;
+        
+        orb = orbs.create(128, 608, 'orb');
+        game.physics.p2.enable(orb, false);
+        orb.body.data.gravityScale = 0;
+        orb.body.fixedRotation = true;
+        orb.id = 13;
+        orb.movingRight = false;
+        orb.leftXLim = 128;
+        orb.rightXLim = 308;
+        orb.yLim = 608;
+        orb.speed = 140;
+        
+        orb = orbs.create(160, 640, 'orb');
+        game.physics.p2.enable(orb, false);
+        orb.body.data.gravityScale = 0;
+        orb.body.fixedRotation = true;
+        orb.id = 13;
+        orb.movingRight = false;
+        orb.leftXLim = 128;
+        orb.rightXLim = 308;
+        orb.yLim = 640;
+        orb.speed = 140;
         ///////////////////////////////////////////////////
     },
     update: function() { 
@@ -236,6 +258,11 @@ demo.sandbox.prototype = {
         moveMittens();
         updateTimer();
         moveOrbs();
+        if (mittens.y > 676) {
+            for (var i = 0, len = orbs.children.length; i < len; i++) {
+                orbs.children[i].kill();
+            }
+        }
         if (bottomTouching(mittens)) {
             jumps = 2;
         }
@@ -257,7 +284,7 @@ function moveOrbs() {
             orb.movingRight = true;
         }
         if (orb.x > orb.rightXLim + 30 || orb.x < orb.leftXLim - 10 || orb.y < orb.yLim - 10 || orb.y > orb.yLim + 10) {
-            orb.reset(orb.leftXLim, orb.yLim);
+            orb.reset(orb.x, orb.yLim);
         }        
     }
 }
