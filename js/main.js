@@ -13,7 +13,7 @@ game.state.add('state1b', demo.state1b);
 game.state.add('state2Title', demo.state2Title);
 game.state.add('state2', demo.state2);
 game.state.add('sandbox', demo.sandbox);
-game.state.start('sandbox');
+game.state.start('state0');
 
 /*
 CORE FUNCTIONS
