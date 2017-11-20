@@ -259,9 +259,7 @@ demo.sandbox.prototype = {
         updateTimer();
         moveOrbs();
         if (mittens.y > 676) {
-            for (var i = 0, len = orbs.children.length; i < len; i++) {
-                orbs.children[i].kill();
-            }
+            orbs.killAll();
         }
         if (bottomTouching(mittens)) {
             jumps = 2;
