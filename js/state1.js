@@ -201,8 +201,9 @@ demo.state1.prototype = {
         turret.body.fixedRotation = true;
         turret.body.static = true;
         turret.nextShot = 4000;
-        turret.shotTimer = 2000;
-        turret.shootL = true;
+        turret.shotDelay = 2000;
+        turret.lastShot = 0;
+        turret.shootL = false;
         turret.shootR = true;
         turret.shootU = true;
         
@@ -211,7 +212,8 @@ demo.state1.prototype = {
         turret.body.fixedRotation = true;
         turret.body.static = true;
         turret.nextShot = 4000;
-        turret.shotTimer = 2000;
+        turret.shotDelay = 2000;
+        turret.lastShot = 0;
         turret.shootL = true;
         turret.shootR = true;
         turret.shootU = true;
@@ -344,11 +346,12 @@ demo.state1.prototype = {
         turretBullets.setAll('ckeckWorldBounds', true);
         ///////////////////////////////////////////////////       
         
-        game.time.events.repeat(Phaser.Timer.SECOND *2, 1000, turretShoot, this);
+        //game.time.events.repeat(Phaser.Timer.SECOND *2, 1000, turretShoot, this);
     },
     update: function() { 
         //console.log(mittens.x, mittens.y)
         moveMittens();
+        turretShoot();
         if (mittens.y > 750) {
             killMittens();
         }
