@@ -6,9 +6,7 @@ demo.sandbox.prototype = {
         game.load.image('shelfStandard', '../assets/images/shelfStandard.png');
         game.load.spritesheet('mittens2', '../assets/sprites/WalkingM.png', 90, 86);
         game.load.physics('mittensPhysics', '../assets/polygons/Mittens.json');
-        game.load.image('grid', '../assets/images/grid.png');
         game.load.image('orb', '../assets/images/orb.png');
-        game.load.image('square', '../assets/images/square.png');
         game.load.image('square32', '../assets/images/square32.png');
     },
     create: function() {
@@ -25,7 +23,6 @@ demo.sandbox.prototype = {
         timer = game.add.text(1375,0, "00:00:00");
         timer.fixedToCamera = true;
         
-        //var grid = game.add.sprite(0, 0, 'grid');
         var grid = game.add.tileSprite(0, 0, 6000, 800, 'square32');
         ////////////////////////////////////////////////////        
         
