@@ -8,6 +8,8 @@ demo.sandbox.prototype = {
         game.load.physics('mittensPhysics', '../assets/polygons/Mittens.json');
         game.load.image('grid', '../assets/images/grid.png');
         game.load.image('orb', '../assets/images/orb.png');
+        game.load.image('square', '../assets/images/square.png');
+        game.load.image('square32', '../assets/images/square32.png');
     },
     create: function() {
         
@@ -23,14 +25,15 @@ demo.sandbox.prototype = {
         timer = game.add.text(1375,0, "00:00:00");
         timer.fixedToCamera = true;
         
-        var grid = game.add.sprite(0, 0, 'grid');
+        //var grid = game.add.sprite(0, 0, 'grid');
+        var grid = game.add.tileSprite(0, 0, 6000, 800, 'square32');
         ////////////////////////////////////////////////////        
         
                             // KEYBOARD //
         ////////////////////////////////////////////////////
         // CALLBACK FOR DOUBLE JUMP
         game.input.keyboard.onUpCallback = function (e) {
-            console.log(e.keyCode)
+            //console.log(e.keyCode)
             if (e.keyCode == 38 || e.keyCode == 87){
                 jumpRel = true;
             } 
@@ -258,7 +261,7 @@ demo.sandbox.prototype = {
         moveMittens();
         updateTimer();
         moveOrbs();
-        if (mittens.y > 676) {
+        if (mittens.x > 320) {
             orbs.killAll();
         }
         if (bottomTouching(mittens)) {
@@ -285,16 +288,6 @@ function moveOrbs() {
             orb.reset(orb.x, orb.yLim);
         }        
     }
-}
-function updataTimer() {
-    minutes = Math.floor(game.time.now/60000)% 60;
-    seconds = Math.floor(game.time.now/1000) % 60;
-    milliseconds = Math.floor(game.time.now) % 100;
-    
-    if (milliseconds < 10) { milliseconds = "0" + milliseconds};
-    if (seconds < 10) { seconds = '0' + seconds};
-    if (minutes < 10) { minutes = '0' + minutes};
-    timer.setText(minutes + ":" + seconds + ":" + milliseconds);    
 }
 
 

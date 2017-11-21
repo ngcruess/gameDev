@@ -35,7 +35,7 @@ function moveMittens() {
         mittens.animations.stop();
     }
     if (cursor.up.isDown || game.input.keyboard.isDown(Phaser.Keyboard.W)) {
-        console.log('W or UP\n' + jumpRel);
+        //console.log('W or UP\n' + jumpRel);
         if (mittens.flight) {
             mittens.body.moveUp(mittensJumpVelocity); 
         }
@@ -98,8 +98,6 @@ function mittensShoot() {
 
 // ADDED DOUBLE JUMP
 function mittensJump() {
-    console.log(jumps);
-    
     if (bottomTouching(mittens)) {
         jumps = 2;
         mittens.body.moveUp(mittensJumpVelocity);
