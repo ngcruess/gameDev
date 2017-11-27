@@ -4,6 +4,7 @@ demo.state1.prototype = {
     preload: function() {
         game.load.image('shelfStandard', '../assets/images/shelfStandard.png');
         game.load.image('shot', '../assets/images/turretShot.png');
+         game.load.image('portal', '../assets/sprites/portal.png');
         game.load.image('mouse', '../assets/sprites/ToyMouse-1.png')
         game.load.image('turret', '../assets/sprites/mrShootyTall_v2.png');
         game.load.spritesheet('sockSheet','../assets/sprites/EvilSock.png', 90, 135);
@@ -17,6 +18,7 @@ demo.state1.prototype = {
         game.load.physics('mousePhysicsR', '../assets/polygons/ToyMouseR.json')
         
         game.load.audio('death', '../assets/audio/mittensDeath.wav');
+        var portal = game.add.sprite(5570, game.world.height/2 - 100, 'portal');
         
     },
     create: function() {
@@ -39,7 +41,7 @@ demo.state1.prototype = {
         wall = game.add.sprite(3000,0, 'wall');
         wall.scale.setTo(10, 10);
         
-        
+        var portal = game.add.sprite(5570, game.world.height/2 - 100, 'portal');
 //        var intoTheAbyss = game.add.text(4200, 80, "ONWARD BROTHER, INTO THE ABYSS -->");
         
                             //PLATFORMS//
