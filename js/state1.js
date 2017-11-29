@@ -4,12 +4,12 @@ demo.state1.prototype = {
     preload: function() {
         game.load.image('shelfStandard', '../assets/images/shelfStandard.png');
         game.load.image('shot', '../assets/images/turretShot.png');
-         game.load.image('portal', '../assets/sprites/portal.png');
         game.load.image('mouse', '../assets/sprites/ToyMouse-1.png')
         game.load.image('turret', '../assets/sprites/mrShootyTall_v2.png');
         game.load.spritesheet('sockSheet','../assets/sprites/EvilSock.png', 90, 135);
         game.load.image('sockL', '../assets/sprites/EvilSockL.png');
         game.load.spritesheet('mittens2', '../assets/sprites/WalkingM.png', 90, 86);
+        game.load.image('portal', '../assets/sprites/portal.png');
         
         game.load.image('wall', '../assets/images/livingroomwall.png');
         game.load.image('sky', '../assets/images/sky.png');
@@ -18,10 +18,11 @@ demo.state1.prototype = {
         game.load.physics('mousePhysicsR', '../assets/polygons/ToyMouseR.json')
         
         game.load.audio('death', '../assets/audio/mittensDeath.wav');
-        var portal = game.add.sprite(5570, game.world.height/2 - 100, 'portal');
         
     },
     create: function() {
+        
+        state1Deaths ++;
         
                     // P2 PHYSICS AND ENVIRONMENT //
         ////////////////////////////////////////////////////
@@ -40,9 +41,6 @@ demo.state1.prototype = {
         
         wall = game.add.sprite(3000,0, 'wall');
         wall.scale.setTo(10, 10);
-        
-        var portal = game.add.sprite(5570, game.world.height/2 - 100, 'portal');
-//        var intoTheAbyss = game.add.text(4200, 80, "ONWARD BROTHER, INTO THE ABYSS -->");
         
                             //PLATFORMS//
         ////////////////////////////////////////////////////
@@ -148,10 +146,17 @@ demo.state1.prototype = {
         game.physics.p2.enable(shelf, false);
         //shelf.body.setMaterial(platformMaterial);
         shelf.body.static = true;
+        
+        //Portal
+        portal = game.add.sprite(5575, 300, 'portal');
         ////////////////////////////////////////////////////
         
-        timer = game.add.text(1375,0, "00:00:00");
+        timer = game.add.text(1355, 0, "00:00:00");
         timer.fixedToCamera = true;
+        var deathText = "Deaths: " + state1Deaths
+        deaths = game.add.text(1355, 30, deathText);
+        deaths.fixedToCamera = true;
+        
         
         death = game.sound.add('death');
         death.startTime = 200;
@@ -175,9 +180,15 @@ demo.state1.prototype = {
         
                         // MITTENS //
         ///////////////////////////////////////////////////
-        mittens = game.add.sprite(125, 525, 'mittens2');
-        //mittens = game.add.sprite(1812, 447, 'mittens2');
-        //mittens = game.add.sprite(3360, 263, 'mittens2');
+        if (state1Section == 0) {
+            mittens = game.add.sprite(125, 525, 'mittens2');
+        }
+        else if (state1Section == 1) {
+            mittens = game.add.sprite(1812, 447, 'mittens2');
+        }
+        else if (state1Section == 2) {
+            mittens = game.add.sprite(3360, 263, 'mittens2');
+        }
         updateAnchor(0.5, 0.5, mittens);
         game.physics.p2.enable(mittens, false);
         mittens.body.clearShapes();
@@ -353,12 +364,13 @@ demo.state1.prototype = {
         //console.log(mittens.x, mittens.y)
         moveMittens();
         turretShoot();
+        checkForCheckpoints();
         if (mittens.y > 750) {
             killMittens();
         }
         moveMice();     
         updateTimer();
-        if (mittens.x > 5575){
+        if (mittens.x > 5575 && mittens.y > 300){
             game.state.start("state1b");
         }
         if (bottomTouching(mittens)) {
@@ -366,3 +378,10 @@ demo.state1.prototype = {
         }
     }
 };
+function checkForCheckpoints() {
+    if (mittens.x > 1818 && mittens.x < 1868) {
+        if (mittens.y > 440 && mittens.y < 460 ) {
+            state1Section = 1
+        }
+    }
+}
