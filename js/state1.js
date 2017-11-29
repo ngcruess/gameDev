@@ -10,6 +10,7 @@ demo.state1.prototype = {
         game.load.image('sockL', '../assets/sprites/EvilSockL.png');
         game.load.spritesheet('mittens2', '../assets/sprites/WalkingM.png', 90, 86);
         game.load.image('portal', '../assets/sprites/portal.png');
+        game.load.image('flag', '../assets/images/flag.png');
         
         game.load.image('wall', '../assets/images/livingroomwall.png');
         game.load.image('sky', '../assets/images/sky.png');
@@ -86,6 +87,9 @@ demo.state1.prototype = {
         game.physics.p2.enable(shelf, false);
         //shelf.body.setMaterial(platformMaterial);
         shelf.body.static = true;
+        //Flag is on this platform ^
+        flag = game.add.sprite(1761, 368, 'flag');
+        
         
         shelf = game.add.sprite(2080, 200, 'shelfStandard');
         shelf.scale.setTo(5.12, 1);
