@@ -20,6 +20,8 @@ demo.state2.prototype = {
         game.load.audio('gun', '../assets/audio/gun.wav');
     },
     create: function(){
+        currentState = 'state2';
+        
         //Physics settings
         game.physics.startSystem(Phaser.Physics.P2JS);                
         game.physics.p2.gravity.y = globalGravity;

@@ -3,8 +3,9 @@ var game = new Phaser.Game(1500, 800, Phaser.AUTO);
 //Variables to be used in many states
 var mittens, cursor, jumps, platform, bullets, vbullets, fireRate = 200, shotTimer = 0, vfireRate = 200, vshotTimer = 0, 
     mittensFacingLeft = false, mittensJumpVelocity = 600, 
-    mittensRunSpeed = 400, bulletSpeed = 700, vbulletSpeed = 700, yAxis = p2.vec2.fromValues(0, 1), globalGravity = 1200, jumps = 2, jumpRel = true, death, state1Deaths = -1, state1Section = 0;
+    mittensRunSpeed = 400, bulletSpeed = 700, vbulletSpeed = 700, yAxis = p2.vec2.fromValues(0, 1), globalGravity = 1200, jumps = 2, jumpRel = true, death, state1Deaths = -1, state1Section = 0, currentState, deathTime;
 
+game.state.add('death', demo.death);
 game.state.add('state0', demo.state0);
 game.state.add('intro', demo.intro);
 game.state.add('livingRoomTitle', demo.livingRoomTitle);
@@ -64,8 +65,11 @@ function updateAnchor(x, y, item) {
     item.anchor.y = y;
 }
 function killMittens(mittens) {
-    console.log('in killMittens');
-    game.state.start(game.state.current);
+    //console.log('in killMittens');
+    goto = game.state.current;
+    //console.log(goto);
+    deathTime = game.time.now;
+    game.state.start('death');
     //music.stop();
     //bossMusic.stop();
     //death.play();

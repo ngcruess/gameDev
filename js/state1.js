@@ -20,9 +20,9 @@ demo.state1.prototype = {
         game.load.audio('death', '../assets/audio/mittensDeath.wav');
         
     },
-    create: function() {
-        
+    create: function() {        
         state1Deaths ++;
+        currentState = 'state1';
         
                     // P2 PHYSICS AND ENVIRONMENT //
         ////////////////////////////////////////////////////
