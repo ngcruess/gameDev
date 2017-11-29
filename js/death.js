@@ -9,7 +9,7 @@ demo.death.prototype= {
         //updateAnchor(0.5, 0.5, title);
     },
     update: function(){
-        if (game.time.now > deathTime + 1500) {
+        if (game.time.now > deathTime + 750) {
             game.state.start(currentState);
         }
     }
