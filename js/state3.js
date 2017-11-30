@@ -10,6 +10,7 @@ demo.state3.prototype = {
         game.load.spritesheet('sockSheet','../assets/sprites/EvilSock.png', 90, 135);
         game.load.image('sockL', '../assets/sprites/EvilSockL.png');
         game.load.spritesheet('mittens2', '../assets/sprites/WalkingM.png', 90, 86);
+        game.load.image('portal', '../assets/sprites/portal.png');
         
         game.load.image('wall', '../assets/images/BasementWall.png');
         game.load.image('sky', '../assets/images/sky.png');
@@ -34,6 +35,8 @@ demo.state3.prototype = {
         wall2 = game.add.sprite(3000, 0, 'wall');
         wall2.scale.setTo(10, 10);
         
+        portal = game.add.sprite(5900,400, 'portal');
+        
                                     // KEYBOARD //
         ////////////////////////////////////////////////////
         // CALLBACK FOR DOUBLE JUMP
@@ -51,7 +54,7 @@ demo.state3.prototype = {
         
                         // MITTENS //
         ///////////////////////////////////////////////////
-        mittens = game.add.sprite(2000, 400, 'mittens2');
+        mittens = game.add.sprite(200, 400, 'mittens2');
         //mittens = game.add.sprite(1812, 447, 'mittens2');
         //mittens = game.add.sprite(3360, 263, 'mittens2');
         updateAnchor(0.5, 0.5, mittens);
@@ -104,8 +107,8 @@ demo.state3.prototype = {
         //shelf.body.setMaterial(platformMaterial);
         shelf.body.static = true;
         
-        shelf = game.add.sprite(650, 400, 'shelfStandard');
-        shelf.scale.setTo(0.4, 20);
+        shelf = game.add.sprite(650, 450, 'shelfStandard');
+        shelf.scale.setTo(0.4, 22);
         game.physics.p2.enable(shelf, false);
         //shelf.body.setMaterial(platformMaterial);
         shelf.body.static = true;
@@ -148,6 +151,36 @@ demo.state3.prototype = {
         
         shelf = game.add.sprite(1800, 150, 'shelfStandard');
         shelf.scale.setTo(10, 1);
+        game.physics.p2.enable(shelf, false);
+        //shelf.body.setMaterial(platformMaterial);
+        shelf.body.static = true;
+        
+        shelf = game.add.sprite(2500, 700, 'shelfStandard');
+        shelf.scale.setTo(3.75, 1);
+        game.physics.p2.enable(shelf, false);
+        //shelf.body.setMaterial(platformMaterial);
+        shelf.body.static = true;
+        
+        shelf = game.add.sprite(3300, 450, 'shelfStandard');
+        shelf.scale.setTo(.5, 1);
+        game.physics.p2.enable(shelf, false);
+        //shelf.body.setMaterial(platformMaterial);
+        shelf.body.static = true;
+        
+        shelf = game.add.sprite(4000, 250, 'shelfStandard');
+        shelf.scale.setTo(.5, 1);
+        game.physics.p2.enable(shelf, false);
+        //shelf.body.setMaterial(platformMaterial);
+        shelf.body.static = true;
+        
+        shelf = game.add.sprite(4700, 250, 'shelfStandard');
+        shelf.scale.setTo(1, 1);
+        game.physics.p2.enable(shelf, false);
+        //shelf.body.setMaterial(platformMaterial);
+        shelf.body.static = true;
+        
+        shelf = game.add.sprite(5750, 600, 'shelfStandard');
+        shelf.scale.setTo(5, 1);
         game.physics.p2.enable(shelf, false);
         //shelf.body.setMaterial(platformMaterial);
         shelf.body.static = true;

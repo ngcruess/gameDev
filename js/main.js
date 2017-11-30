@@ -15,7 +15,7 @@ game.state.add('state2Title', demo.state2Title);
 game.state.add('state2', demo.state2);
 game.state.add('sandbox', demo.sandbox);
 game.state.add('state3', demo.state3);
-game.state.start('state3');
+game.state.start('state0');
 
 /*
 CORE FUNCTIONS
@@ -108,7 +108,7 @@ function mittensJump() {
         jumpTime = game.time.now
         jumps --;        
     }
-    else if (jumps == 1  && game.time.now > jumpTime + 200 && game.time.now < jumpTime+750) {
+    else if (jumps == 1  && game.time.now > jumpTime + 200 && game.time.now < jumpTime+220) {
         mittens.body.moveUp(mittensJumpVelocity);
         jumps = jumps -1;
     }
