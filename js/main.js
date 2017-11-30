@@ -14,7 +14,8 @@ game.state.add('state1b', demo.state1b);
 game.state.add('state2Title', demo.state2Title);
 game.state.add('state2', demo.state2);
 game.state.add('sandbox', demo.sandbox);
-game.state.start('state0');
+game.state.add('state3', demo.state3);
+game.state.start('state3');
 
 /*
 CORE FUNCTIONS
@@ -44,6 +45,9 @@ function moveMittens() {
             mittensJump();
             jumpRel = false;
         }
+    }
+    if (!(bottomTouching(mittens)) && (cursor.down.isDown || game.input.keyboard.isDown(Phaser.Keyboard.S))) {
+        mittens.body.moveDown(mittensRunSpeed*1.25);
     }
 }
 
@@ -104,7 +108,7 @@ function mittensJump() {
         jumpTime = game.time.now
         jumps --;        
     }
-    else if (jumps == 1  && game.time.now > jumpTime + 200 && game.time.now < jumpTime+700) {
+    else if (jumps == 1  && game.time.now > jumpTime + 200 && game.time.now < jumpTime+750) {
         mittens.body.moveUp(mittensJumpVelocity);
         jumps = jumps -1;
     }
@@ -113,6 +117,7 @@ function mittensJump() {
         mittens.body.moveUp(mittensJumpVelocity);
         jumps = 0;
     }
+    console.log('jumps: ' + jumps)
 }
 function bottomTouching(character) {
     var result = false;

@@ -21,6 +21,7 @@ demo.state2.prototype = {
     },
     create: function(){
         currentState = 'state2';
+        stage = 1;
         
         //Physics settings
         game.physics.startSystem(Phaser.Physics.P2JS);                
