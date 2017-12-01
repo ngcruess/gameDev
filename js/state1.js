@@ -184,15 +184,18 @@ demo.state1.prototype = {
         
                         // MITTENS //
         ///////////////////////////////////////////////////
-        if (state1Section == 0) {
-            mittens = game.add.sprite(125, 525, 'mittens2');
-        }
-        else if (state1Section == 1) {
-            mittens = game.add.sprite(1812, 447, 'mittens2');
-        }
-        else if (state1Section == 2) {
-            mittens = game.add.sprite(3360, 263, 'mittens2');
-        }
+//        if (state1Section == 0) {
+//            mittens = game.add.sprite(125, 525, 'mittens2');
+//        }
+//        else if (state1Section == 1) {
+//            mittens = game.add.sprite(1812, 447, 'mittens2');
+//        }
+//        else if (state1Section == 2) {
+//            mittens = game.add.sprite(3360, 263, 'mittens2');
+//        }
+        
+            
+        mittens = game.add.sprite(5100, 325, 'mittens2');
         updateAnchor(0.5, 0.5, mittens);
         game.physics.p2.enable(mittens, false);
         mittens.body.clearShapes();
