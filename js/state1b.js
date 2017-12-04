@@ -1,10 +1,13 @@
-var state2Music, targets, targetsKilled = 0;
+var state2Music, targets, targetsKilled = 0, pbg, paused;
 demo.state1b = function(){};
 demo.state1b.prototype= {
     preload: function(){                
         game.load.audio('bossMusic', '../assets/audio/bossMusic.mp3');
         game.load.image('shoot','../assets/images/textshoot.png'); 
-        game.load.image('shot', '../assets/images/projectile.png'); game.load.image('spacebar','../assets/sprites/spacebar.png');
+        game.load.image('shot', '../assets/images/projectile.png'); 
+        game.load.image('spacebar','../assets/sprites/spacebar.png');
+        game.load.image('paused','../assets/images/textdoublejump.png'); 
+        game.load.image('pbg','../assets/images/block.png'); 
         game.load.image('bg','../assets/images/yellowbg.png');
         game.load.image('square', '../assets/images/emptySquare.png');
         game.load.image('target', '../assets/images/target.png');
@@ -24,6 +27,7 @@ demo.state1b.prototype= {
         state2Music.allowMultiple = false;
         game.stage.backgroundColor = '#332e31';
         var bg = game.add.sprite(50,100, 'bg');
+        
         bg.scale.setTo(20, 12);
         cbutton = game.add.button(game.world.centerX,game.world.centerY +300, 'cbutton', function actionOnClick(){
             game.state.start('state2Title');
@@ -49,6 +53,8 @@ demo.state1b.prototype= {
         
        
         
+//        pbg.alpha = 0;
+//        paused.alpha = 0;
                         //PLATFORMS//
         ///////////////////////////////////////////////////
         shelf = game.add.sprite(200, 468, 'shelfStandard');
@@ -124,7 +130,8 @@ demo.state1b.prototype= {
             } 
         }          
         cursor = game.input.keyboard.createCursorKeys();
-        shootButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);       
+        shootButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+        pauseButton = game.input.keyboard.addKey(Phaser.Keyboard.P);
         
                         // MITTENS //
         ///////////////////////////////////////////////////
@@ -157,7 +164,11 @@ demo.state1b.prototype= {
         bullets.setAll('checkWorldBounds', true);
         bullets.forEach(function(bullet) {
             bullet.body.onBeginContact.add(bulletHit, bullet);
-        })     
+        }) 
+//        
+//        pbg = game.add.sprite(0,0,'pbg');
+//            
+//        paused = game.add.sprite(300, 630, 'paused');
     },
     update: function(){        
         state1Music.stop();
@@ -176,6 +187,23 @@ demo.state1b.prototype= {
         if (targetsKilled > 3) {
             game.state.start('state2Title');
         }
+//        if (pauseButton.isDown){
+//            game.paused = true;
+//            
+//            pbg.alpha = 1;
+//            pbg.scale.setTo(400,400);
+//            
+//            paused.alpha = 1;
+//            paused.anchor.x = 0.5;
+//            paused.anchor.y = 0.5;
+//        }
+//        if (pauseButton.isDown && game.paused) {
+//            game.paused = false;
+//            paused.alpha = 0;
+//            pbg.alpha= 0;
+//            //paused.destroy();
+//        }
+        
     }
 };
 function moveTarget() {
